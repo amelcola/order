@@ -393,6 +393,9 @@ fieldset{border:none}
 .mini-copy{font-size:12px;font-weight:900;border:2px solid var(--line);border-radius:999px;padding:1px 9px;margin-left:6px;background:var(--surface);transition:transform .2s var(--ease)}
 .mini-copy:hover{transform:translateY(-2px);background:var(--hover)}
 .pay-wrap{display:grid;gap:12px}
+.pay-info{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;border:2px dashed var(--soft);border-radius:12px;padding:10px 12px;font-weight:800;font-size:14px}
+.pay-info small{flex-basis:100%;font-weight:700}
+.momo-dot.sm{width:20px;height:20px;font-size:7px;border-radius:5px;vertical-align:-5px}
 .proof .btn:disabled{background:var(--surface-2);color:var(--muted);border-style:dashed;box-shadow:none;transform:none;cursor:not-allowed;opacity:1}
 .pay-tabs{display:flex;gap:8px}
 .pay-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 12px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-weight:900;font-size:15px;transition:transform .2s var(--ease),background .2s}
@@ -629,9 +632,9 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
    UI TEXT — English / Tiếng Việt
    ============================================================ */
 const T={
-en:{save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
+en:{pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
  proof_l:'Upload your transfer screenshot',proof_pick:'Tap to choose a screenshot',proof_hint:'from your bank or MoMo app',proof_change:'Tap to change the photo',proof_need:'Upload your screenshot first ✦',proof_type:'Please choose an image file',
- uploading:'Uploading…',proof_sent:'Screenshot received! We’ve emailed your payment receipt ♡',tab_track:'Track order',email_l:'Email',email_ph:'to get your payment receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
+ uploading:'Uploading…',proof_sent:'Screenshot received! We’ve emailed your payment receipt ♡',tab_track:'Track order',email_l:'Email',email_ph:'for your receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
  not_found:'We couldn’t find that code. Check the letters and try again ✦',net_err:'Couldn’t connect. Check your internet and try again.',sending:'Sending your order…',
  st0:'Waiting for payment',st1:'Payment reported',st2:'Payment confirmed',st3:'Preparing',st4:'Delivered / picked up',st5:'Cancelled',
  tl0:'Ordered',tl1:'Paid',tl2:'Confirmed',tl3:'Preparing',tl4:'Done',
@@ -665,9 +668,9 @@ en:{save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan 
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+vi:{pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Shop không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
  proof_l:'Tải ảnh chụp màn hình chuyển khoản',proof_pick:'Bấm để chọn ảnh chụp màn hình',proof_hint:'từ app ngân hàng hoặc MoMo',proof_change:'Bấm để đổi ảnh khác',proof_need:'Tải ảnh chuyển khoản lên trước nhé ✦',proof_type:'Bạn chọn file ảnh giúp shop nhé',
- uploading:'Đang tải ảnh lên…',proof_sent:'Shop đã nhận ảnh chuyển khoản và gửi biên nhận vào email của bạn ♡',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận thanh toán',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp shop nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, shop sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
+ uploading:'Đang tải ảnh lên…',proof_sent:'Shop đã nhận ảnh chuyển khoản và gửi biên nhận vào email của bạn ♡',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp shop nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, shop sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
  not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp shop nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
  st0:'Chờ thanh toán',st1:'Khách báo đã chuyển khoản',st2:'Đã xác nhận thanh toán',st3:'Đang chuẩn bị hàng',st4:'Đã giao / đã nhận',st5:'Đã huỷ',
  tl0:'Đặt hàng',tl1:'Chuyển khoản',tl2:'Xác nhận',tl3:'Chuẩn bị',tl4:'Hoàn tất',
@@ -1006,8 +1009,7 @@ function openCheckout(){
     <fieldset><legend class="lbl">${t('how')}</legend><div class="radio-cards">
       <label><input type="radio" name="ship" value="ship" checked>${t('ship')}</label><label><input type="radio" name="ship" value="pickup">${t('pickup')}</label></div></fieldset>
     <div id="shipBox"><label class="lbl" for="f-addr">${t('addr')} <em>*</em></label><textarea id="f-addr" rows="2" autocomplete="street-address"></textarea></div>
-    <fieldset><legend class="lbl">${t('pay')}</legend><div class="radio-cards">
-      <label><input type="radio" name="pay" value="bank" checked>${t('bank')}</label><label><input type="radio" name="pay" value="later">${t('paylater')}</label></div></fieldset>
+    <div class="pay-info"><span class="lbl" style="margin:0">${t('pay')}</span><span>🏦 ${esc(BANK.bankName)}${accReady(MOMO)?' · <b class="momo-dot sm">mo<br>mo</b> MoMo':''}</span><small class="note">${t('pay_first')}</small></div>
     <p class="note" id="coErr" role="alert" style="color:var(--accent);font-weight:800"></p>
     <button class="btn btn--primary btn--block" type="submit">${t('confirm')}</button>
   </form>
@@ -1028,7 +1030,7 @@ function openCheckout(){
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){$('#f-email').style.borderColor='var(--accent)';$('#coErr').textContent=t('email_bad');$('#f-email').focus();return}
     const btn=form.querySelector('button[type=submit]');if(btn.disabled)return;btn.disabled=true;btn.innerHTML=`<span class="spinner"></span> ${t('sending')}`;$('#coErr').textContent='';
     const payload={action:'order',lang,name:$('#f-name').value.trim(),social:$('#f-social').value.trim(),phone:$('#f-phone').value.trim(),email:em,
-      delivery:form.ship.value,address:form.ship.value==='ship'?$('#f-addr').value.trim():'',payment:form.pay.value,
+      delivery:form.ship.value,address:form.ship.value==='ship'?$('#f-addr').value.trim():'',payment:'bank',
       items:cart.map(orderLine),lines:cart.map(orderData),catalog:catalogSnapshot(),total:st,gifts:unlocked(st),note:store.get('ac_note','')};
     try{
       const res=await Orders.create(payload);
