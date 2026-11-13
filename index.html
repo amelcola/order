@@ -34,33 +34,42 @@
   color-scheme:light;
 }
 [data-theme="dark"]{
-  /* Blend: flat vintage windows + soft starry palette. No bright cream blocks.
-     Text 13.9:1 · muted 8.7:1 · navy on muted gold 10.7:1 · lavender borders 5.8:1 */
-  --bg1:#0B0F28; --bg2:#0B0F28; --bg3:#0B0F28; --dots:rgba(217,192,138,.18);
-  --surface:#141A40; --surface-2:#0E1332;
-  --text:#ECE8F7; --muted:#B9B6E0;
-  --line:#8C93D9; --shadow-c:#04061A;
-  --primary:#D9C08A; --primary-hover:#E8D3A3; --on-primary:#0B0F28; --price:#D9C08A;
-  --bar:#2E3B8F; --bar-pink:#4A2A55; --bar-lime:#3D3622; --bar-sky:#203F63;
-  --accent:#FF9EC4; --badge:#FF9EC4; --on-badge:#0B0F28;
-  --chip-on:#A9A6E0; --on-chip:#0B0F28;
-  --soft:#343C7A; --deco:#8C93D9; --hover:#232B63; --focus-ring:#2E3B8F;
-  --hl:#2E3B8F; --strip:#070A1E; --on-strip:#ECE8F7; --strip-link:#D9C08A;
-  --overlay:rgba(4,6,20,.62);
+  /* Pastel night: clean space-navy base + pastel lavender / pink / cream / sky title bars.
+     Text 14.3:1 · muted 8.7:1 · dark text on every pastel bar ≥10:1 · borders 5.2:1 */
+  --bg1:#0D1030; --bg2:#0D1030; --bg3:#0D1030; --dots:rgba(201,190,255,.20);
+  --surface:#161B48; --surface-2:#10143A;
+  --text:#F1EEFF; --muted:#BDB8EC;
+  --line:#8E86E8; --shadow-c:#070920;
+  --primary:#C3B5FF; --primary-hover:#D8CEFF; --on-primary:#14183D; --price:#FFB3D6;
+  --bar:#2B3380; --bar-pink:#5A2D82; --bar-lime:#2E4A86; --bar-sky:#2C3F8C;
+  --accent:#FF9ECF; --badge:#FF9ECF; --on-badge:#14183D;
+  --chip-on:#F3E6C4; --on-chip:#14183D;
+  --soft:#39408A; --deco:#A99CFF; --hover:#252C6E; --focus-ring:#5A4FD0;
+  --hl:#4B3FB0; --strip:#0A0D2A; --on-strip:#F1EEFF; --strip-link:#F3E6C4;
+  --overlay:rgba(6,8,26,.62);
+  --tb:#C9BEFF; --tb-pink:#FFC0E0; --tb-lime:#F3E6C4; --tb-sky:#A9E3F5; --on-tb:#14183D;
   color-scheme:dark;
 }
-/* map-grid paper + one very faint purple haze (no strong gradients) */
+/* starfield + faint orbit grid, no muddy gradients */
 [data-theme="dark"] body{background:
-  radial-gradient(circle at 1px 1px,var(--dots) 1.3px,transparent 1.8px) 0 0/26px 26px,
-  linear-gradient(rgba(140,147,217,.05) 1px,transparent 1px) 0 0/104px 104px,
-  linear-gradient(90deg,rgba(140,147,217,.05) 1px,transparent 1px) 0 0/104px 104px,
-  radial-gradient(ellipse 60% 40% at 15% 20%,rgba(124,92,255,.10),transparent 70%),
+  radial-gradient(circle at 1px 1px,var(--dots) 1.2px,transparent 1.7px) 0 0/26px 26px,
+  radial-gradient(circle at 13px 9px,rgba(169,227,245,.35) .8px,transparent 1.3px) 0 0/97px 83px,
+  radial-gradient(circle at 40px 60px,rgba(255,192,224,.30) .9px,transparent 1.4px) 0 0/131px 117px,
+  linear-gradient(rgba(201,190,255,.045) 1px,transparent 1px) 0 0/104px 104px,
+  linear-gradient(90deg,rgba(201,190,255,.045) 1px,transparent 1px) 0 0/104px 104px,
   var(--bg1);background-attachment:fixed}
-[data-theme="dark"] .win__bar{color:#ECE8F7}
-[data-theme="dark"] .hero__main .win__body{background:linear-gradient(135deg,var(--surface) 0 58%,#1A2150 58% 100%)}
+/* pastel title bars with dark text */
+[data-theme="dark"] .win__bar,[data-theme="dark"] .mini__bar{background:var(--tb);color:var(--on-tb)}
+[data-theme="dark"] .win__bar.pink,[data-theme="dark"] .mini__bar.pinkbar{background:var(--tb-pink)}
+[data-theme="dark"] .win__bar.lime,[data-theme="dark"] .mini__bar.yellow{background:var(--tb-lime)}
+[data-theme="dark"] .win__bar.sky{background:var(--tb-sky)}
+[data-theme="dark"] .win__hearts{color:#A3155A}
+[data-theme="dark"] .win__bar .win__ctrl,[data-theme="dark"] .bar-clock{background:rgba(255,255,255,.55);color:var(--on-tb);border-color:var(--on-tb)}
+[data-theme="dark"] .win__bar .win__ctrl:hover{background:#fff}
+[data-theme="dark"] .hero__main .win__body{background:linear-gradient(135deg,var(--surface) 0 58%,#1C2258 58% 100%)}
 [data-theme="dark"] .deco .bubble{background:var(--surface)}
-[data-theme="dark"] .hero h1 .hl{color:#ECE8F7}
-[data-theme="dark"] .status::before{background:#D9C08A;box-shadow:0 0 0 3px rgba(217,192,138,.25)}
+[data-theme="dark"] .hero h1 .hl{color:#F1EEFF}
+[data-theme="dark"] .status::before{background:#9FE3B8;box-shadow:0 0 0 3px rgba(159,227,184,.25)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);color:var(--text);font-weight:600;line-height:1.5;min-height:100vh;overflow-x:hidden;
