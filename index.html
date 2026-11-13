@@ -61,6 +61,7 @@
 /* pastel title bars with dark text */
 [data-theme="dark"] .win__bar,[data-theme="dark"] .mini__bar{background:var(--tb);color:var(--on-tb)}
 [data-theme="dark"] .win__bar.pink,[data-theme="dark"] .mini__bar.pinkbar{background:var(--tb-pink)}
+[data-theme="dark"] .nc__tag{background:var(--tb-lime);color:var(--on-tb)}
 [data-theme="dark"] .win__bar.lime,[data-theme="dark"] .mini__bar.yellow{background:var(--tb-lime)}
 [data-theme="dark"] .win__bar.sky{background:var(--tb-sky)}
 [data-theme="dark"] .win__hearts{color:#A3155A}
@@ -87,8 +88,9 @@ img{display:block;max-width:100%}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .deco span{position:absolute;opacity:.85;animation:floaty 9s ease-in-out infinite}
 .deco .sticker{opacity:.92;rotate:var(--r)}
+.deco .gloss{opacity:1;rotate:var(--r)}.deco .gloss img{display:block;height:auto;filter:drop-shadow(0 4px 6px rgba(27,42,107,.18))}
 .deco .sticker svg{width:100%;height:auto;display:block}
-@media (max-width:640px){.deco .sticker{opacity:.55;scale:.8}}
+@media (max-width:640px){.deco .sticker{opacity:.55;scale:.8}.deco .gloss{scale:.75}}
 .deco .bubble{font-weight:800;font-size:13px;color:var(--text);background:var(--surface);border:2px solid var(--deco);padding:4px 10px;border-radius:14px;white-space:nowrap;opacity:.7}
 .deco .bubble.pink{background:var(--bar-pink)}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(6deg)}}
@@ -152,6 +154,40 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .tab.active{background:var(--chip-on);color:var(--on-chip)}
 
 /* ---------- hero ---------- */
+.nc__bow{position:absolute;top:-20px;right:-22px;width:58px;transform:rotate(14deg);pointer-events:none;filter:drop-shadow(0 3px 4px rgba(27,42,107,.2))}
+.hero{position:relative}
+.stk{position:absolute;z-index:6;pointer-events:none;height:auto;filter:drop-shadow(0 4px 6px rgba(27,42,107,.22));animation:floaty 6s ease-in-out infinite}
+.stk--wing{right:-52px;bottom:-40px;width:78px;animation-delay:-2s}
+.stk--btn{left:-22px;bottom:-18px;width:52px;animation-delay:-4s}
+@media(max-width:700px){.stk.m-hide{display:none}.nc__star.swirl{width:46px!important;right:-10px!important}.nc__bow{width:44px;right:-10px;top:-18px}}
+body.calm .stk,body.calm .nc__star,body.calm .nc__bow{animation:none}
+.nc{position:relative;margin:30px 0 0;padding-bottom:18px}
+.nc .win{overflow:visible}
+.nc .win__bar{border-radius:calc(var(--radius-m) - 2px) calc(var(--radius-m) - 2px) 0 0}
+.nc__body{position:relative;border-radius:0 0 calc(var(--radius-m) - 2px) calc(var(--radius-m) - 2px);overflow:hidden;aspect-ratio:5/1;background:#1B1640}
+.nc__art{display:block;width:100%;height:100%;object-fit:cover}
+.nc__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 70%,rgba(20,16,60,.35) 100%)}
+.nc__card{position:absolute;left:-12px;bottom:-18px;transform:rotate(-3deg);z-index:5;display:flex;align-items:center;gap:10px;padding:7px 8px 7px 12px;background:var(--surface);border:2px solid var(--line);border-radius:16px;box-shadow:4px 4px 0 var(--shadow-c);white-space:nowrap}
+.nc__kicker{display:block;font-weight:800;font-size:11.5px;letter-spacing:1px;color:var(--accent)}
+.nc__title{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,21px);line-height:1.05;color:var(--text)}
+.nc__title .hl{background:linear-gradient(transparent 58%,var(--hl) 58%);padding:0 3px}
+.nc__sub{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-top:3px}
+.nc__card .btn{flex-shrink:0;padding:7px 13px;font-size:13.5px;box-shadow:2px 2px 0 var(--shadow-c)}
+.nc__tag{position:absolute;top:-16px;right:150px;z-index:3;background:var(--bar-lime);color:var(--on-tag);border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-family:var(--font-pixel);font-size:13px;transform:rotate(-4deg);box-shadow:2px 2px 0 var(--shadow-c)}
+.nc__spark{position:absolute;z-index:3;pointer-events:none;color:#fff;text-shadow:0 0 8px rgba(255,255,255,.9);animation:twinkle 2.2s ease-in-out infinite}
+.nc__star{position:absolute;z-index:6;pointer-events:none;width:52px;height:auto;filter:drop-shadow(0 4px 6px rgba(27,42,107,.25));animation:floaty 5s ease-in-out infinite}
+@media(max-width:700px){
+  .nc{margin-top:18px}
+  .nc__body{aspect-ratio:auto;height:230px}
+  .nc__art{width:auto;max-width:none;height:100%;animation:ncpan 40s ease-in-out infinite alternate}
+  .nc{padding-bottom:0}
+  .nc__card{left:8px;bottom:10px;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--shadow-c)}
+  .nc__star.m-hide{display:none}
+  .nc__tag{display:none}
+  .nc__sub{display:none}
+  .nc__star{width:38px}
+}
+@keyframes ncpan{from{transform:translateX(0)}to{transform:translateX(calc(-100% + min(100vw - 44px, 700px)))}}
 .hero{margin:34px 0 26px;display:grid;grid-template-columns:1.3fr .85fr;gap:24px;align-items:stretch}
 .hero__main .win__body{padding:30px 30px 34px;position:relative;display:grid;grid-template-columns:1fr 230px;gap:20px;align-items:center;
   background:linear-gradient(135deg,var(--surface) 0 58%,var(--bar-sky) 58% 100%)}
@@ -666,7 +702,31 @@ fieldset{border:none}
   </nav>
 
   <main id="top">
+    <section class="nc" aria-labelledby="ncTitle">
+      <div class="win">
+        <span class="nc__tag" data-i18n="nc_tag"></span>
+        <div class="win__bar lime"><span>new_collection.png</span><span class="win__ctrls" aria-hidden="true"><span class="win__ctrl">_</span><span class="win__ctrl">□</span><span class="win__ctrl">×</span></span></div>
+        <div class="nc__body" data-viewer>
+          <img class="nc__art" src="img/banner-gacha.jpg" alt="" data-i18n-alt="nc_alt" width="2600" height="520">
+          <div class="nc__shade"></div>
+          <i class="nc__spark" style="left:3%;top:12%;font-size:22px">✦</i>
+          <i class="nc__spark" style="left:31%;top:8%;font-size:14px;animation-delay:.6s">✦</i>
+          <i class="nc__spark" style="left:62%;top:14%;font-size:18px;animation-delay:1.1s">✦</i>
+          <i class="nc__spark" style="right:4%;top:22%;font-size:24px;animation-delay:.3s">✦</i>
+          <i class="nc__spark" style="left:18%;bottom:18%;font-size:12px;animation-delay:1.5s">✦</i>
+          <i class="nc__spark" style="right:22%;bottom:30%;font-size:13px;animation-delay:.9s">✦</i>
+        </div>
+        <div class="nc__card">
+          <img class="nc__bow" src="img/deco/polka-bow.png" alt="">
+          <div><span class="nc__kicker">✦ (ﾉ≧▽≦)ﾉ ♡</span><h2 class="nc__title" id="ncTitle" data-i18n-html="nc_title"></h2><span class="nc__sub" data-i18n="nc_sub"></span></div>
+          <a href="#shop" class="btn btn--primary"><span data-i18n="nc_cta"></span> <span aria-hidden="true">→</span></a>
+        </div>
+        <img class="nc__star swirl" src="img/deco/swirl-star.png" alt="" style="right:-24px;bottom:-14px;width:70px">
+        <img class="nc__star" src="img/deco/star-yellow.png" alt="" style="right:40px;bottom:-16px;width:30px;animation-delay:1.2s">
+      </div>
+    </section>
     <section class="hero">
+      <img class="stk stk--wing m-hide" src="img/deco/wing-heart.png" alt="">
       <div class="win hero__main">
         <div class="win__bar"><span>welcome.png</span><span class="win__ctrls" aria-hidden="true"><span class="win__ctrl">_</span><span class="win__ctrl">□</span><span class="win__ctrl">×</span></span></div>
         <div class="win__body">
@@ -819,7 +879,7 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
    UI TEXT — English / Tiếng Việt
    ============================================================ */
 const T={
-en:{ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl">orders</span> right now ♡',lead_closed:'Thank you for visiting! Stay tuned on our social media for updates.',ann_closed:'✦ Orders are currently closed · Thank you for visiting!',closed_cart:'We’re not accepting orders right now. Stay tuned on our social media ♡',closed_btn:'Orders are closed',promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
+en:{nc_tag:'NEW ✦',nc_title:'New <span class="hl">collection</span>',nc_sub:'Fresh gacha cards just landed ♡',nc_cta:'Shop now',nc_alt:'AmelCola new gacha card collection artwork',ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl">orders</span> right now ♡',lead_closed:'Thank you for visiting! Stay tuned on our social media for updates.',ann_closed:'✦ Orders are currently closed · Thank you for visiting!',closed_cart:'We’re not accepting orders right now. Stay tuned on our social media ♡',closed_btn:'Orders are closed',promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
  proof_l:'Upload your payment screenshot',proof_pick:'Choose a screenshot of your transfer',proof_hint:'It uploads as soon as you pick it',proof_change:'Change photo',proof_retry:'Try again',proof_ok:'Screenshot uploaded',proof_ok2:'Now confirm below ✦',proof_fail:'Upload failed. Please try again',proof_need:'Upload your screenshot to continue',wait_upload:'Uploading your screenshot…',step_pay:'Transfer the money',confirm_h:'Confirm your payment',ipaid_note:'Your receipt will be emailed to you right away.',sending_paid:'Confirming…',proof_sent2:'Your receipt is on its way to your inbox.',proof_type:'Please choose an image file',
  uploading:'Uploading…',proof_sent:'We’ve got your payment details, thank you!',tab_track:'Track order',email_l:'Email',email_ph:'for your receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
  not_found:'We couldn’t find that code. Check the letters and try again ✦',net_err:'Couldn’t connect. Check your internet and try again.',sending:'Sending your order…',
@@ -855,7 +915,7 @@ en:{ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{ev_closed:'Tạm ngừng nhận đơn',hero_closed:'Hiện bọn mình đang <span class="hl">tạm ngừng</span> nhận đơn ♡',lead_closed:'Cảm ơn bạn đã ghé xem! Theo dõi mạng xã hội của bọn mình để cập nhật thông tin mới nhất nha.',ann_closed:'✦ Hiện đang tạm ngừng nhận đơn · Cảm ơn bạn đã ghé xem!',closed_cart:'Hiện bọn mình đang tạm ngừng nhận đơn. Theo dõi mạng xã hội để cập nhật nha ♡',closed_btn:'Đang ngừng nhận đơn',promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+vi:{nc_tag:'MỚI ✦',nc_title:'Bộ sưu tập <span class="hl">mới</span>',nc_sub:'Thẻ gacha mới đã lên kệ rồi nè ♡',nc_cta:'Xem ngay',nc_alt:'Tranh bộ sưu tập thẻ gacha mới của AmelCola',ev_closed:'Tạm ngừng nhận đơn',hero_closed:'Hiện bọn mình đang <span class="hl">tạm ngừng</span> nhận đơn ♡',lead_closed:'Cảm ơn bạn đã ghé xem! Theo dõi mạng xã hội của bọn mình để cập nhật thông tin mới nhất nha.',ann_closed:'✦ Hiện đang tạm ngừng nhận đơn · Cảm ơn bạn đã ghé xem!',closed_cart:'Hiện bọn mình đang tạm ngừng nhận đơn. Theo dõi mạng xã hội để cập nhật nha ♡',closed_btn:'Đang ngừng nhận đơn',promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
  proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp bọn mình nhé',
  uploading:'Đang tải ảnh lên…',proof_sent:'Bọn mình đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp bọn mình nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, bọn mình sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
  not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp bọn mình nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
@@ -985,6 +1045,7 @@ function applyLang(){
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=t(e.dataset.i18nHtml));
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=t(e.dataset.i18nPh));
+  document.querySelectorAll('[data-i18n-alt]').forEach(e=>e.alt=t(e.dataset.i18nAlt));
   $('#wishBtn').setAttribute('aria-label',t('wishlist'));$('#trackBtn').setAttribute('aria-label',t('tab_track'));$('#cartBtn').setAttribute('aria-label',t('cart'));
   applyOpen();
   const ann=shopOpen?t('ann'):[t('ann_closed'),...t('ann').slice(1).filter(x=>!/Bill|bill/.test(x))];
@@ -1015,10 +1076,12 @@ document.addEventListener('click',e=>{const box=e.target.closest('[data-viewer]'
 /* ---------- decorations ---------- */
 (function(){
   const d=$('#deco');const kaos=['(◕ᴗ◕✿)','♡','(=^･ω･^=)','ദ്ദി ˉ͈̀꒳ˉ͈́ )✧','(っ◔◡◔)っ ♥','☆'];
-  [[4,22],[93,18],[8,64],[94,58],[3,88],[90,90],[50,6],[70,42]].forEach(([x,y],i)=>{
-    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.3)+'s';s.style.animationDuration=(7+i%4*1.5)+'s';
-    if(i%3===0){s.className='bubble'+(i%2?' pink':'');s.textContent=kaos[i%kaos.length]}
-    else{const z=18+i*3;s.innerHTML=`<svg width="${z}" height="${z}" viewBox="-12 -12 24 24">${i%2?'<path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z" fill="#fff" stroke="#6F8BE8" stroke-width="1.5"/>':`<path d="M0-11l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="${['#fff','#ECF89A','#FFD3E4'][i%3]}" stroke="#6F8BE8" stroke-width="1.5" stroke-linejoin="round"/>`}</svg>`}
+  const gloss=['star-pink','heart-button','star-blue','polka-bow','star-yellow','mint-button'];let g=0;
+  const pos=[[4,22],[94,16],[6,62],[95,56],[3,90],[92,88],[96,36],[5,42]];
+  pos.forEach(([x,y],i)=>{
+    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.3)+'s';s.style.animationDuration=(8+i%4*1.5)+'s';
+    if(i===2||i===5){s.className='bubble'+(i===5?' pink':'');s.textContent=kaos[i%kaos.length]}
+    else{const z=34+(i*7)%16;s.className='gloss';s.style.setProperty('--r',((i*37)%40-20)+'deg');s.innerHTML=`<img src="img/deco/${gloss[g++%gloss.length]}.png" alt="" width="${z}" loading="lazy">`}
     d.appendChild(s)});
 })();
 function setCalm(on,save=true){document.body.classList.toggle('calm',on);$('#calmToggle').setAttribute('aria-pressed',!on);$('#calmToggle').textContent=t(on?'deco_off':'deco_on');if(save)store.set('ac_calm',on)}
