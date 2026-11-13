@@ -161,8 +161,11 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .stack:hover figure:nth-child(3){transform:rotate(0) translateY(-16px) scale(1.04)}
 .say{position:absolute;right:-6px;top:-14px;z-index:3;background:var(--bar-pink);border:2px solid var(--line);border-radius:16px;padding:4px 12px;font-weight:800;font-size:14px;transform:rotate(5deg);white-space:nowrap}
 .about .win__body.desk{padding:12px;display:flex;flex-direction:column;gap:10px;flex:1;
+  
   background:radial-gradient(circle at 1px 1px,var(--dots) 1.2px,transparent 1.6px) 0 0/18px 18px,var(--bar-sky)}
 .win.about{display:flex;flex-direction:column}
+.about .desk>*{flex-shrink:0}
+@media (min-width:981px){.about .win__body.desk{justify-content:space-between}}
 @media (min-width:981px){.win.about{contain:size;min-height:100%}.about .win__body.desk{min-height:0;overflow:hidden}}
 .menubar{display:flex;gap:16px;padding:4px 12px;border-bottom:2px solid var(--line);background:var(--surface);font-size:13px;font-weight:800}
 .menubar span:first-letter{text-decoration:underline}
@@ -185,7 +188,7 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .loadbar i{display:block;height:100%;width:100%;background:repeating-linear-gradient(90deg,var(--primary) 0 8px,transparent 8px 10px);animation:load 2.4s steps(14) infinite}
 @keyframes load{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .icons{display:flex;justify-content:space-between;gap:6px;padding:0 4px}
-.dicon{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--text);width:62px;border-radius:10px;padding:4px 2px;transition:transform .25s var(--ease),background .2s}
+.dicon{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--text);width:62px;border-radius:10px;padding:4px 2px;transition:transform .25s var(--ease),background .2s}
 .dicon__img{width:40px;height:40px;display:grid;place-items:center;border:2px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:2px 2px 0 var(--shadow-c);transition:background .2s}
 .dicon__img svg{width:22px;height:22px;fill:currentColor}
 .dicon__img .xhs{font-size:11px}
@@ -195,7 +198,7 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .dicon:hover .dicon__lbl{background:var(--chip-on);color:var(--on-chip);border-radius:4px;padding:0 4px}
 .desk__row{display:grid;grid-template-columns:.9fr 1.1fr;gap:12px;align-items:start}
 .note{position:relative;transform:rotate(-1.5deg)}
-.note p{padding:8px 11px 16px;font-size:13px;line-height:1.45;font-weight:700;background:repeating-linear-gradient(transparent 0 18px,color-mix(in srgb,var(--soft) 60%,transparent) 18px 19px) 0 7px}
+.note p{padding:8px 26px 16px 11px;font-size:13px;line-height:1.45;font-weight:700;background:repeating-linear-gradient(transparent 0 18px,color-mix(in srgb,var(--soft) 60%,transparent) 18px 19px) 0 7px}
 .note__heart{position:absolute;right:9px;bottom:4px;color:var(--accent);font-size:16px}
 .dlg__body{display:flex;gap:9px;padding:8px 11px 4px;align-items:flex-start}
 .dlg__ico{font-size:22px;line-height:1}
@@ -204,6 +207,9 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .dlg__btn{display:block;margin:2px 11px 9px auto;width:max-content;padding:4px 14px;border:2px solid var(--line);border-radius:6px;background:var(--surface-2);box-shadow:2px 2px 0 var(--shadow-c);font-weight:900;font-size:13px;color:var(--text);text-decoration:none;transition:transform .2s var(--ease),background .2s}
 .dlg__btn:hover{transform:translate(-1px,-1px);background:var(--bar-pink)}
 .dlg__btn:active{transform:translate(1px,1px);box-shadow:none}
+.bar-clock{margin-left:auto;}
+@media (max-width:640px){.bar-clock{display:none}}
+.bar-clock{margin-right:8px;padding:0 8px;border:2px solid var(--line);border-radius:6px;background:var(--surface);font-family:var(--font-pixel);font-size:13px;line-height:20px}
 .taskbar{margin-top:auto;display:flex;align-items:center;gap:8px;padding:5px 6px;border:2px solid var(--line);border-radius:8px;background:var(--bar);font-size:12.5px;font-weight:800}
 .taskbar .start{padding:2px 10px;border:2px solid var(--line);border-radius:5px;background:var(--surface);box-shadow:1px 1px 0 var(--shadow-c)}
 .taskbar .tb-mid{flex:1;font-family:var(--font-pixel);font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -651,7 +657,7 @@ fieldset{border:none}
         </div>
       </div>
       <div class="win about">
-        <div class="win__bar pink"><span>about_amelcola.exe</span><span class="win__ctrls" aria-hidden="true"><span class="win__ctrl">_</span><span class="win__ctrl">□</span><span class="win__ctrl">×</span></span></div>
+        <div class="win__bar pink"><span>about_amelcola.exe</span><span class="bar-clock" id="deskClock" aria-hidden="true">--:--</span><span class="win__ctrls" aria-hidden="true"><span class="win__ctrl">_</span><span class="win__ctrl">□</span><span class="win__ctrl">×</span></span></div>
         <div class="win__body desk">
           <section class="mini sys">
             <div class="mini__bar"><span>system_status.exe</span><i>_ □ ×</i></div>
@@ -683,8 +689,6 @@ fieldset{border:none}
               <a class="dlg__btn" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" data-i18n="msg_btn"></a>
             </section>
           </div>
-
-          <div class="taskbar" aria-hidden="true"><span class="start">♥ Start</span><span class="tb-mid">AmelCola · fan goods</span><span class="clock" id="deskClock">--:--</span></div>
         </div>
       </div>
     </section>
