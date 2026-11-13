@@ -512,6 +512,40 @@ textarea:focus,input:focus,select.field:focus{outline:none;box-shadow:0 0 0 3px 
 .pending-row__go{margin-left:auto;padding:6px 12px;font-size:13px}
 .pending-row__x{font-size:12px;color:var(--muted);flex-basis:100%;text-align:right}
 .badge.pend{background:#FFB3D6;color:#14183D;animation:twinkle 1.6s ease-in-out infinite}
+.lim-pill{position:absolute;left:10px;bottom:10px;z-index:2;background:#F1EAFF;color:#4E37A8;border:2px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:900;box-shadow:2px 2px 0 var(--shadow-c);white-space:nowrap}
+.card.soldout .card__art>img{filter:grayscale(.75);opacity:.45}
+.card.soldout .quick,.card.soldout .lim-pill{display:none}
+.so-win{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);z-index:3;min-width:64%;background:var(--surface);border:2px solid var(--line);border-radius:10px;box-shadow:3px 3px 0 var(--shadow-c);overflow:hidden;text-align:center;pointer-events:none}
+.so-win__bar{display:flex;justify-content:space-between;align-items:center;padding:2px 8px;background:#D9CCFF;border-bottom:2px solid var(--line);font-family:var(--font-pixel);font-size:11px;color:#14183D}
+.so-win__bar i{font-style:normal}
+.so-win__body{display:grid;gap:2px;padding:9px 10px 11px}.so-win__body b{font-size:19px;color:var(--text)}.so-win__body span{font-weight:900;font-size:14px;color:var(--accent)}
+.stock-px{margin-top:6px;margin-bottom:4px;max-width:320px}
+.stock-px__lbl{font-family:var(--font-pixel);font-size:15px;letter-spacing:1px;color:#3B4FB8}
+.stock-px__lbl small{font-family:var(--font-body,inherit);font-size:12px;letter-spacing:0;color:var(--muted);font-weight:700}
+.stock-px__bar{height:14px;margin-top:5px;padding:2px;background:#fff;border:3px solid #9A88E6;border-radius:5px;box-shadow:2px 2px 0 #C9BEF5}
+.stock-px__bar i{display:block;height:100%;border-radius:2px;background:linear-gradient(#B8C6FF 0 35%,#8FA4F0 35% 100%);transition:width .4s var(--ease)}
+.stock-px.out .stock-px__lbl{color:#C2336F}.stock-px.out .stock-px__bar{border-color:#E79BBE;box-shadow:2px 2px 0 #F4C1D7}.stock-px.out .stock-px__bar i{display:none}
+[data-theme="dark"] .stock-px__lbl{color:#C9BEFF}[data-theme="dark"] .stock-px.out .stock-px__lbl{color:#FF9ECF}
+:lang(vi) .stock-px__lbl{font-family:var(--font-display);font-weight:800;font-size:15.5px;letter-spacing:1px}
+.lim-pill{font-family:var(--font-pixel);font-weight:400!important;letter-spacing:.5px;background:#EEEBFF!important;color:#3B4FB8!important;border-color:#9A88E6!important;border-radius:4px!important;box-shadow:2px 2px 0 #B9ABF2!important}
+.opt.so{opacity:.55;border-style:dashed;cursor:not-allowed}.opt.so:hover{transform:none}
+.opt .so-tag{display:block;font-size:11px;font-weight:900;color:var(--accent)}
+.line__warn{grid-column:2/-1;margin-top:-6px;font-size:12.5px;font-weight:900;color:var(--accent)}
+#stockWin{width:min(560px,94vw)}
+.sw{padding:22px 22px 20px;text-align:center}
+.sw__face{font-size:30px;color:var(--text);margin-bottom:2px}
+.sw h3{font-family:var(--font-display);font-size:24px;color:var(--text)}
+.sw__lead{margin:6px auto 14px;max-width:44ch;color:var(--muted);font-size:14px;font-weight:600}
+.sw__list{display:grid;gap:10px;text-align:left}
+.sw__row{display:grid;grid-template-columns:58px 1fr;gap:10px 12px;align-items:center;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.sw__row img{width:58px;height:58px;object-fit:cover;border-radius:8px;border:2px solid var(--line)}
+.sw__row.gone img{filter:grayscale(.8);opacity:.6}
+.sw__info{display:grid;gap:1px;min-width:0}.sw__info b{font-size:14.5px;color:var(--text)}.sw__info small{font-size:12.5px;color:var(--muted);font-weight:700}
+.sw__state{font-size:13px;font-weight:900;color:var(--accent)}
+.sw__acts{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.sw__acts .btn{padding:6px 14px;font-size:13px}
+.sw__picks{margin-top:10px;text-align:left}
+.sw__foot{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:16px}
 .cart-links{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}
 .clear-cart{color:var(--muted)}.clear-cart.sure{color:var(--accent)}
 .cart-empty{text-align:center;padding:40px 10px;color:var(--muted)}
@@ -887,6 +921,11 @@ fieldset{border:none}
   <img class="mascot-co" src="img/mascot/abacus.png?v=2" alt="" aria-hidden="true">
   <img class="mascot-co mascot-pay" src="img/mascot/scroll.png" alt="" aria-hidden="true">
 </div>
+<div class="popup win" id="stockWin" role="alertdialog" aria-modal="true" aria-labelledby="swTitle">
+  <div class="win__bar pink" data-drag><span>out_of_stock.exe</span>
+    <span class="win__ctrls"><button class="win__ctrl" data-close aria-label="Close">×</button></span></div>
+  <div class="popup__body" id="swBody"></div>
+</div>
 <div class="popup win" id="trackWin" role="dialog" aria-modal="true" aria-labelledby="trTitle">
   <div class="win__bar sky" data-drag><span id="trTitle">track_order.exe</span>
     <span class="win__ctrls"><button class="win__ctrl" data-close aria-label="Close">×</button></span></div>
@@ -930,7 +969,7 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
    UI TEXT — English / Tiếng Việt
    ============================================================ */
 const T={
-en:{pend_one:'You have an order waiting for payment',pend_many:'You have {n} orders waiting for payment',pend_sub:'Pay and upload your screenshot so we can confirm it ♡',pend_pay:'Pay now',pend_hide:'Already paid? Hide this',clear_cart:'Clear cart',clear_sure:'Tap again to clear everything',cleared:'Cart cleared (｡•́︿•̀｡)',nc_prev:'Previous banner',nc_next:'Next banner',nc_go:'Banner {n}',nc_tag:'NEW ✦',nc_title:'New <span class="hl">collection</span>',nc_sub:'Fresh gacha cards just landed ♡',nc_cta:'Shop now',nc_alt:'AmelCola new collection artwork',ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl">orders</span> right now ♡',lead_closed:'Thank you for visiting! Stay tuned on our social media for updates.',ann_closed:'✦ Orders are currently closed · Thank you for visiting!',closed_cart:'We’re not accepting orders right now. Stay tuned on our social media ♡',closed_btn:'Orders are closed',promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
+en:{px_left:'ONLY {n} LEFT',px_out:'SOLD OUT',px_sub:'limited stock · hard to reprint',px_out_sub:'all gone · thank you for the love',lim_left:'Limited · {n} left',lim_tag:'Limited stock',so_title:'Sold out',so_opt:'Sold out',stock_line:'Limited stock · only {n} left',stock_incart:'({n} already in your cart)',so_btn:'Sold out (´；ω；`)',all_in_cart:'Everything left is already in your cart ♡',too_many:'Only {n} left, please pick fewer',max_hit:'Only {n} left, that’s all we have ♡',sw_head:'We’re so sorry…',sw_lead:'While you were shopping, someone else grabbed a few of these first, so some items in your cart are now short. Could you adjust them for us?',sw_gone:'All gone, sorry!',sw_short:'You picked {w} · only {n} left',sw_reduce:'Keep {n}',sw_remove:'Remove',sw_fixall:'Fix it all for me',sw_later:'Let me check my cart',sw_done:'Cart updated. Thank you for understanding ♡',sw_picks:'Bundles with picks can be removed, but not reduced.',line_short:'Only {n} left',line_gone:'Sold out',stock_generic:'Some items just sold out. Please check your cart again.',pend_one:'You have an order waiting for payment',pend_many:'You have {n} orders waiting for payment',pend_sub:'Pay and upload your screenshot so we can confirm it ♡',pend_pay:'Pay now',pend_hide:'Already paid? Hide this',clear_cart:'Clear cart',clear_sure:'Tap again to clear everything',cleared:'Cart cleared (｡•́︿•̀｡)',nc_prev:'Previous banner',nc_next:'Next banner',nc_go:'Banner {n}',nc_tag:'NEW ✦',nc_title:'New <span class="hl">collection</span>',nc_sub:'Fresh gacha cards just landed ♡',nc_cta:'Shop now',nc_alt:'AmelCola new collection artwork',ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl">orders</span> right now ♡',lead_closed:'Thank you for visiting! Stay tuned on our social media for updates.',ann_closed:'✦ Orders are currently closed · Thank you for visiting!',closed_cart:'We’re not accepting orders right now. Stay tuned on our social media ♡',closed_btn:'Orders are closed',promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
  proof_l:'Upload your payment screenshot',proof_pick:'Choose a screenshot of your transfer',proof_hint:'It uploads as soon as you pick it',proof_change:'Change photo',proof_retry:'Try again',proof_ok:'Screenshot uploaded',proof_ok2:'Now confirm below ✦',proof_fail:'Upload failed. Please try again',proof_need:'Upload your screenshot to continue',wait_upload:'Uploading your screenshot…',step_pay:'Transfer the money',confirm_h:'Confirm your payment',ipaid_note:'Your receipt will be emailed to you right away.',sending_paid:'Confirming…',proof_sent2:'Your receipt is on its way to your inbox.',proof_type:'Please choose an image file',
  uploading:'Uploading…',proof_sent:'We’ve got your payment details, thank you!',tab_track:'Track order',email_l:'Email',email_ph:'for your receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
  not_found:'We couldn’t find that code. Check the letters and try again ✦',net_err:'Couldn’t connect. Check your internet and try again.',sending:'Sending your order…',
@@ -966,7 +1005,7 @@ en:{pend_one:'You have an order waiting for payment',pend_many:'You have {n} ord
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{pend_one:'Bạn có 1 đơn đang chờ thanh toán',pend_many:'Bạn có {n} đơn đang chờ thanh toán',pend_sub:'Chuyển khoản và tải ảnh lên để bọn mình xác nhận đơn nha ♡',pend_pay:'Thanh toán',pend_hide:'Đã thanh toán rồi? Ẩn thông báo',clear_cart:'Xoá hết giỏ hàng',clear_sure:'Bấm lần nữa để xoá hết',cleared:'Đã xoá giỏ hàng (｡•́︿•̀｡)',nc_prev:'Banner trước',nc_next:'Banner tiếp theo',nc_go:'Banner {n}',nc_tag:'MỚI ✦',nc_title:'Bộ sưu tập <span class="hl">mới</span>',nc_sub:'Thẻ gacha mới đã lên kệ rồi nè ♡',nc_cta:'Xem ngay',nc_alt:'Tranh bộ sưu tập mới của AmelCola',ev_closed:'Tạm ngừng nhận đơn',hero_closed:'Hiện bọn mình đang <span class="hl">tạm ngừng</span> nhận đơn ♡',lead_closed:'Cảm ơn bạn đã ghé xem! Theo dõi mạng xã hội của bọn mình để cập nhật thông tin mới nhất nha.',ann_closed:'✦ Hiện đang tạm ngừng nhận đơn · Cảm ơn bạn đã ghé xem!',closed_cart:'Hiện bọn mình đang tạm ngừng nhận đơn. Theo dõi mạng xã hội để cập nhật nha ♡',closed_btn:'Đang ngừng nhận đơn',promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+vi:{px_left:'CHỈ CÒN {n} CÁI',px_out:'HẾT HÀNG',px_sub:'số lượng có hạn · khó in lại',px_out_sub:'đã hết sạch · cảm ơn bạn đã thương',lim_left:'Có hạn · còn {n}',lim_tag:'Số lượng có hạn',so_title:'Hết hàng rồi',so_opt:'Hết hàng',stock_line:'Số lượng có hạn · chỉ còn {n}',stock_incart:'(bạn đã có {n} trong giỏ)',so_btn:'Hết hàng mất rồi (´；ω；`)',all_in_cart:'Bạn đã lấy hết số còn lại vào giỏ rồi ♡',too_many:'Chỉ còn {n} thôi, bạn bớt lại chút nha',max_hit:'Chỉ còn {n} cái thôi, bọn mình hết hàng rồi ♡',sw_head:'Xin lỗi bạn nhiều nha…',sw_lead:'Trong lúc bạn đang chọn, có bạn khác đã đặt trước mất rồi, nên vài món trong giỏ không còn đủ số lượng. Bạn chỉnh lại giúp bọn mình nhé:',sw_gone:'Đã hết sạch rồi, tiếc ghê',sw_short:'Bạn chọn {w} · chỉ còn {n}',sw_reduce:'Lấy {n} cái thôi',sw_remove:'Bỏ khỏi giỏ',sw_fixall:'Chỉnh giúp mình hết nha',sw_later:'Để mình xem lại giỏ',sw_done:'Đã cập nhật giỏ hàng. Cảm ơn bạn đã thông cảm ♡',sw_picks:'Combo có pick chỉ bỏ ra được, không giảm số lượng được.',line_short:'Chỉ còn {n}',line_gone:'Hết hàng',stock_generic:'Vài món vừa hết hàng. Bạn kiểm tra lại giỏ giúp bọn mình nha.',pend_one:'Bạn có 1 đơn đang chờ thanh toán',pend_many:'Bạn có {n} đơn đang chờ thanh toán',pend_sub:'Chuyển khoản và tải ảnh lên để bọn mình xác nhận đơn nha ♡',pend_pay:'Thanh toán',pend_hide:'Đã thanh toán rồi? Ẩn thông báo',clear_cart:'Xoá hết giỏ hàng',clear_sure:'Bấm lần nữa để xoá hết',cleared:'Đã xoá giỏ hàng (｡•́︿•̀｡)',nc_prev:'Banner trước',nc_next:'Banner tiếp theo',nc_go:'Banner {n}',nc_tag:'MỚI ✦',nc_title:'Bộ sưu tập <span class="hl">mới</span>',nc_sub:'Thẻ gacha mới đã lên kệ rồi nè ♡',nc_cta:'Xem ngay',nc_alt:'Tranh bộ sưu tập mới của AmelCola',ev_closed:'Tạm ngừng nhận đơn',hero_closed:'Hiện bọn mình đang <span class="hl">tạm ngừng</span> nhận đơn ♡',lead_closed:'Cảm ơn bạn đã ghé xem! Theo dõi mạng xã hội của bọn mình để cập nhật thông tin mới nhất nha.',ann_closed:'✦ Hiện đang tạm ngừng nhận đơn · Cảm ơn bạn đã ghé xem!',closed_cart:'Hiện bọn mình đang tạm ngừng nhận đơn. Theo dõi mạng xã hội để cập nhật nha ♡',closed_btn:'Đang ngừng nhận đơn',promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
  proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp bọn mình nhé',
  uploading:'Đang tải ảnh lên…',proof_sent:'Bọn mình đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp bọn mình nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, bọn mình sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
  not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp bọn mình nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
@@ -1188,12 +1227,14 @@ function renderGrid(){
     (!query||[p.name.en,p.name.vi,p.fandom,p.desc.en,p.desc.vi,...(p.opts||[]).map(o=>o.en)].join(' ').toLowerCase().includes(query)));
   if(sort==='low')list.sort((a,b)=>minPrice(a)-minPrice(b));if(sort==='high')list.sort((a,b)=>minPrice(b)-minPrice(a));if(sort==='new')list.sort((a,b)=>(b.tag==='new')-(a.tag==='new'));
   $('#grid').innerHTML=list.length?list.map((p,i)=>`
-    <article class="card win" style="animation-delay:${i*40}ms" data-id="${p.id}" tabindex="0" aria-label="${L(p.name)}, ${VND(minPrice(p))}">
+    ${(()=>{p._so=soldOut(p);p._lim=isLimited(p);p._left=productLeft(p);return ''})()}<article class="card win ${p._so?'soldout':''}" style="animation-delay:${i*40}ms" data-id="${p.id}" tabindex="0" aria-label="${L(p.name)}, ${VND(minPrice(p))}${p._so?', '+t('so_title'):''}">
       <div class="win__bar"><span>${p.id}.png</span><span class="win__hearts" aria-hidden="true">♥ ♥ ♥</span></div>
       <div class="card__art">
         ${p.tag?`<span class="tag ${p.tag}">${t('tag_'+p.tag)}</span>`:''}
         <button class="heart" aria-pressed="${wish.has(p.id)}" aria-label="♡ ${L(p.name)}" data-wish="${p.id}"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" stroke-width="2.4" stroke-linejoin="round"/></svg></button>
         <img src="${img(p.imgs[0])}" alt="${L(p.name)}" loading="lazy">
+        ${p._lim&&!p._so?`<span class="lim-pill">✦ ${p._left!=null?t('lim_left').replace('{n}',p._left):t('lim_tag')}</span>`:''}
+        ${p._so?`<div class="so-win" aria-hidden="true"><div class="so-win__bar"><span>sold_out.txt</span><i>×</i></div><div class="so-win__body"><b>(´；ω；\`)</b><span>${t('so_title')}</span></div></div>`:''}
         <button class="btn btn--primary quick" tabindex="-1">${t('quick')}</button>
       </div>
       <div class="card__info">
@@ -1238,7 +1279,8 @@ function pickState(p){if(!p.pickR)return null;const mode=pickOf(p,pd.opt)||'none
   if(mode==='none')return {mode,total:0,limit:0,ok:true,names:[...p.pickR.map(n=>[n,0]),...p.pickSP.map(n=>[n,1])]};
   const limit=mode==='single'?Infinity:mode*pd.qty;const ok=mode==='single'?total>=1:total===limit;
   return {mode,total,limit,ok,names:[...p.pickR.map(n=>[n,0]),...p.pickSP.map(n=>[n,1])]}}
-function openProduct(id){const p=byId(id);pd={id,opt:0,view:p.opts?.[0]?.img?p.imgs.indexOf(p.opts[0].img):0,qty:1,note:'',picks:{},_shown:null};$('#productWin').classList.toggle('tall',!!p.pickR);renderProduct();showWin($('#productWin'))}
+function openProduct(id){const p=byId(id);let o0=0;if(p.opts&&isLimited(p)){const f=p.opts.findIndex((_,i)=>leftOf(p.id,i)>0);if(f>0)o0=f}
+  pd={id,opt:o0,view:p.opts?.[o0]?.img?p.imgs.indexOf(p.opts[o0].img):0,qty:1,note:'',picks:{},_shown:null};$('#productWin').classList.toggle('tall',!!p.pickR);renderProduct();showWin($('#productWin'))}
 function renderProduct(){
   const p=byId(pd.id);$('#pdFile').textContent=p.id+'.png';const price=optPrice(p,pd.opt);const ps=pickState(p);
   const units=ps?.mode==='single'?ps.total:pd.qty;
@@ -1248,7 +1290,8 @@ function renderProduct(){
       <div class="pick-grid">${ps.names.map(([n,sp])=>{const locked=ps.mode==='none'||(sp&&!p.opts[pd.opt].sp),cur=locked?0:(pd.picks[n]||0),max=locked?0:ps.mode==='single'?999:cur+(ps.limit-ps.total);
         return `<div class="pick ${cur?'on':''} ${locked?'locked':''}" data-locked="${locked}"><span class="pname"><span class="pn" title="${n}">${n}</span>${sp?'<span class="sp">SP</span>':''}</span><div class="stepper xs"><button data-pk="${n}" data-pd="-1" aria-label="− ${n}" ${cur<=0?'disabled':''}>−</button><input type="number" inputmode="numeric" min="0" max="${max}" value="${cur}" data-pick="${n}" aria-label="${n}" ${locked?'disabled':''}><button data-pk="${n}" data-pd="1" aria-label="+ ${n}" ${cur>=max?'disabled':''}>+</button></div></div>`}).join('')}</div>
       <p class="note" style="margin-top:8px">✦ ${t(p.opts[pd.opt].sp?'sp_ok':'sp_only')}</p></div>`:'';
-  const need=ps&&ps.mode!=='none'&&!ps.ok?(ps.mode==='single'?t('pick_min'):t('pick_need').replace('{n}',ps.limit-ps.total)):'';
+  const need=(ps&&ps.mode!=='none'&&!ps.ok?(ps.mode==='single'?t('pick_min'):t('pick_need').replace('{n}',ps.limit-ps.total)):'')||stockMsg(p,units);
+  const left=leftOf(p.id,pd.opt),incart=left===Infinity?0:stockRules(p.id,pd.opt).reduce((a,r)=>Math.max(a,inCartFor(r)),0);
   $('#pdBody').innerHTML=`<div class="pd">
     <div class="pd__gallery">
       <div class="pd__main" id="pdMain"><img src="${img(p.imgs[pd.view])}" alt="${L(p.name)}" class="${pd._shown!==p.imgs[pd.view]?'fade':''}"><span class="zoom-hint">🔍 ${t(matchMedia('(hover:hover)').matches?'zoom':'zoom_tap')}</span></div>
@@ -1258,14 +1301,17 @@ function renderProduct(){
       <span class="fandom">${p.fandom}${p.tag?` · ${t('tag_'+p.tag)}`:''}</span>
       <h3 id="pdTitle">${L(p.name)}</h3>
       <div class="price">${VND(price)} <span class="unit">${L(p.unit)}</span></div>
+      ${left!==Infinity?(()=>{const lim=Math.max(1,...stockRules(p.id,pd.opt).map(r=>r.limit)),pct=Math.max(0,Math.min(100,left/lim*100));return `<div class="stock-px ${left<=0?'out':''}" role="status">
+        <div class="stock-px__lbl">${left<=0?t('px_out'):t('px_left').replace('{n}',left)}${incart?` <small>${t('stock_incart').replace('{n}',incart)}</small>`:''}</div>
+        <div class="stock-px__bar" aria-hidden="true"><i style="width:${pct}%"></i></div></div>`})():''}
       <p class="pd__desc">${L(p.desc)}</p>
       ${p.specs?`<div class="specs" aria-label="${t('size')}">${p.specs.map(s=>`<span>${lang==='vi'?(SPEC_VI[s]||s):s}</span>`).join('')}</div>`:''}
-      ${p.opts?`<div><div class="opt-label">${L(p.optLabel)}:</div><div class="opts ${hasRange(p)&&p.opts.length<=4?'two':''}" role="radiogroup" aria-label="${L(p.optLabel)}">${p.opts.map((o,i)=>`<button class="opt" role="radio" aria-checked="${i===pd.opt}" data-opt="${i}">${L(o)}${hasRange(p)?`<small>${VND(o.price??p.price)}</small>`:''}</button>`).join('')}</div></div>`:''}
+      ${p.opts?`<div><div class="opt-label">${L(p.optLabel)}:</div><div class="opts ${hasRange(p)&&p.opts.length<=4?'two':''}" role="radiogroup" aria-label="${L(p.optLabel)}">${p.opts.map((o,i)=>{const so=leftOf(p.id,i)<=0;return `<button class="opt ${so?'so':''}" role="radio" aria-checked="${i===pd.opt}" ${so?'aria-disabled="true"':''} data-opt="${i}">${L(o)}${hasRange(p)?`<small>${VND(o.price??p.price)}</small>`:''}${so?`<small class="so-tag">${t('so_opt')}</small>`:''}</button>`}).join('')}</div></div>`:''}
       ${p.contents?`<div><div class="opt-label">${t('inside')}</div><ul class="contents">${p.contents.map(c=>`<li>${L(c)}</li>`).join('')}</ul></div>`:''}
       ${p.ask?`<div><label class="lbl" for="pdNote">${t('ask')}</label><input type="text" id="pdNote" value="${pd.note.replace(/"/g,'&quot;')}" placeholder="${t('ask_ph')}"></div>`:''}
       ${pickUI}
       <div class="buy">
-        ${`<div class="stepper"><button data-q="-1" aria-label="−" ${ps?.mode==='single'?'disabled':''}>−</button><input type="number" inputmode="numeric" min="1" max="999" value="${ps?.mode==='single'?ps.total:pd.qty}" ${ps?.mode==='single'?'disabled':''} data-qty aria-label="${lang==='vi'?'Số lượng':'Quantity'}"><button data-q="1" aria-label="+" ${ps?.mode==='single'?'disabled':''}>+</button></div>`}
+        ${`<div class="stepper"><button data-q="-1" aria-label="−" ${ps?.mode==='single'?'disabled':''}>−</button><input type="number" inputmode="numeric" min="1" max="${qtyMax(p)}" value="${ps?.mode==='single'?ps.total:pd.qty}" ${ps?.mode==='single'?'disabled':''} data-qty aria-label="${lang==='vi'?'Số lượng':'Quantity'}"><button data-q="1" aria-label="+" ${ps?.mode==='single'?'disabled':''}>+</button></div>`}
         <button class="btn btn--primary" style="flex:1" id="addBtn" aria-disabled="${!!need}"><span>${need||`${t('add')} · ${VND(price*units)}`}</span><span class="spark"><i style="left:12%;top:20%">✦</i><i style="right:10%;bottom:18%;animation-delay:.4s">✦</i></span></button>
       ${(()=>{const n=cart.filter(l=>l.id===p.id).reduce((a,l)=>a+l.qty,0);return n?`<div class="incart">🛒 ${t('in_cart').replace('{n}',n)} <button class="link-btn" data-gocart>${t('view_cart')} →</button></div>`:''})()}
       </div>
@@ -1277,11 +1323,11 @@ function renderProduct(){
 $('#pdBody').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;const p=byId(pd.id);
   if(b.dataset.view){pd.view=+b.dataset.view;renderProduct();$(`#pdBody [data-view="${pd.view}"]`).focus()}
-  else if(b.dataset.opt){if(+b.dataset.opt!==pd.opt){pd.picks={};pd.qty=1}pd.opt=+b.dataset.opt;const oi=p.opts[pd.opt].img;if(oi)pd.view=p.imgs.indexOf(oi);rerender(`#pdBody [data-opt="${pd.opt}"]`)}
-  else if(b.dataset.q){pd.qty=Math.max(1,Math.min(999,pd.qty+ +b.dataset.q));trimPicks(p);rerender(`#pdBody [data-q="${b.dataset.q}"]`)}
+  else if(b.dataset.opt){if(b.classList.contains('so')){toast(t('so_title')+' (´；ω；`)');return}if(+b.dataset.opt!==pd.opt){pd.picks={};pd.qty=1}pd.opt=+b.dataset.opt;const oi=p.opts[pd.opt].img;if(oi)pd.view=p.imgs.indexOf(oi);rerender(`#pdBody [data-opt="${pd.opt}"]`)}
+  else if(b.dataset.q){const mx=qtyMax(p);if(+b.dataset.q>0&&pd.qty>=mx&&mx<999){toast(t('max_hit').replace('{n}',canAdd(p.id,pd.opt)));return}pd.qty=Math.max(1,Math.min(mx,pd.qty+ +b.dataset.q));trimPicks(p);rerender(`#pdBody [data-q="${b.dataset.q}"]`)}
   else if(b.dataset.pk){setPick(p,b.dataset.pk,(pd.picks[b.dataset.pk]||0)+ +b.dataset.pd);rerender(`#pdBody [data-pk="${b.dataset.pk}"][data-pd="${b.dataset.pd}"]`)}
   else if('gocart' in b.dataset){closeAll(false);renderCart();showWin($('#cart'))}
-  else if(b.id==='addBtn'){const ps=pickState(p);if(ps&&!ps.ok){b.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});$('#pdBody .picks')?.scrollIntoView({behavior:'smooth',block:'center'});return}addToCart(b)}
+  else if(b.id==='addBtn'){const ps=pickState(p),sm=stockMsg(p,ps?.mode==='single'?ps.total:pd.qty);if(sm){b.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});toast(sm);return}if(ps&&!ps.ok){b.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});$('#pdBody .picks')?.scrollIntoView({behavior:'smooth',block:'center'});return}addToCart(b)}
 });
 /* typing: update state + UI in place (no redraw, so a following click on "Add" is never lost) */
 function syncBuy(p){
@@ -1290,22 +1336,72 @@ function syncBuy(p){
     const hint=body.querySelector('.picks > p.note');if(hint&&ps.mode!=='single')hint.textContent=t(ps.mode>1?'pick_hb2':'pick_hb').replace('{n}',ps.mode).replace('{m}',ps.limit);
     body.querySelectorAll('.pick:not(.locked)').forEach(row=>{const inp=row.querySelector('input'),n=inp.dataset.pick,cur=pd.picks[n]||0,max=ps.mode==='single'?999:cur+(ps.limit-ps.total);
       row.classList.toggle('on',cur>0);row.querySelector('[data-pd="-1"]').disabled=cur<=0;row.querySelector('[data-pd="1"]').disabled=cur>=max;inp.max=max;if(document.activeElement!==inp)inp.value=cur})}
-  const need=ps&&ps.mode!=='none'&&!ps.ok?(ps.mode==='single'?t('pick_min'):t('pick_need').replace('{n}',ps.limit-ps.total)):'';
+  const need=(ps&&ps.mode!=='none'&&!ps.ok?(ps.mode==='single'?t('pick_min'):t('pick_need').replace('{n}',ps.limit-ps.total)):'')||stockMsg(p,units);
   if(ps?.mode==='single'){const q=body.querySelector('input[data-qty]');if(q)q.value=ps.total}
   const b=$('#addBtn');b.setAttribute('aria-disabled',!!need);b.firstElementChild.textContent=need||`${t('add')} · ${VND(price*units)}`;
 }
 $('#pdBody').addEventListener('input',e=>{const p=byId(pd.id),el=e.target;
   if(el.dataset.pick){if(el.value==='')return;setPick(p,el.dataset.pick,el.value);syncBuy(p)}
-  else if('qty' in el.dataset){if(el.value==='')return;pd.qty=Math.max(1,Math.min(999,Math.floor(+el.value||1)));trimPicks(p);syncBuy(p)}});
+  else if('qty' in el.dataset){if(el.value==='')return;pd.qty=Math.max(1,Math.min(qtyMax(p),Math.floor(+el.value||1)));trimPicks(p);syncBuy(p)}});
 $('#pdBody').addEventListener('change',e=>{const p=byId(pd.id),el=e.target;
   if(el.dataset.pick){setPick(p,el.dataset.pick,el.value);el.value=pd.picks[el.dataset.pick]||0;syncBuy(p)}
-  else if('qty' in el.dataset){pd.qty=Math.max(1,Math.min(999,Math.floor(+el.value||1)));el.value=pd.qty;trimPicks(p);syncBuy(p)}});
+  else if('qty' in el.dataset){const want=Math.floor(+el.value||1),mx=qtyMax(p);if(want>mx&&mx<999)toast(t('max_hit').replace('{n}',canAdd(p.id,pd.opt)));pd.qty=Math.max(1,Math.min(mx,want));el.value=pd.qty;trimPicks(p);syncBuy(p)}});
 $('#pdBody').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('.stepper input')){e.preventDefault();e.target.dispatchEvent(new Event('change',{bubbles:true}))}});
 $('#pdBody').addEventListener('focusin',e=>{if(e.target.matches('.stepper input'))e.target.select()});
+
+/* ---------- limited stock ---------- */
+let STOCK=store.get('ac_stock',[]);   // [{id,opt,limit,left}] from the "Kho hàng" tab
+const DEMO_STOCK=[{id:'aventurine-set',opt:'',limit:3},{id:'venti-standee',opt:'',limit:0},{id:'wood-pin',opt:'Phainon',limit:2},{id:'wood-pin',opt:'Cyrene',limit:0}];  // preview only
+const optName=(p,i)=>{const o=p?.opts?.[i];return o?(o.vi||o.en):''};
+function stockRules(id,oi){const on=optName(byId(id),oi);return STOCK.filter(r=>r.id===id&&(!r.opt||r.opt===on))}
+function ruleHits(r,l){return l.id===r.id&&(!r.opt||r.opt===optName(byId(l.id),l.opt))}
+function inCartFor(r,skip=-1){return cart.reduce((a,l,i)=>a+(i!==skip&&ruleHits(r,l)?l.qty:0),0)}
+function leftOf(id,oi){const rs=stockRules(id,oi);return rs.length?Math.max(0,Math.min(...rs.map(r=>r.left))):Infinity}
+function canAdd(id,oi,skip=-1){const rs=stockRules(id,oi);return rs.length?Math.max(0,Math.min(...rs.map(r=>r.left-inCartFor(r,skip)))):Infinity}
+function isLimited(p){return STOCK.some(r=>r.id===p.id)}
+function soldOut(p){if(!isLimited(p))return false;const n=p.opts?p.opts.length:1;for(let i=0;i<n;i++)if(leftOf(p.id,i)>0)return false;return true}
+function productLeft(p){if(!isLimited(p))return null;const whole=STOCK.find(r=>r.id===p.id&&!r.opt);if(whole)return Math.max(0,whole.left);
+  if(!p.opts)return null;let s=0;for(let i=0;i<p.opts.length;i++){const l=leftOf(p.id,i);if(l===Infinity)return null;s+=l}return s}
+function conflicts(){const out=new Map();
+  STOCK.forEach(r=>{let left=Math.max(0,r.left);cart.forEach((l,i)=>{if(!ruleHits(r,l))return;const cap=Math.min(l.qty,left);left-=cap;out.set(i,Math.min(out.has(i)?out.get(i):l.qty,cap))})});
+  return [...out].filter(([i,a])=>a<cart[i].qty).map(([i,allowed])=>({i,allowed}))}
+function setStock(list){if(!Array.isArray(list))return;const changed=JSON.stringify(list)!==JSON.stringify(STOCK);STOCK=list;store.set('ac_stock',list);if(!changed)return;
+  renderGrid();if($('#productWin').classList.contains('open')&&pd){const body=$('#pdBody'),st=body.scrollTop;renderProduct();body.scrollTop=st}
+  if($('#cart').classList.contains('open'))renderCart()}
+async function fetchStatus(){const r=await Orders.status();if(!r||!r.ok)return null;
+  if(typeof r.open==='boolean'&&r.open!==shopOpen){shopOpen=r.open;store.set('ac_open',shopOpen);applyLang()}
+  if(Array.isArray(r.stock))setStock(r.stock);return r}
+function stockMsg(p,units){const left=leftOf(p.id,pd.opt);if(left===Infinity)return '';if(left<=0)return t('so_btn');
+  const can=canAdd(p.id,pd.opt);if(can<=0)return t('all_in_cart');if(units>can)return t('too_many').replace('{n}',can);return ''}
+function qtyMax(p){const c=canAdd(p.id,pd.opt);return c===Infinity?999:Math.max(1,Math.min(999,c))}
+/* the sorry window */
+let swFrom=null;
+function showStockWin(from){swFrom=from;if(!conflicts().length){finishStock(false);return}renderStockWin();showWin($('#stockWin'))}
+function renderStockWin(){const cs=conflicts();if(!cs.length){finishStock(true);return}
+  const anyPicks=cs.some(c=>cart[c.i].picks&&c.allowed);
+  $('#swBody').innerHTML=`<div class="sw"><div class="sw__face" aria-hidden="true">(｡•́︿•̀｡)</div><h3 id="swTitle">${t('sw_head')}</h3><p class="sw__lead">${t('sw_lead')}</p>
+    <div class="sw__list">${cs.map(({i,allowed})=>{const l=cart[i],p=byId(l.id),o=p.opts?.[l.opt],keep=allowed&&!l.picks;
+      return `<div class="sw__row ${allowed?'':'gone'}"><img src="${img(o?.img||p.imgs[0])}" alt=""><div class="sw__info"><b>${L(p.name)}</b>${o?`<small>${L(o)}</small>`:''}
+        <span class="sw__state">${allowed?t('sw_short').replace('{w}',l.qty).replace('{n}',allowed):t('sw_gone')}</span></div>
+        <div class="sw__acts">${keep?`<button class="btn btn--primary" data-sw-keep="${i}" data-n="${allowed}">${t('sw_reduce').replace('{n}',allowed)}</button>`:''}<button class="btn ${keep?'':'btn--primary'}" data-sw-rm="${i}">${t('sw_remove')}</button></div></div>`}).join('')}</div>
+    ${anyPicks?`<p class="note sw__picks">✦ ${t('sw_picks')}</p>`:''}
+    <div class="sw__foot"><button class="btn btn--pink" id="swFix">${t('sw_fixall')}</button><button class="link-btn" id="swLater">${t('sw_later')}</button></div></div>`}
+function finishStock(changed){if(changed)toast(t('sw_done'));const f=swFrom;swFrom=null;
+  if(f==='checkout'&&cart.length&&!conflicts().length)openCheckout();else{renderCart();showWin($('#cart'))}}
+$('#swBody').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.swKeep){cart[+b.dataset.swKeep].qty=+b.dataset.n;save();renderStockWin()}
+  else if(b.dataset.swRm){cart.splice(+b.dataset.swRm,1);save();renderStockWin()}
+  else if(b.id==='swFix'){conflicts().sort((a,b)=>b.i-a.i).forEach(({i,allowed})=>{if(allowed&&!cart[i].picks)cart[i].qty=allowed;else cart.splice(i,1)});save();renderStockWin()}
+  else if(b.id==='swLater'){swFrom=null;renderCart();showWin($('#cart'))}});
+async function checkoutGate(){const b=$('#toCheckout');if(b){b.disabled=true;b.firstChild.textContent=t('sending')+' '}
+  try{await Promise.race([fetchStatus(),new Promise(r=>setTimeout(r,4000))])}catch{}
+  if(!shopOpen){renderCart();toast(t('closed_cart'));return}
+  if(conflicts().length){showStockWin('checkout');return}openCheckout()}
 
 /* ---------- cart ---------- */
 function addToCart(from){
   const p=byId(pd.id),ps=pickState(p),picks=ps&&ps.mode!=='none'?{...pd.picks}:null,qty=ps?.mode==='single'?ps.total:pd.qty;
+  const sm=stockMsg(p,qty);if(sm){toast(sm);return}
   const key=l=>l.id===pd.id&&l.opt===pd.opt&&(l.note||'')===pd.note.trim()&&!l.picks&&!picks;
   const ex=cart.find(key);ex?ex.qty+=qty:cart.push({id:pd.id,opt:pd.opt,qty,note:pd.note.trim(),...(picks?{picks}:{})});save();
   flyToCart(from);toast(t('added')+' '+['٩(ˊᗜˋ*)و','(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧','(≧◡≦) ♡'][Math.floor(Math.random()*3)]);
@@ -1359,7 +1455,7 @@ function updateBadges(){
   $('#cartBtn').setAttribute('aria-label',t('cart')+(pend?' · '+t('pend_one'):''));
 }
 function renderCart(){
-  const st=subtotal(),next=GIFTS.find(g=>st<g.at),top=GIFTS.at(-1).at,got=unlocked(st);
+  const st=subtotal(),next=GIFTS.find(g=>st<g.at),top=GIFTS.at(-1).at,got=unlocked(st),cmap=new Map(conflicts().map(c=>[c.i,c.allowed]));
   $('#cartBody').innerHTML=pendingHTML()+(cart.length?`
     <div class="giftbox">${next?t('gift_next').replace('{x}',VND(next.at-st)).replace('{g}',L(next)):t('gift_all')}
       <div class="bar"><i style="width:${Math.min(100,st/top*100)}%"></i></div>
@@ -1368,7 +1464,7 @@ function renderCart(){
       <img src="${img(p.opts?.[l.opt]?.img||p.imgs[0])}" alt="">
       <div><div class="line__name">${L(p.name)}</div><div class="line__var">${p.opts?L(p.opts[l.opt])+' · ':''}${VND(optPrice(p,l.opt))}${l.picks?`<br>${t('picks')}: ${pickText(l.picks)}`:''}${l.note?`<br>“${l.note.replace(/</g,'&lt;')}”`:''}</div>
         ${l.picks?`<div class="note" style="margin-top:6px;font-weight:900">× ${l.qty}</div>`:`<div class="stepper sm" style="display:inline-flex;margin-top:8px"><button data-i="${i}" data-d="-1" aria-label="−">−</button><span>${l.qty}</span><button data-i="${i}" data-d="1" aria-label="+">+</button></div>`}</div>
-      <div class="line__right"><span class="price" style="font-size:16px">${VND(lineTotal(l))}</span><button class="link-btn" data-rm="${i}">${t('remove')}</button></div></div>`}).join('')}
+      <div class="line__right"><span class="price" style="font-size:16px">${VND(lineTotal(l))}</span><button class="link-btn" data-rm="${i}">${t('remove')}</button></div>${cmap.has(i)?`<div class="line__warn">⚠ ${cmap.get(i)?t('line_short').replace('{n}',cmap.get(i)):t('line_gone')}</div>`:''}</div>`}).join('')}
     <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:800">${t('note')}</summary><textarea id="orderNote" rows="2" style="margin-top:8px" placeholder="${t('note_ph')}">${store.get('ac_note','')}</textarea></details>`
   :`<div class="cart-empty"><img class="mascot-empty" src="img/mascot/sleepy.png" alt="" width="150"><p>${t('cart_empty')}</p><button class="btn btn--primary" data-close style="margin-top:16px">${t('keep')}</button></div>`);
   const on=$('#orderNote');if(on)on.oninput=e=>store.set('ac_note',e.target.value);
@@ -1378,13 +1474,13 @@ function renderCart(){
     <button class="btn btn--primary btn--block" id="toCheckout" ${shopOpen?'':'disabled aria-disabled="true"'}>${shopOpen?`${t('checkout')} · ${VND(st)}`:t('closed_btn')}<span class="spark"><i style="left:10%;top:22%">✦</i><i style="right:12%;bottom:20%;animation-delay:.5s">✦</i></span></button>
     <div class="cart-links"><button class="link-btn" data-close>${t('cont')}</button><button class="link-btn clear-cart" id="clearCart" type="button">${t('clear_cart')}</button></div>`:'';
 }
-$('#cartBtn').onclick=()=>{renderCart();showWin($('#cart'))};
+$('#cartBtn').onclick=()=>{renderCart();showWin($('#cart'));fetchStatus().catch(()=>{})};
 $('#cartBody').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-  if(b.dataset.d){const l=cart[+b.dataset.i];l.qty+= +b.dataset.d;if(l.qty<1)cart.splice(+b.dataset.i,1);save();$(`#cartBody [data-i="${b.dataset.i}"][data-d="${b.dataset.d}"]`)?.focus()}
+  if(b.dataset.d){const l=cart[+b.dataset.i];if(+b.dataset.d>0&&canAdd(l.id,l.opt)<=0){toast(t('max_hit').replace('{n}',leftOf(l.id,l.opt)));return}l.qty+= +b.dataset.d;if(l.qty<1)cart.splice(+b.dataset.i,1);save();$(`#cartBody [data-i="${b.dataset.i}"][data-d="${b.dataset.d}"]`)?.focus()}
   if(b.dataset.rm){cart.splice(+b.dataset.rm,1);save();toast(t('removed'))}
   if(b.dataset.pend){closeAll(false);openTrack(b.dataset.pend)}
   if(b.dataset.pendHide){markOrder(b.dataset.pendHide,{hide:true})}});
-$('#cartFoot').addEventListener('click',e=>{if(e.target.closest('#toCheckout'))openCheckout();
+$('#cartFoot').addEventListener('click',e=>{if(e.target.closest('#toCheckout'))checkoutGate();
   const c=e.target.closest('#clearCart');if(!c)return;
   if(!c.classList.contains('sure')){c.classList.add('sure');c.textContent=t('clear_sure');clearTimeout(c._t);c._t=setTimeout(()=>{c.classList.remove('sure');c.textContent=t('clear_cart')},3500);return}
   cart=[];save();toast(t('cleared'))});
@@ -1441,6 +1537,7 @@ function openCheckout(){
       items:cart.map(orderLine),lines:cart.map(orderData),catalog:catalogSnapshot(),total:st,subtotal:st0,promo:promo?.code||'',gifts:unlocked(st),note:store.get('ac_note','')};
     try{
       const res=await Orders.create(payload);
+      if(!res.ok&&res.error==='stock'){coDraft=keep();setStock(res.stock);if(conflicts().length){showStockWin('checkout')}else{btn.disabled=false;btn.textContent=t('confirm');$('#coErr').textContent=t('stock_generic')}return}
       if(!res.ok&&res.error==='closed'){shopOpen=false;store.set('ac_open',false);applyLang();closeAll();toast(t('closed_cart'));return}
       if(!res.ok&&/^promo_/.test(res.error||'')){const v={};['f-name','f-social','f-phone','f-email','f-addr'].forEach(id=>v[id]=$('#'+id).value);const sv=form.ship.value;promo=null;openCheckout();
         Object.keys(v).forEach(id=>$('#'+id).value=v[id]);$('#coForm').ship.value=sv;$('#shipBox').hidden=sv!=='ship';$('#promoMsg').textContent=t(res.error==='promo_used_up'?'promo_used':'promo_bad');return}
@@ -1453,7 +1550,9 @@ function openCheckout(){
     }catch(err){btn.disabled=false;btn.textContent=t('confirm');$('#coErr').textContent=t('net_err')}
   });
   showWin($('#checkoutWin'));
+  if(coDraft){restore(coDraft);coDraft=null}
 }
+let coDraft=null;
 
 /* ---------- orders: Google Sheet API (or preview storage) ---------- */
 const LIVE=!!ORDER_API_URL;
@@ -1464,11 +1563,12 @@ function orderLine(l){const p=byId(l.id),o=p.opts?.[l.opt],d=lineDiscount(l);ret
 function transferNote(name,code){let n=name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').replace(/[^A-Za-z0-9 ]/g,'').replace(/\s+/g,' ').trim().toUpperCase();
   n=n.slice(0,50-('Preorder--'+code).length).trim();return `Preorder-${n}-${code}`}
 const Demo={all(){return store.get('ac_demo_orders',{})},put(o){const a=this.all();a[o.code]=o;store.set('ac_demo_orders',a)}};
+function demoStock(){const os=Object.values(Demo.all()).filter(o=>o.status!==5);return DEMO_STOCK.map(r=>({...r,left:Math.max(0,r.limit-os.reduce((a,o)=>a+(o.lines||[]).filter(l=>l.id===r.id&&(!r.opt||r.opt===l.opt)).reduce((b,l)=>b+l.qty,0),0))}))}
 const DEMO_PROMOS={DEMO45:[{id:'voc-pc',opt:'',price:45000}]};  // preview only
 const Orders={
   async status(){
     if(LIVE)return (await fetch(ORDER_API_URL+'?action=status')).json();
-    return {ok:true,open:new URLSearchParams(location.search).get('closed')===null};   // preview: add ?closed to the link to see the closed look
+    return {ok:true,open:new URLSearchParams(location.search).get('closed')===null,stock:demoStock()};   // preview: add ?closed to the link to see the closed look
   },
   async promo(code){
     if(LIVE)return (await fetch(ORDER_API_URL+'?'+new URLSearchParams({action:'promo',code}))).json();
@@ -1478,7 +1578,8 @@ const Orders={
     if(LIVE)return (await fetch(ORDER_API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})).json();
     const abc='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code='AC';for(let i=0;i<6;i++)code+=abc[Math.floor(Math.random()*abc.length)];
     const o={code,created:new Date().toISOString(),status:0,name:d.name.split(/\s+/).map(w=>w[0]+'•'.repeat(Math.max(1,Math.min(4,w.length-1)))).join(' '),
-      delivery:d.delivery,payment:d.payment,items:d.items,total:d.total,gifts:d.gifts.join(', '),transferNote:transferNote(d.name,code)};
+      delivery:d.delivery,payment:d.payment,items:d.items,total:d.total,gifts:d.gifts.join(', '),transferNote:transferNote(d.name,code),lines:d.lines};
+    {const stk=demoStock(),bad=stk.some(r=>d.lines.filter(l=>l.id===r.id&&(!r.opt||r.opt===l.opt)).reduce((a,l)=>a+l.qty,0)>r.left);if(bad){await new Promise(r=>setTimeout(r,400));return {ok:false,error:'stock',stock:stk}}}
     Demo.put(o);await new Promise(r=>setTimeout(r,500));return {ok:true,code,transferNote:o.transferNote,total:o.total,status:0};
   },
   async lookup(code){
@@ -1645,7 +1746,7 @@ let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('sh
 document.querySelectorAll('.tab').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
 
 applyLang();updateBadges();
-(async()=>{try{const r=await Orders.status();if(r&&r.ok&&typeof r.open==='boolean'&&r.open!==shopOpen){shopOpen=r.open;store.set('ac_open',shopOpen);applyLang()}}catch{}})();
+fetchStatus().catch(()=>{});
 try{const q=new URLSearchParams(location.search).get('track');if(q)openTrack(q);else if(location.hash==='#track')openTrack()}catch{}
 </script>
 </body>
