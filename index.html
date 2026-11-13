@@ -77,6 +77,9 @@ img{display:block;max-width:100%}
 /* ---------- floating decorations ---------- */
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .deco span{position:absolute;opacity:.85;animation:floaty 9s ease-in-out infinite}
+.deco .sticker{opacity:.92;rotate:var(--r)}
+.deco .sticker svg{width:100%;height:auto;display:block}
+@media (max-width:640px){.deco .sticker{opacity:.55;scale:.8}}
 .deco .bubble{font-weight:800;font-size:13px;color:var(--text);background:var(--surface);border:2px solid var(--deco);padding:4px 10px;border-radius:14px;white-space:nowrap;opacity:.7}
 .deco .bubble.pink{background:var(--bar-pink)}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(6deg)}}
@@ -106,6 +109,8 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .nav{display:flex;align-items:center;gap:12px;padding:10px 14px}
 .logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:800;font-size:24px;color:var(--text);text-decoration:none;white-space:nowrap;line-height:1}
 .logo svg{width:34px;height:34px;transition:transform .5s var(--ease)}
+.logo-star{width:38px;height:38px;display:block;transition:transform .5s var(--ease)}.logo-star svg{width:100%;height:100%;display:block}
+.logo:hover .logo-star{transform:rotate(-15deg) scale(1.1)}
 .logo:hover svg{transform:rotate(72deg) scale(1.1)}
 .urlbar{flex:1;display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:6px 8px 6px 14px;background:var(--surface-2);min-width:0}
 .urlbar input{flex:1;border:none;background:none;outline:none;font-weight:700;min-width:0}
@@ -154,7 +159,18 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .stack:hover figure:nth-child(2){transform:rotate(16deg) translate(70px,8px)}
 .stack:hover figure:nth-child(3){transform:rotate(0) translateY(-16px) scale(1.04)}
 .say{position:absolute;right:-6px;top:-14px;z-index:3;background:var(--bar-pink);border:2px solid var(--line);border-radius:16px;padding:4px 12px;font-weight:800;font-size:14px;transform:rotate(5deg);white-space:nowrap}
-.about .win__body{padding:18px 20px;display:flex;flex-direction:column;gap:12px;height:calc(100% - 42px)}
+.about .win__body{padding:18px 20px 64px;display:flex;flex-direction:column;gap:12px;height:calc(100% - 42px)}
+.win.about{overflow:visible;position:relative}
+.win.about>.win__bar{border-radius:14px 14px 0 0}
+.ask{position:absolute;right:-26px;bottom:-34px;display:flex;align-items:flex-end;gap:2px;color:inherit;text-decoration:none;z-index:3}
+.ask-face{width:104px;height:104px;flex:none;display:block;animation:floaty 4s ease-in-out infinite;transition:transform .4s var(--ease);filter:drop-shadow(3px 4px 0 rgba(27,42,107,.18))}
+.ask-face svg{width:100%;height:100%;display:block}
+.ask:hover .ask-face{transform:rotate(-12deg) scale(1.08)}
+.ask-bubble{position:relative;display:grid;gap:1px;max-width:250px;margin-bottom:58px;background:var(--bar-pink);border:2px solid var(--line);border-radius:16px 16px 4px 16px;padding:8px 12px;box-shadow:3px 3px 0 var(--shadow-c);transform:rotate(-3deg);transition:transform .25s var(--ease)}
+.ask-bubble::after{content:"";position:absolute;right:-8px;bottom:8px;width:12px;height:12px;background:var(--bar-pink);border-right:2px solid var(--line);border-top:2px solid var(--line);transform:rotate(45deg)}
+.ask-bubble b{font-size:14px;line-height:1.25}.ask-bubble small{font-size:12px;color:var(--muted);font-weight:800;line-height:1.3}
+.ask:hover .ask-bubble{transform:rotate(0) translateY(-3px)}
+@media (max-width:640px){.about .win__body{padding-bottom:128px}.ask{right:-8px;bottom:-30px}.ask-face{width:88px;height:88px}.ask-bubble{max-width:190px;margin-bottom:48px}}
 .about dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}
 .about dt{color:var(--muted);font-weight:700}
 .about dd{font-weight:900}
@@ -171,7 +187,6 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .soc:hover .tip,.soc:focus-visible .tip{opacity:1;transform:translate(-50%,0)}
 .email-line{font-size:13px;font-weight:800;color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.9;padding:0;margin-top:2px}
 .email-line:hover{opacity:1}
-.about-mail{display:block;margin:-2px 0 8px}
 .xhs{font-family:var(--font-display);font-weight:800;font-size:12px;letter-spacing:-.02em;line-height:1}
 footer .soc{border-color:var(--on-strip);box-shadow:none}
 .qr{margin-top:auto;display:flex;align-items:center;gap:14px;background:var(--surface-2);border:2px dashed var(--deco);border-radius:var(--radius-s);padding:10px}
@@ -486,7 +501,7 @@ fieldset{border:none}
   header.site.hide{transform:translateY(calc(-100% - 12px))}
   header.site>.win__bar,header.site .tabs,#trackBtn,#wishBtn,#cartBtn{display:none!important}
   .nav{flex-wrap:nowrap;gap:8px;padding:8px 10px}
-  .logo{flex:1;font-size:21px}.logo svg{width:28px;height:28px}
+  .logo{flex:1;font-size:21px}.logo-star{width:32px;height:32px}
   .nav .icon-btn{width:36px;height:36px}.nav .icon-btn svg{width:20px;height:20px}
   .seg button{height:32px;padding:0 8px}
   .urlbar{display:none}
@@ -519,7 +534,7 @@ fieldset{border:none}
     <div class="win__bar sky"><span>amelcola ✦ shop.exe</span><span class="win__hearts" aria-hidden="true">♥ ♥ ♥</span></div>
     <div class="nav">
       <a class="logo" href="#top" aria-label="AmelCola">
-        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3l4.9 10 11 1.6-8 7.8 1.9 11L20 28.2 10.2 33.4l1.9-11-8-7.8 11-1.6z" fill="#ECF89A" stroke="#1B2A6B" stroke-width="2.5" stroke-linejoin="round"/><circle cx="16" cy="19" r="1.6" fill="#1B2A6B"/><circle cx="24" cy="19" r="1.6" fill="#1B2A6B"/><path d="M18 22.5q2 2 4 0" stroke="#1B2A6B" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        <span class="logo-star" id="logoStar" aria-hidden="true"></span>
         AmelCola
       </a>
       <label class="urlbar">
@@ -593,8 +608,11 @@ fieldset{border:none}
             <dt data-i18n="ev_status"></dt><dd class="status" data-i18n="ev_open"></dd>
           </dl>
           <p class="note" data-i18n="ev_rules"></p>
-          <div><div class="opt-label" data-i18n="follow"></div><button class="email-line about-mail" data-email="amelcola.circle@gmail.com">✉ amelcola.circle@gmail.com</button><nav class="socials" aria-label="Social media"><a class="soc" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.3 0-1.4-.2-2.6-.2-2.6 0-4.3 1.6-4.3 4.4v2H7.3V12h2.8v9.9H14V12h2.8l.4-3.5H14z"/></svg><span class="tip">Facebook</span></a><a class="soc" href="https://x.com/AmelCola_" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 2.5h3.1l-6.8 7.8 8 10.6h-6.3l-4.9-6.4-5.6 6.4H2.2l7.3-8.3L1.8 2.5h6.4l4.4 5.9 5.2-5.9zm-1.1 16.5h1.7L7.4 4.3H5.5L16.7 19z"/></svg><span class="tip">X</span></a><a class="soc" href="https://www.tiktok.com/@amelcola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/></svg><span class="tip">TikTok</span></a><a class="soc" href="https://xhslink.cn/m/4K2iqwxzkMq" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Xiaohongshu (RED)"><span class="xhs" aria-hidden="true">小红书</span><span class="tip">Xiaohongshu</span></a><a class="soc" href="mailto:amelcola.circle@gmail.com" aria-label="Email AmelCola: amelcola.circle@gmail.com" data-email="amelcola.circle@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.3V17h16V7.3l-8 5.6zm1.4-.3L12 11.6 18.6 7z"/></svg><span class="tip">Email</span></a></nav></div>
-          <a class="qr" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none"><img src="img/fb-qr.png" alt="Facebook QR code for AmelCola"><p data-i18n="ev_scan"></p></a>
+          <div><div class="opt-label" data-i18n="follow"></div><nav class="socials" aria-label="Social media"><a class="soc" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.3 0-1.4-.2-2.6-.2-2.6 0-4.3 1.6-4.3 4.4v2H7.3V12h2.8v9.9H14V12h2.8l.4-3.5H14z"/></svg><span class="tip">Facebook</span></a><a class="soc" href="https://x.com/AmelCola_" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 2.5h3.1l-6.8 7.8 8 10.6h-6.3l-4.9-6.4-5.6 6.4H2.2l7.3-8.3L1.8 2.5h6.4l4.4 5.9 5.2-5.9zm-1.1 16.5h1.7L7.4 4.3H5.5L16.7 19z"/></svg><span class="tip">X</span></a><a class="soc" href="https://www.tiktok.com/@amelcola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/></svg><span class="tip">TikTok</span></a><a class="soc" href="https://xhslink.cn/m/4K2iqwxzkMq" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Xiaohongshu (RED)"><span class="xhs" aria-hidden="true">小红书</span><span class="tip">Xiaohongshu</span></a><a class="soc" href="mailto:amelcola.circle@gmail.com" aria-label="Email AmelCola: amelcola.circle@gmail.com" data-email="amelcola.circle@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.3V17h16V7.3l-8 5.6zm1.4-.3L12 11.6 18.6 7z"/></svg><span class="tip">Email</span></a></nav></div>
+          <a class="ask" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook AmelCola">
+            <span class="ask-bubble"><b data-i18n="ask_t"></b><small data-i18n="ask_s"></small></span>
+            <span class="ask-face" id="askFace" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
     </section>
@@ -670,7 +688,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 /* ============================================================
    ★ SHOP SETTINGS — fill these in (see SETUP.md)
    ============================================================ */
-const ORDER_API_URL = '';   // Google Apps Script web app URL, e.g. 'https://script.google.com/macros/s/XXXX/exec'
+const ORDER_API_URL = 'https://script.google.com/macros/s/AKfycbzG3H3yMg89zoi3WebzGV3vn4gdpH9Bwre1z212EUKyayBgn_4aaZk6gkJNe_Gh6rRp/exec';   // Google Apps Script web app URL, e.g. 'https://script.google.com/macros/s/XXXX/exec'
 const BANK = {
   bin: '970407',                 // Techcombank
   account: '19038335318011',
@@ -685,6 +703,35 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
 };
 </script>
 <script>
+/* Cute sticker set (original drawings). Soft pastel fills + rounded outline. */
+const CUTE=(()=>{
+  const L='#1B2A6B',W=2.6;                      // outline colour / width (in a 48x48 box)
+  const C={yellow:'#FFF1A8',pink:'#FFC9DE',mint:'#BFEBDD',lilac:'#D9D2F7',sky:'#BFE6FF',red:'#FF9BB0',white:'#FFFFFF',blush:'#FF9EC2'};
+  const o=(fill)=>`fill="${fill}" stroke="${L}" stroke-width="${W}" stroke-linejoin="round" stroke-linecap="round"`;
+  // chubby star: polygon drawn with a fat round stroke so the points become soft
+  const starPts=(cx,cy,R,r,n=5,rot=-90)=>Array.from({length:n*2},(_,i)=>{const a=(rot+i*180/n)*Math.PI/180,rad=i%2?r:R;return `${(cx+rad*Math.cos(a)).toFixed(2)},${(cy+rad*Math.sin(a)).toFixed(2)}`}).join(' ');
+  const chubbyStar=(cx,cy,R,fill,soft=7)=>{const p=starPts(cx,cy,R,R*.56);return `<polygon points="${p}" fill="${L}" stroke="${L}" stroke-width="${soft+W*2}" stroke-linejoin="round"/><polygon points="${p}" fill="${fill}" stroke="${fill}" stroke-width="${soft}" stroke-linejoin="round"/>`};
+  const face=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cx="-7" cy="0" rx="1.9" ry="2.3" fill="${L}"/><ellipse cx="7" cy="0" rx="1.9" ry="2.3" fill="${L}"/><path d="M-3 3.2q1.5 2.2 3 0q1.5 2.2 3 0" fill="none" stroke="${L}" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="-11.5" cy="3.6" rx="3" ry="1.8" fill="${C.blush}" opacity=".85"/><ellipse cx="11.5" cy="3.6" rx="3" ry="1.8" fill="${C.blush}" opacity=".85"/></g>`;
+  const bow=(x,y,s=1,fill=C.pink)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0C-4-6-12-7-12-1S-4 5 0 0z" ${o(fill)}/><path d="M0 0C4-6 12-7 12-1S4 5 0 0z" ${o(fill)}/><path d="M-1.5 1l-3 7M1.5 1l3 7" ${o('none')}/><circle r="2.6" ${o(fill)}/></g>`;
+  const S={
+    // the mascot: chubby star with face, shine and a bow
+    mascot:()=>`<svg viewBox="0 0 100 100">${chubbyStar(50,54,40,C.yellow,12)}<path d="M33 37q4-7 11-8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" opacity=".9"/>${face(50,58,1.55)}${bow(74,22,.95)}</svg>`,
+    star:(f=C.yellow)=>`<svg viewBox="0 0 48 48">${chubbyStar(24,26,18,f,6)}<ellipse cx="17" cy="21" rx="2" ry="1.2" fill="#fff" opacity=".9"/></svg>`,
+    heart:(f=C.pink)=>`<svg viewBox="0 0 48 48"><path d="M24 39C10 30 6 22 8 15.5 10.5 8 19 7.5 24 14c5-6.5 13.5-6 16 1.5 2 6.5-2 14.5-16 23.5z" ${o(f)}/><path d="M24 31C17 26 15.5 22 16.5 19.5 17.6 16.6 21 16.6 24 20c3-3.4 6.4-3.4 7.5-.5 1 2.5-.5 6.5-7.5 11.5z" fill="#fff" opacity=".55"/></svg>`,
+    bow:()=>`<svg viewBox="0 0 48 48">${bow(24,20,1.6)}</svg>`,
+    dango:()=>`<svg viewBox="0 0 48 48"><path d="M24 4v42" ${o('none')}/><circle cx="24" cy="11" r="7" ${o(C.pink)}/><circle cx="24" cy="23.5" r="7" ${o(C.white)}/><circle cx="24" cy="36" r="7" ${o(C.mint)}/><circle cx="21.5" cy="9" r="1.5" fill="#fff"/></svg>`,
+    bunny:()=>`<svg viewBox="0 0 48 48"><path d="M17 20C13 9 14 3 18 3s5 7 4 16M31 20c4-11 3-17-1-17s-5 7-4 16" ${o(C.white)}/><path d="M18 8c1 4 1 7 1 10M30 8c-1 4-1 7-1 10" stroke="${C.pink}" stroke-width="2.4" stroke-linecap="round" fill="none"/><ellipse cx="24" cy="31" rx="15" ry="12.5" ${o(C.white)}/>${face(24,32,.95)}</svg>`,
+    flower:(f=C.pink)=>`<svg viewBox="0 0 48 48"><g ${o(f)}>${[0,72,144,216,288].map(a=>`<circle cx="${24+9*Math.cos((a-90)*Math.PI/180)}" cy="${24+9*Math.sin((a-90)*Math.PI/180)}" r="8"/>`).join('')}</g><circle cx="24" cy="24" r="8.2" fill="${f}"/><ellipse cx="21" cy="24" rx="1.4" ry="1.8" fill="${L}"/><ellipse cx="27" cy="24" rx="1.4" ry="1.8" fill="${L}"/></svg>`,
+    cherry:()=>`<svg viewBox="0 0 48 48"><path d="M17 30C19 18 24 10 32 6M33 29C31 18 31 11 32 6" ${o('none')}/><path d="M32 6c4-2 9-1 10 3-4 2-8 1-10-3z" ${o(C.mint)}/><circle cx="15" cy="34" r="9" ${o(C.red)}/><circle cx="33" cy="33" r="9" ${o(C.red)}/><ellipse cx="12" cy="31" rx="2" ry="2.8" fill="#fff" opacity=".8"/><ellipse cx="30" cy="30" rx="2" ry="2.8" fill="#fff" opacity=".8"/></svg>`,
+    sparkle:(f=C.yellow)=>`<svg viewBox="0 0 48 48"><path d="M24 4c2 11 6 16 18 20-12 4-16 9-18 20-2-11-6-16-18-20 12-4 16-9 18-20z" ${o(f)}/></svg>`,
+    shooting:()=>`<svg viewBox="0 0 48 48"><path d="M20 30C26 36 34 42 46 44" fill="none" stroke="${C.pink}" stroke-width="6" stroke-linecap="round"/><path d="M24 26C30 31 37 36 46 37" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linecap="round"/>${chubbyStar(17,20,12,C.yellow,4)}</svg>`,
+    cloud:()=>`<svg viewBox="0 0 48 48"><path d="M12 36a8 8 0 0 1-1-16 11 11 0 0 1 20-5 9 9 0 0 1 9 13 6 6 0 0 1-2 8z" ${o(C.sky)}/>${face(24,27,.8)}</svg>`,
+    hearts3:()=>`<svg viewBox="0 0 64 30">${[[C.lilac,12],[C.pink,32],[C.sky,52]].map(([f,x])=>`<path d="M${x} 26C${x-10} 20 ${x-12} 14 ${x-10} 9 ${x-8} 4 ${x-2} 4 ${x} 9c2-5 8-5 10 0 2 5 0 11-10 17z" ${o(f)}/>`).join('')}</svg>`
+  };
+  return S;
+})();
+</script>
+<script>
 /* ============================================================
    UI TEXT — English / Tiếng Việt
    ============================================================ */
@@ -696,13 +743,13 @@ en:{bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'C
  st0:'Waiting for payment',st1:'Payment reported',st2:'Payment confirmed',st3:'Preparing',st4:'Delivered / picked up',st5:'Cancelled',
  tl0:'Ordered',tl1:'Paid',tl2:'Confirmed',tl3:'Preparing',tl4:'Done',
  scan:'Scan with your banking app (or save the QR and scan it from your photos). The amount and transfer note are filled in for you.',bank_l:'Bank',acc_l:'Account',accname_l:'Account name',amount_l:'Amount',note_l:'Transfer note',
- qr_missing:'The shop will message you the bank details shortly ♡',ipaid:'I’ve paid, confirm my order ✦',paid_ok:'Thanks! Check your email for the receipt ♡',
+ qr_missing:'We’ll message you the bank details shortly ♡',ipaid:'I’ve paid, confirm my order ✦',paid_ok:'Thanks! Check your email for the receipt ♡',
  track_this:'Track this order',status_l:'Status',created_l:'Ordered on',delivery_l:'Delivery',items_l:'Items',
  demo:'Preview mode: orders are only saved in this browser. Connect your Google Sheet (see SETUP.md) to receive real orders.',
  keep_code:'Save this code to track your order ✦',search_label:'Search products',search_ph:'search goods, fandoms… (｡•̀ᴗ-)✧',tab_shop:'✦ Shop',tab_gifts:'Gifts',tab_how:'How to order',
  hero_h1:'Thank you for supporting <span class="hl">AmelCola</span> ♡',hero_lead:'Glitter photocards, hologram keychains and our Viet Phuc series, for Honkai: Star Rail, Genshin, Vocaloid and more.',
  browse:'Browse goods',see_gifts:'Bonus gifts',pickme:'pick me!! (≧▽≦)',
- ev_last:'last event',ev_booth:'booth',ev_date:'date',ev_status:'status',ev_open:'Online orders open',ev_rules:'Gacha & pick rules are on our Facebook page.',ev_scan:'Scan to visit AmelCola on Facebook ✦',
+ ev_last:'last event',ev_booth:'booth',ev_date:'date',ev_status:'status',ev_open:'Online orders open',ev_rules:'Gacha & pick rules are on our Facebook page.',ask_t:'Have a question? Contact us!',ask_s:'Message us on Facebook ♡',ev_scan:'Scan to visit AmelCola on Facebook ✦',
  goods:'Goods menu',all:'All',type_label:'Product type',sort_label:'Sort',
  type_all:'All types',t_cards:'Photocards & cards',t_keychain:'Keychains',t_badge:'Badges & pins',t_sticker:'Stickers',t_print:'Prints',t_set:'Standees & sets',t_grip:'Phone grips',
  sort_feat:'Sort: featured',sort_low:'Price: low → high',sort_high:'Price: high → low',sort_new:'New first',
@@ -725,20 +772,20 @@ en:{bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'C
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Shop không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
- proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp shop nhé',
- uploading:'Đang tải ảnh lên…',proof_sent:'Shop đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp shop nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, shop sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
- not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp shop nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
+vi:{bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+ proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp bọn mình nhé',
+ uploading:'Đang tải ảnh lên…',proof_sent:'Bọn mình đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp bọn mình nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, bọn mình sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
+ not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp bọn mình nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
  st0:'Chờ thanh toán',st1:'Khách báo đã chuyển khoản',st2:'Đã xác nhận thanh toán',st3:'Đang chuẩn bị hàng',st4:'Đã giao / đã nhận',st5:'Đã huỷ',
  tl0:'Đặt hàng',tl1:'Chuyển khoản',tl2:'Xác nhận',tl3:'Chuẩn bị',tl4:'Hoàn tất',
  scan:'Quét bằng app ngân hàng (hoặc lưu mã QR rồi quét từ ảnh). Số tiền và nội dung chuyển khoản đã được điền sẵn.',bank_l:'Ngân hàng',acc_l:'Số tài khoản',accname_l:'Chủ tài khoản',amount_l:'Số tiền',note_l:'Nội dung CK',
- qr_missing:'Shop sẽ nhắn thông tin chuyển khoản cho bạn sớm nhé ♡',ipaid:'Mình đã chuyển khoản, xác nhận đơn ✦',paid_ok:'Cảm ơn bạn! Kiểm tra email để xem biên nhận nhé ♡',
+ qr_missing:'Bọn mình sẽ nhắn thông tin chuyển khoản cho bạn sớm nhé ♡',ipaid:'Mình đã chuyển khoản, xác nhận đơn ✦',paid_ok:'Cảm ơn bạn! Kiểm tra email để xem biên nhận nhé ♡',
  track_this:'Tra cứu đơn này',status_l:'Trạng thái',created_l:'Ngày đặt',delivery_l:'Nhận hàng',items_l:'Sản phẩm',
  demo:'Chế độ xem thử: đơn chỉ được lưu trên trình duyệt này. Kết nối Google Sheet (xem SETUP.md) để nhận đơn thật.',
  keep_code:'Lưu mã này để tra cứu đơn nhé ✦',search_label:'Tìm sản phẩm',search_ph:'tìm goods, fandom… (｡•̀ᴗ-)✧',tab_shop:'✦ Cửa hàng',tab_gifts:'Quà tặng',tab_how:'Cách đặt hàng',
  hero_h1:'Cảm ơn bạn đã ủng hộ <span class="hl">AmelCola</span> ♡',hero_lead:'Photocard nhũ, móc khoá hologram và series Việt Phục của các fandom Honkai: Star Rail, Genshin, Vocaloid và nhiều fandom khác.',
  browse:'Xem sản phẩm',see_gifts:'Quà tặng kèm',pickme:'chọn tớ nha!! (≧▽≦)',
- ev_last:'sự kiện gần nhất',ev_booth:'gian hàng',ev_date:'ngày',ev_status:'trạng thái',ev_open:'Đang nhận đơn online',ev_rules:'Xem luật gacha & pick trên fanpage của shop nha.',ev_scan:'Quét mã để ghé fanpage AmelCola ✦',
+ ev_last:'sự kiện gần nhất',ev_booth:'gian hàng',ev_date:'ngày',ev_status:'trạng thái',ev_open:'Đang nhận đơn online',ask_t:'Có thắc mắc? Liên hệ bọn mình nhé!',ask_s:'Nhắn bọn mình qua Facebook nha ♡',ev_rules:'Xem luật gacha & pick trên fanpage của bọn mình nha.',ev_scan:'Quét mã để ghé fanpage AmelCola ✦',
  goods:'Menu goods',all:'Tất cả',type_label:'Loại sản phẩm',sort_label:'Sắp xếp',
  type_all:'Tất cả loại hàng',t_cards:'Photocard & card',t_keychain:'Móc khoá',t_badge:'Huy hiệu & pin',t_sticker:'Sticker',t_print:'Tranh in',t_set:'Standee & set',t_grip:'Giá đỡ điện thoại',
  sort_feat:'Sắp xếp: nổi bật',sort_low:'Giá: thấp → cao',sort_high:'Giá: cao → thấp',sort_new:'Mới nhất',
@@ -753,13 +800,13 @@ vi:{bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:
  dark:'Chuyển sang giao diện tối',light:'Chuyển sang giao diện sáng',wishlist:'Chỉ xem mục yêu thích',cart:'Mở giỏ hàng',
  size:'kích thước',inside:'Trong set gồm:',ask:'Bạn muốn mẫu nào? (không bắt buộc)',ask_ph:'vd: mẫu số 3 hoặc tên nhân vật',add:'Thêm vào giỏ',zoom:'di chuột để phóng to',pick_title:'Chọn nhân vật',pick_count:'Đã chọn {n}/{m}',pick_count1:'Đã chọn {n}',pick_need:'Chọn thêm {n}',pick_min:'Chọn ít nhất 1 nhân vật',pick_h1:'Chọn nhân vật R và số lượng cho từng nhân vật.',pick_hb:'Mỗi combo được {n} pick. Hãy chọn đủ {m} pick để tiếp tục.',pick_hb2:'Mỗi combo được {n} pick. Hãy chọn đủ {m} pick để tiếp tục.',sp_only:'Thẻ SP (Flame Reaver, Cyrene) chỉ được pick trong combo 8 + 2.',sp_ok:'Combo này được pick thẻ SP ✦',pick_none:'Gacha ra thẻ ngẫu nhiên. Chọn hình thức có Pick để chọn nhân vật.',picks:'Pick',zoom_tap:'chạm để phóng to',
  added:'đã thêm vào giỏ!',wish_saved:'đã lưu vào yêu thích ♡',wish_removed:'đã bỏ khỏi yêu thích',show_wish:'đang xem mục yêu thích ♡',show_all:'đang xem tất cả ✦',
- cart_empty:'Giỏ hàng của bạn đang trống.<br>Cùng xem goods của shop nhé!',keep:'Xem goods',remove:'Xoá',removed:'đã xoá (｡•́︿•̀｡)',
+ cart_empty:'Giỏ hàng của bạn đang trống.<br>Cùng xem goods của bọn mình nhé!',keep:'Xem goods',remove:'Xoá',removed:'đã xoá (｡•́︿•̀｡)',
  gift_next:'Mua thêm {x} để nhận {g} ✦',gift_all:'Bạn đã mở khoá tất cả quà tặng! (ﾉ´ヮ`)ﾉ*: ･ﾟ',gift_got:'Quà tặng kèm đơn:',stamp:'Goods AOT từ 50k: +1 con dấu AmelCola',
- note:'Thêm ghi chú cho shop',note_ph:'vd: gói card cẩn thận giúp mình nha ♡',subtotal:'Tạm tính',checkout:'Thanh toán',cont:'Tiếp tục mua sắm →',
+ note:'Thêm ghi chú cho bọn mình',note_ph:'vd: gói card cẩn thận giúp mình nha ♡',subtotal:'Tạm tính',checkout:'Thanh toán',cont:'Tiếp tục mua sắm →',
  name:'Họ và tên',social:'Facebook',social_ph:'Tên hoặc link Facebook',phone:'Số điện thoại',how:'Bạn muốn nhận hàng bằng cách nào?',ship:'Giao tận nơi',pickup:'Nhận tại sự kiện sắp tới',addr:'Địa chỉ nhận hàng',
  pay:'Thanh toán',bank:'Chuyển khoản / MoMo',paylater:'Thanh toán khi nhận hàng',err:'Vui lòng điền đủ các mục có dấu * (｡•́︿•̀｡)',confirm:'Xác nhận đơn ✦',
- summary:'Tóm tắt đơn hàng',shipping:'Phí ship',ship_tbc:'shop sẽ báo qua tin nhắn',total:'Tổng',gifts:'Quà tặng',
- received:'Shop đã nhận đơn!',qr:'Mã QR chuyển khoản của shop',tnote:'Nội dung chuyển khoản:',pnote:'Nhớ đưa mã này cho shop khi nhận hàng nhé.',copy:'Sao chép mã',done:'Xong ✦',copied:'đã sao chép mã ✦',copyfail:'Không sao chép được, bạn ghi lại mã giúp shop nhé: ',
+ summary:'Tóm tắt đơn hàng',shipping:'Phí ship',ship_tbc:'bọn mình sẽ báo qua tin nhắn',total:'Tổng',gifts:'Quà tặng',
+ received:'Bọn mình đã nhận đơn!',qr:'Mã QR chuyển khoản của bọn mình',tnote:'Nội dung chuyển khoản:',pnote:'Nhớ đưa mã này cho bọn mình khi nhận hàng nhé.',copy:'Sao chép mã',done:'Xong ✦',copied:'đã sao chép mã ✦',copyfail:'Không sao chép được, bạn ghi lại mã giúp bọn mình nhé: ',
  ann:['✦ Đang mở đơn online','♡ Bill từ 250k: tặng card AmelCola','✦ Bill từ 300k: tặng sticker Việt Phục ngẫu nhiên','(๑˃ᴗ˂)ﻭ Quà tặng có hạn, hết là thôi','✦ Sự kiện gần nhất: Color Fiesta 17 · Gian G7']}
 };
 
@@ -808,7 +855,7 @@ const P=[
   name:{en:'Vocaloid Glitter Keychain',vi:'Móc khoá nhũ Vocaloid'},desc:{en:'Glitter acrylic with a ball chain. Buy all 4 for a set price.',vi:'Acrylic nhũ kèm dây bi. Mua trọn bộ 4 mẫu để được giá set.'},
   optLabel:{en:'Choose',vi:'Chọn'},opts:[{en:'Miku',price:120000},{en:'Kagamine',price:120000},{en:'Kaito',price:120000},{en:'Luka',price:120000},{en:'Set of 4',vi:'Set 4 cái',price:400000}]},
  {id:'shuowang',fandom:'Arknights',type:'cards',price:60000,imgs:['shuowang'],specs:['5.8 × 8.7 cm','pearl paper'],unit:{en:'/ set of 2',vi:'/ set 2 thẻ'},
-  name:{en:'Shuo & Wang Photocards',vi:'Photocard Shuo & Wang'},desc:{en:'朔望. Yes, it’s Shuowang. We have no excuse…',vi:'朔望. Đúng rồi, là Shuowang đó. Shop không có gì để biện minh cả…'}},
+  name:{en:'Shuo & Wang Photocards',vi:'Photocard Shuo & Wang'},desc:{en:'朔望. Yes, it’s Shuowang. We have no excuse…',vi:'朔望. Đúng rồi, là Shuowang đó. Bọn mình không có gì để biện minh cả…'}},
  {id:'wxs-stickers',fandom:'Project Sekai',type:'sticker',tag:'new',price:60000,imgs:['photo-wxs','wxs-menu'],specs:['A7','starry hologram'],unit:{en:'/ set of 4',vi:'/ set 4 tấm'},
   name:{en:'WxS Hologram Sticker Set',vi:'Set sticker hologram WxS'},desc:{en:'Wonderlands×Showtime sticker sheets on starry hologram paper.',vi:'Sticker sheet Wonderlands×Showtime trên giấy hologram sao.'}},
  {id:'nagito-sheet',fandom:'Danganronpa',type:'sticker',price:55000,imgs:['starry-sheet'],specs:['A5','starry hologram'],unit:{en:'/ each',vi:'/ tấm'},
@@ -865,11 +912,14 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.datase
 
 /* ---------- decorations ---------- */
 (function(){
-  const d=$('#deco');const kaos=['(◕ᴗ◕✿)','♡','(=^･ω･^=)','ദ്ദി ˉ͈̀꒳ˉ͈́ )✧','(っ◔◡◔)っ ♥','☆'];
-  [[4,22],[93,18],[8,64],[94,58],[3,88],[90,90],[50,6],[70,42]].forEach(([x,y],i)=>{
-    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.3)+'s';s.style.animationDuration=(7+i%4*1.5)+'s';
-    if(i%3===0){s.className='bubble'+(i%2?' pink':'');s.textContent=kaos[i%kaos.length]}
-    else{const z=18+i*3;s.innerHTML=`<svg width="${z}" height="${z}" viewBox="-12 -12 24 24">${i%2?'<path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z" fill="#fff" stroke="#6F8BE8" stroke-width="1.5"/>':`<path d="M0-11l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="${['#fff','#ECF89A','#FFD3E4'][i%3]}" stroke="#6F8BE8" stroke-width="1.5" stroke-linejoin="round"/>`}</svg>`}
+  $('#askFace').innerHTML=CUTE.mascot();$('#logoStar').innerHTML=CUTE.mascot();
+  const d=$('#deco');const kaos=['(◕ᴗ◕✿)','(=^･ω･^=)','(っ◔◡◔)っ ♥'];
+  const stickers=[()=>CUTE.star(),()=>CUTE.heart(),()=>CUTE.bow(),()=>CUTE.dango(),()=>CUTE.bunny(),()=>CUTE.flower(),()=>CUTE.cherry(),()=>CUTE.sparkle(),()=>CUTE.shooting(),()=>CUTE.cloud(),()=>CUTE.star('#FFC9DE'),()=>CUTE.flower('#D9D2F7'),()=>CUTE.sparkle('#BFEBDD'),()=>CUTE.hearts3()];
+  const spots=[[3,20],[94,15],[6,46],[92,40],[2,72],[95,66],[48,4],[72,30],[4,94],[90,92],[30,58],[62,80]];
+  spots.forEach(([x,y],i)=>{
+    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.1)+'s';s.style.animationDuration=(7+i%4*1.5)+'s';
+    if(i===6||i===10){s.className='bubble'+(i%2?' pink':'');s.textContent=kaos[i%kaos.length]}
+    else{const z=i===11?64:30+(i*7)%22;s.className='sticker';s.style.width=z+'px';s.style.setProperty('--r',((i*37)%30-15)+'deg');s.innerHTML=stickers[i%stickers.length]()}
     d.appendChild(s)});
 })();
 function setCalm(on,save=true){document.body.classList.toggle('calm',on);$('#calmToggle').setAttribute('aria-pressed',!on);$('#calmToggle').textContent=t(on?'deco_off':'deco_on');if(save)store.set('ac_calm',on)}
