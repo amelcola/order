@@ -28,9 +28,9 @@
   --overlay:rgba(27,42,107,.35);
   --radius-s:10px; --radius-m:16px; --radius-l:24px;
   --ease:cubic-bezier(.34,1.56,.64,1);
-  --font-display:"Baloo 2","Nunito",system-ui,sans-serif;
+  --font-display:"Baloo 2","Nunito",system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
   --font-pixel:"DotGothic16",monospace;
-  --font-body:"Nunito",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
   color-scheme:light;
 }
 [data-theme="dark"]{
@@ -150,6 +150,7 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .seg button{padding:0 10px;height:36px;font-weight:900;font-size:13px;transition:background .2s}
 .seg button:hover{background:var(--hover)}
 .seg button[aria-pressed="true"]{background:var(--chip-on);color:var(--on-chip)}
+@media(max-width:640px){.seg button{padding:0 7px;font-size:12px}}
 .tabs{display:flex;gap:8px;padding:0 14px 10px}
 .tab{white-space:nowrap;font-weight:800;font-size:14px;padding:6px 14px;border:2px solid var(--line);border-radius:12px 12px 4px 4px;background:var(--surface);color:var(--text);text-decoration:none;transition:transform .2s var(--ease),background .2s}
 .tab:hover{transform:translateY(-3px);background:var(--bar-lime)}
@@ -531,7 +532,7 @@ textarea:focus,input:focus,select.field:focus{outline:none;box-shadow:0 0 0 3px 
 [data-theme="dark"] .stock-px__bar{background:#262527;border-color:#B4434D;box-shadow:2px 2px 0 #121113}
 [data-theme="dark"] .stock-px__bar i{background:linear-gradient(#E46B76 0 35%,#C24450 35% 100%)}
 [data-theme="dark"] .lim-pill{background:#ECE6DD!important;color:#8E2E37!important;border-color:#B4434D!important;box-shadow:2px 2px 0 #170E15!important}[data-theme="dark"] .stock-px.out .stock-px__lbl{color:#FF9ECF}
-:lang(vi) .stock-px__lbl{font-family:var(--font-display);font-weight:800;font-size:15.5px;letter-spacing:1px}
+:lang(vi) .stock-px__lbl,:lang(zh-CN) .stock-px__lbl{font-family:var(--font-display);font-weight:800;font-size:15.5px;letter-spacing:1px}
 .lim-pill{font-family:var(--font-pixel);font-weight:400!important;letter-spacing:.5px;background:#EEEBFF!important;color:#3B4FB8!important;border-color:#9A88E6!important;border-radius:4px!important;box-shadow:2px 2px 0 #B9ABF2!important}
 .opt.so{opacity:.55;border-style:dashed;cursor:not-allowed}.opt.so:hover{transform:none}
 .opt .so-tag{display:block;font-size:11px;font-weight:900;color:var(--accent)}
@@ -655,6 +656,11 @@ fieldset{border:none}
 [data-theme="dark"] .loadbar{border-color:#B4434D;background:#262527}
 [data-theme="dark"] .loadbar i{background:linear-gradient(90deg,#7E2A33,#C24450 25%,#FF8C96 45%,#FFD9DC 55%,#FF8C96 65%,#C24450 85%,#7E2A33);background-size:200% 100%}
 [data-theme="dark"] .closed .loadbar i{background:linear-gradient(90deg,#4E4A4F,#7A6E73)}
+[data-theme="dark"] .opt[aria-checked="true"]{background:#C24450;color:#FFF6EE;border-color:#FF9AA2;box-shadow:0 0 0 3px rgba(255,107,120,.28),2px 2px 0 #121113}
+[data-theme="dark"] .opt[aria-checked="true"] small{color:#FFE1E4}
+[data-theme="dark"] .opt[aria-checked="true"]::after{content:"✓";position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:#FFF6EE;color:#A7343E;border:2px solid #B4434D;display:grid;place-items:center;font-size:11px;font-weight:900}
+[data-theme="dark"] .opt{position:relative}
+[data-theme="dark"] .opt:not([aria-checked="true"]):not(.so) small{color:#FF9AA2}
 [data-theme="dark"] .timeline li{color:#D3C8BE}
 [data-theme="dark"] .timeline li::before{border-color:#7A6E73;color:#F4EEE6;background:#2B292C}
 [data-theme="dark"] .timeline li.done,[data-theme="dark"] .timeline li.now{color:#FFF6EE}
@@ -765,7 +771,7 @@ fieldset{border:none}
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
       </button>
       <div class="seg" role="group" aria-label="Language">
-        <button data-lang="en" aria-pressed="true">EN</button><button data-lang="vi" aria-pressed="false">VI</button>
+        <button data-lang="en" aria-pressed="true">EN</button><button data-lang="vi" aria-pressed="false">VI</button><button data-lang="zh" aria-pressed="false" lang="zh-CN">中</button>
       </div>
       <button class="icon-btn" id="themeBtn"></button>
       <button class="icon-btn" id="trackBtn">
@@ -1059,6 +1065,8 @@ vi:{px_left:'CHỈ CÒN {n} CÁI',px_out:'HẾT HÀNG',px_sub:'số lượng có
  summary:'Tóm tắt đơn hàng',shipping:'Phí ship',ship_tbc:'bọn mình sẽ báo qua tin nhắn',total:'Tổng',gifts:'Quà tặng',
  received:'Bọn mình đã nhận đơn!',qr:'Mã QR chuyển khoản của bọn mình',tnote:'Nội dung chuyển khoản:',pnote:'Nhớ đưa mã này cho bọn mình khi nhận hàng nhé.',copy:'Sao chép mã',done:'Xong ✦',copied:'đã sao chép mã ✦',copyfail:'Không sao chép được, bạn ghi lại mã giúp bọn mình nhé: ',
  ann:['✦ Đang mở đơn online','♡ Bill từ 250k: tặng card AmelCola','✦ Bill từ 300k: tặng sticker Việt Phục ngẫu nhiên','(๑˃ᴗ˂)ﻭ Quà tặng có hạn, hết là thôi','✦ Sự kiện gần nhất: Color Fiesta 17 · Gian G7']}
+,
+zh:{"px_left": "仅剩 {n} 个", "px_out": "已售罄", "px_sub": "数量有限 · 很难再版", "px_out_sub": "已经卖完啦 · 谢谢大家的喜欢", "lim_left": "限量 · 剩 {n} 个", "lim_tag": "限量", "so_title": "已售罄", "so_opt": "售罄", "stock_line": "数量有限 · 仅剩 {n} 个", "stock_incart": "（购物车里已有 {n} 个）", "so_btn": "已售罄 (´；ω；`)", "all_in_cart": "剩下的已经全部在你的购物车里啦 ♡", "too_many": "只剩 {n} 个了，请减少一点数量哦", "max_hit": "只剩 {n} 个了，这是全部库存啦 ♡", "sw_head": "真的很抱歉…", "sw_lead": "在你挑选的时候，已经有其他小伙伴先下单了，所以购物车里有些商品的数量不够了。可以帮我们调整一下吗？", "sw_gone": "已经全部卖完了，抱歉！", "sw_short": "你选了 {w} 个 · 只剩 {n} 个", "sw_reduce": "只要 {n} 个", "sw_remove": "移出购物车", "sw_fixall": "帮我全部调整好", "sw_later": "我再看看购物车", "sw_done": "购物车已更新，谢谢你的理解 ♡", "sw_picks": "带指定角色的套餐只能移除，无法减少数量。", "line_short": "仅剩 {n} 个", "line_gone": "已售罄", "stock_generic": "有些商品刚刚卖完了，请再检查一下购物车哦。", "pend_one": "你有 1 笔订单等待付款", "pend_many": "你有 {n} 笔订单等待付款", "pend_sub": "转账并上传截图，我们就能确认订单啦 ♡", "pend_pay": "去付款", "pend_hide": "已经付过了？隐藏提示", "clear_cart": "清空购物车", "clear_sure": "再点一次即可全部清空", "cleared": "购物车已清空 (｡•́︿•̀｡)", "nc_prev": "上一张横幅", "nc_next": "下一张横幅", "nc_go": "横幅 {n}", "nc_tag": "新品 ✦", "nc_title": "<span class=\"hl\">新系列</span>上架", "nc_sub": "新的扭蛋卡片刚刚上架啦 ♡", "nc_cta": "立即逛逛", "nc_alt": "AmelCola 新系列插画", "ev_closed": "暂停接单", "hero_closed": "我们目前<span class=\"hl\">暂停</span>接单 ♡", "lead_closed": "谢谢你的光临！请关注我们的社交媒体获取最新消息。", "ann_closed": "✦ 目前暂停接单 · 谢谢光临！", "closed_cart": "我们目前暂停接单，请关注社交媒体获取最新消息 ♡", "closed_btn": "暂停接单中", "promo_l": "优惠码", "promo_ph": "输入优惠码", "promo_apply": "使用", "promo_ok": "优惠码已生效 ✦", "promo_bad": "这个优惠码无效。", "promo_used": "这个优惠码已被用完。", "promo_noitems": "这个优惠码不适用于购物车里的商品。", "promo_disc": "优惠", "added_btn": "✓ 已加入购物车！", "in_cart": "购物车里已有 {n} 个", "view_cart": "查看购物车", "mb_file": "文件", "mb_view": "查看", "mb_help": "帮助", "dlg_title": "留言", "msg_btn": "联系我们 ✦", "bn_shop": "商店", "bn_gifts": "赠品", "bn_wish": "收藏", "bn_track": "订单", "bn_cart": "购物车", "pay_first": "下单后请转账付款：扫描二维码，然后上传转账截图。我们不支持货到付款。", "save_qr": "保存二维码", "qr_saved": "二维码已保存。打开银行 / MoMo App，从相册扫描即可 ✦", "scan_momo": "打开 MoMo → Quét mã（扫码）并扫描此二维码，金额和备注已自动填好。", "wallet_l": "钱包", "phone_l": "MoMo 号码", "proof_l": "上传付款截图", "proof_pick": "选择转账截图", "proof_hint": "选择后会立即上传", "proof_change": "更换图片", "proof_retry": "重试", "proof_ok": "截图已上传", "proof_ok2": "请在下方确认 ✦", "proof_fail": "上传失败，请重试", "proof_need": "请先上传截图再继续", "wait_upload": "正在上传截图…", "step_pay": "转账付款", "confirm_h": "确认付款", "ipaid_note": "收据会立即发送到你的邮箱。", "sending_paid": "正在确认…", "proof_sent2": "收据正在发往你的邮箱。", "proof_type": "请选择图片文件", "uploading": "上传中…", "proof_sent": "我们已收到你的付款信息，谢谢！", "tab_track": "查询订单", "email_l": "邮箱", "email_ph": "用于接收收据", "email_bad": "邮箱格式好像不对，请检查一下 ✦", "email_sent": "请在下方上传转账截图，我们会把收据发到你的邮箱 ✉", "copy_s": "复制", "track_title": "查询订单", "track_lead": "输入下单时获得的订单号。", "track_ph": "AC••••••", "track_go": "查询", "recent": "你在这台设备上的最近订单：", "not_found": "找不到这个订单号，请检查字母后再试 ✦", "net_err": "无法连接，请检查网络后重试。", "sending": "正在提交订单…", "st0": "等待付款", "st1": "已提交付款", "st2": "付款已确认", "st3": "备货中", "st4": "已发货 / 已领取", "st5": "已取消", "tl0": "下单", "tl1": "付款", "tl2": "确认", "tl3": "备货", "tl4": "完成", "scan": "用银行 App 扫码（或保存二维码后从相册扫描）。金额和转账备注已自动填好。", "bank_l": "银行", "acc_l": "账号", "accname_l": "户名", "amount_l": "金额", "note_l": "转账备注", "qr_missing": "我们会尽快把转账信息发给你 ♡", "ipaid": "我已转账，确认订单 ✦", "paid_ok": "谢谢！请查收邮箱里的收据 ♡", "track_this": "查询此订单", "status_l": "状态", "created_l": "下单时间", "delivery_l": "收货方式", "items_l": "商品", "demo": "预览模式：订单只保存在此浏览器中。连接 Google Sheet（见 SETUP.md）即可接收真实订单。", "keep_code": "请保存此订单号以便查询 ✦", "search_label": "搜索商品", "search_ph": "搜索周边、作品… (｡•̀ᴗ-)✧", "tab_shop": "✦ 商店", "tab_gifts": "赠品", "tab_how": "下单方式", "hero_h1": "感谢你支持 <span class=\"hl\">AmelCola</span> ♡", "hero_lead": "闪粉小卡、镭射钥匙扣和我们的越服系列，涵盖崩坏：星穹铁道、原神、Vocaloid 等作品。", "browse": "浏览周边", "see_gifts": "随单赠品", "pickme": "选我选我!! (≧▽≦)", "ev_last": "最近活动", "ev_booth": "摊位", "ev_date": "日期", "ev_status": "状态", "ev_open": "正在接受网上订单", "ev_rules": "扭蛋和指定规则请看我们的 Facebook 主页。", "ask_t": "有疑问？联系我们吧！", "ask_s": "我们会在 Facebook 回复哦 ♡", "ev_scan": "扫码访问 AmelCola 的 Facebook ✦", "goods": "周边菜单", "all": "全部", "type_label": "商品类型", "sort_label": "排序", "type_all": "全部类型", "t_cards": "小卡 & 卡片", "t_keychain": "钥匙扣", "t_badge": "徽章 & 胸针", "t_sticker": "贴纸", "t_print": "印刷画", "t_set": "立牌 & 套装", "t_grip": "手机支架", "sort_feat": "排序：推荐", "sort_low": "价格：从低到高", "sort_high": "价格：从高到低", "sort_new": "新品优先", "quick": "快速查看 ✦", "from": "起", "empty": "这里还什么都没有… (´･ω･`)", "empty2": "试试其他筛选或搜索", "tag_new": "新品!", "tag_limited": "限量", "tag_last": "最后一次", "tag_upsize": "加大款", "tag_vp": "越服", "gifts_title": "随单赠品", "g1_t": "AmelCola 卡片", "g1_d": "随单赠送一张 AmelCola 卡片，数量有限！", "g1_p": "满 250.000đ", "g2_t": "越服系列随机贴纸", "g2_d": "越服系列随机 Q 版贴纸，数量有限！", "g2_p": "满 300.000đ", "g3_t": "进击的巨人集章活动", "g3_d": "购买进击的巨人周边可获得 AmelCola 印章，集满即可兑换韩吉“与你一起看烟花”A6 明信片。", "g3_p": "进巨周边满 50.000đ", "s1_t": "挑选周边", "s1_d": "点击卡片查看款式、尺寸和内容。", "s2_t": "填写信息", "s2_d": "结账时选择邮寄或活动现场自取。", "s3_t": "扫码付款", "s3_d": "扫描二维码，金额和转账备注已自动填好。", "s4_t": "查询订单", "s4_d": "在“查询订单”中输入订单号即可查看状态。", "footer": "有问题？请在 Facebook 私信 AmelCola 或发邮件给我们 ♡", "email_copied": "邮箱地址已复制 ✦", "follow": "关注 AmelCola ✦", "deco_on": "✦ 装饰：开", "deco_off": "✦ 装饰：关", "dark": "切换到深色模式", "light": "切换到浅色模式", "wishlist": "只看收藏", "cart": "打开购物车", "size": "尺寸", "inside": "包含：", "ask": "想要哪一款？（选填）", "ask_ph": "例如：第 3 款或角色名", "add": "加入购物车", "zoom": "点击查看大图", "pick_title": "选择角色", "pick_count": "已选 {n}/{m}", "pick_count1": "已选 {n}", "pick_need": "还需选择 {n} 个", "pick_min": "请至少选择 1 个角色", "pick_h1": "选择 R 卡角色及每个角色的数量。", "pick_hb": "每份套餐含 {n} 个指定，请选满 {m} 个再继续。", "pick_hb2": "每份套餐含 {n} 个指定，请选满 {m} 个再继续。", "sp_only": "SP 卡（Flame Reaver、Cyrene）只在 8 + 2 套餐中可选。", "sp_ok": "此套餐可以指定 SP 卡 ✦", "pick_none": "扭蛋卡片为随机。选择“指定”选项即可挑选角色。", "picks": "指定", "zoom_tap": "点击查看大图", "added": "已加入购物车！", "wish_saved": "已加入收藏 ♡", "wish_removed": "已取消收藏", "show_wish": "正在显示你的收藏 ♡", "show_all": "正在显示全部 ✦", "cart_empty": "购物车是空的。<br>去挑点闪闪发光的东西吧！", "keep": "继续逛逛", "remove": "删除", "removed": "已删除 (｡•́︿•̀｡)", "gift_next": "再买 {x} 即可获得 {g} ✦", "gift_all": "你已解锁全部赠品！(ﾉ´ヮ`)ﾉ*: ･ﾟ", "gift_got": "随单赠品：", "stamp": "进巨周边满 50k：+1 个 AmelCola 印章", "note": "添加订单备注", "note_ph": "例如：卡片请平放包装 ♡", "subtotal": "小计", "checkout": "去结账", "cont": "继续购物 →", "name": "你的名字", "social": "Facebook", "social_ph": "Facebook 名字或链接", "phone": "电话", "how": "收货方式", "ship": "邮寄给我", "pickup": "下次活动现场自取", "addr": "收货地址", "pay": "付款方式", "bank": "银行转账 / MoMo", "paylater": "自取时付款", "err": "请填写带 * 的项目 (｡•́︿•̀｡)", "confirm": "确认下单 ✦", "summary": "订单摘要", "shipping": "运费", "ship_tbc": "私信确认", "total": "合计", "gifts": "赠品", "received": "已收到你的订单！", "qr": "此处显示银行二维码", "tnote": "转账备注：", "pnote": "自取时请出示此订单号。", "copy": "复制订单号", "done": "完成 ✦", "copied": "订单号已复制 ✦", "copyfail": "复制失败，请手动记下：", "ann": ["✦ 网上订单现已开放", "♡ 满 250k：赠送 AmelCola 卡片", "✦ 满 300k：随机越服贴纸", "(๑˃ᴗ˂)ﻭ 赠品数量有限，送完即止", "✦ 最近活动：Color Fiesta 17 · G7 摊位"]}
 };
 
 /* ============================================================
@@ -1136,7 +1144,11 @@ let cart=store.get('ac_cart',[]).filter(l=>byId(l.id));
 let wish=new Set(store.get('ac_wish',[]));
 let fandom='all',type='all',sort='feat',query='',wishOnly=false;
 const t=k=>T[lang][k]??T.en[k]??k;
-const L=o=>o?(o[lang]??o.en):'';
+const ZH_P={"HSR Glitter Card Gacha": "星铁闪粉卡扭蛋", "Glitter photocards with a royal chess theme. Gacha is random. Picks are R cards only, except the 8 + 2 combo, which can pick SP.": "皇家国际象棋主题闪粉小卡。扭蛋为随机。指定仅限 R 卡，8 + 2 套餐可指定 SP 卡。", "Buy as": "购买方式", "1 gacha (random)": "1 次扭蛋（随机）", "Pick (R only)": "指定（仅 R 卡）", "4 gacha + 1 pick (R)": "4 次扭蛋 + 1 个指定（R）", "8 gacha + 2 pick (SP ok)": "8 次扭蛋 + 2 个指定（可选 SP）", "/ set": "/ 套", "Aventurine Set": "砂金套装", "From our Viet Phuc series: an A6 print plus a two-piece double-board standee.": "越服系列：A6 印刷画 + 双板拼接立牌。", "A6 print": "A6 印刷画", "15 cm 2-piece double-board standee": "15 cm 双板拼接立牌", "/ each": "/ 个", "Double Flash Oval Badge": "双闪椭圆徽章", "A double flash finish that shimmers as it moves. 10 characters, pick your favourite.": "双闪工艺，转动时闪闪发光。共 10 个角色，挑你最喜欢的。", "Character": "角色", "/ set of 2": "/ 2 张一套", "Royal Chessgame Photocards": "皇家棋局小卡", "A set of 2 glitter photocards.": "一套 2 张闪粉小卡。", "HSR Hologram Keychain": "星铁镭射钥匙扣", "Hologram acrylic with a beaded chain and tassel.": "镭射亚克力，配串珠链和流苏。", "HSR Wooden Pin": "星铁木质胸针", "Upsized wooden pins with ornate frames. 4 characters.": "加大款木质胸针，带花纹边框。共 4 个角色。", "Venti Wooden Standee Set": "温迪木质立牌套装", "Viet Phuc series, “Cao Sơn Lưu Thủy” (高山流水). One set includes the 2-layer wooden standee and a matching photocard.": "越服系列《高山流水》。一套包含双层木质立牌和配套小卡。", "20 cm 2-layer wooden standee": "20 cm 双层木质立牌", "Venti photocard": "温迪小卡", "Venti Glitter Polaroid": "温迪闪粉拍立得", "A glitter polaroid card from the Viet Phuc series.": "越服系列闪粉拍立得卡。", "Venti Pearl Print": "温迪珠光印刷画", "The full Venti illustration, printed on pearl paper.": "温迪完整插画，珠光纸印刷。", "/ pick": "/ 张", "Genshin Card Print": "原神卡片印刷画", "Viet Phuc series card prints on pearl paper. 18 characters to choose from.": "越服系列珠光纸卡片，共 18 个角色可选。", "Genshin Hologram Keychain": "原神镭射钥匙扣", "Hexagon hologram keychains: Dottore and Pantalone.": "六边形镭射钥匙扣：博士和潘塔罗涅。", "Vocaloid Photocard Set": "Vocaloid 小卡套装", "Pearl paper photocards, sold in pairs.": "珠光纸小卡，两张一组出售。", "Pair": "组合", "Vocaloid Glitter Keychain": "Vocaloid 闪粉钥匙扣", "Glitter acrylic with a ball chain. Buy all 4 for a set price.": "闪粉亚克力，配珠链。四款一起买享套装价。", "Choose": "选择", "Set of 4": "4 个一套", "Shuo & Wang Photocards": "朔望小卡", "朔望. Yes, it’s Shuowang. We have no excuse…": "朔望。没错，就是朔望。我们无话可说…", "/ set of 4": "/ 4 张一套", "WxS Hologram Sticker Set": "WxS 镭射贴纸套装", "Wonderlands×Showtime sticker sheets on starry hologram paper.": "Wonderlands×Showtime 星空镭射纸贴纸。", "Nagito Hologram Sticker Sheet": "狛枝镭射贴纸", "An A5 sticker sheet on starry hologram paper.": "A5 星空镭射纸贴纸。", "KHR Glitter Keychain": "家教闪粉钥匙扣", "Chibi glitter keychains with a little bell. Last time on sale!": "Q 版闪粉钥匙扣，带小铃铛。最后一次贩售！", "AOT Gold-foil Print": "进巨烫金印刷画", "An A6 print with gold foil. Counts toward the AOT stamp rally.": "A6 烫金印刷画，可参加进巨集章活动。", "AOT Phone Grip": "进巨手机支架", "Cheeky chibi phone grips, 5 characters. Counts toward the AOT stamp rally.": "调皮的 Q 版手机支架，共 5 款，可参加进巨集章活动。", "Attack Titan": "进击的巨人", "Levi": "利威尔", "Beast Titan": "兽之巨人", "Armored Titan": "铠之巨人", "Colossal Titan": "超大型巨人", "an AmelCola card": "AmelCola 卡片", "Viet Phuc stickers": "越服贴纸"};
+const FANDOM_ZH={'Honkai: Star Rail':'崩坏：星穹铁道','Genshin Impact':'原神','Vocaloid':'Vocaloid','Arknights':'明日方舟','Project Sekai':'世界计划','Danganronpa':'弹丸论破','Katekyo Hitman Reborn':'家庭教师','Attack on Titan':'进击的巨人'};
+const FN=f=>lang==='zh'?(FANDOM_ZH[f]||f):f;
+const SPEC_ZH={'+ photocard':'+ 小卡','glitter':'闪粉','pearl paper':'珠光纸','wood':'木质','2-layer wood':'双层木质','gold foil':'烫金','starry hologram':'星空镭射'};
+const L=o=>{if(!o)return '';if(o[lang]!=null)return o[lang];if(lang==='zh'&&ZH_P[o.en])return ZH_P[o.en];return o.en};
 const optPrice=(p,i)=>p.opts?.[i]?.price??p.price;
 const minPrice=p=>p.opts?Math.min(...p.opts.map(o=>o.price??p.price)):p.price;
 const hasRange=p=>p.opts&&new Set(p.opts.map(o=>o.price??p.price)).size>1;
@@ -1148,7 +1160,7 @@ function applyTheme(){document.documentElement.dataset.theme=theme;const b=$('#t
 $('#themeBtn').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme()};
 function applyLang(){setTimeout(()=>document.dispatchEvent(new Event("langchange")));
   applyOpen();
-  document.documentElement.lang=lang;store.set('ac_lang',lang);
+  document.documentElement.lang=lang==='zh'?'zh-CN':lang;store.set('ac_lang',lang);
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=t(e.dataset.i18nHtml));
@@ -1157,14 +1169,14 @@ function applyLang(){setTimeout(()=>document.dispatchEvent(new Event("langchange
   document.querySelectorAll('[data-i18n-alt]').forEach(e=>e.alt=t(e.dataset.i18nAlt));
   $('#wishBtn').setAttribute('aria-label',t('wishlist'));$('#trackBtn').setAttribute('aria-label',t('tab_track'));$('#cartBtn').setAttribute('aria-label',t('cart'));
   applyOpen();
-  const ann=shopOpen?t('ann'):[t('ann_closed'),...t('ann').slice(1).filter(x=>!/Bill|bill/.test(x))];
+  const ann=shopOpen?t('ann'):[t('ann_closed'),...t('ann').slice(1).filter(x=>!/Bill|bill|满/.test(x))];
   $('#marquee').innerHTML=[...ann,...ann].map(s=>`<span>${s}</span>`).join('');
   $('#type').innerHTML=`<option value="all">${t('type_all')}</option>`+TYPES.map(k=>`<option value="${k}" ${k===type?'selected':''}>${t('t_'+k)}</option>`).join('');
   $('#sort').innerHTML=['feat','low','high','new'].map(k=>`<option value="${k}" ${k===sort?'selected':''}>${t('sort_'+k)}</option>`).join('');
   setCalm(document.body.classList.contains('calm'),false);applyTheme();renderChips();renderGrid();renderCart();
   if(openWin===$('#productWin'))renderProduct();
 }
-document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang();toast(lang==='vi'?'Đã chuyển sang Tiếng Việt ✦':'Switched to English ✦')});
+document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang();toast(lang==='vi'?'Đã chuyển sang Tiếng Việt ✦':lang==='zh'?'已切换为中文 ✦':'Switched to English ✦')});
 
 /* ---------- photo viewer: click a photo to see it full size, click outside to close ---------- */
 let vList=[],vIdx=0,vBack=null;
@@ -1224,7 +1236,7 @@ if(store.get('ac_calm',false))document.body.classList.add('calm');
 function renderChips(){
   const fs=[...new Set(P.map(p=>p.fandom))];
   $('#chips').setAttribute('aria-label','Fandom');
-  $('#chips').innerHTML=[['all',t('all'),P.length],...fs.map(f=>[f,f,P.filter(p=>p.fandom===f).length])]
+  $('#chips').innerHTML=[['all',t('all'),P.length],...fs.map(f=>[f,FN(f),P.filter(p=>p.fandom===f).length])]
     .map(([v,l,n])=>`<button class="chip" aria-pressed="${v===fandom}" data-f="${v}">${l}<span class="n">${n}</span></button>`).join('');
 }
 $('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;fandom=b.dataset.f;renderChips();renderGrid()};
@@ -1242,7 +1254,7 @@ $('#wishBtn').onclick=()=>setWishOnly(!wishOnly);
 /* ---------- grid ---------- */
 function renderGrid(){
   let list=P.filter(p=>(fandom==='all'||p.fandom===fandom)&&(type==='all'||p.type===type)&&(!wishOnly||wish.has(p.id))&&
-    (!query||[p.name.en,p.name.vi,p.fandom,p.desc.en,p.desc.vi,...(p.opts||[]).map(o=>o.en)].join(' ').toLowerCase().includes(query)));
+    (!query||[p.name.en,p.name.vi,p.fandom,FANDOM_ZH[p.fandom]||'',L(p.name),p.desc.en,p.desc.vi,...(p.opts||[]).map(o=>o.en)].join(' ').toLowerCase().includes(query)));
   if(sort==='low')list.sort((a,b)=>minPrice(a)-minPrice(b));if(sort==='high')list.sort((a,b)=>minPrice(b)-minPrice(a));if(sort==='new')list.sort((a,b)=>(b.tag==='new')-(a.tag==='new'));
   $('#grid').innerHTML=list.length?list.map((p,i)=>`
     ${(()=>{p._so=soldOut(p);p._lim=isLimited(p);p._left=productLeft(p);return ''})()}<article class="card win ${p._so?'soldout':''}" style="animation-delay:${i*40}ms" data-id="${p.id}" tabindex="0" aria-label="${L(p.name)}, ${VND(minPrice(p))}${p._so?', '+t('so_title'):''}">
@@ -1256,7 +1268,7 @@ function renderGrid(){
         <button class="btn btn--primary quick" tabindex="-1">${t('quick')}</button>
       </div>
       <div class="card__info">
-        <span class="fandom">${p.fandom}</span>
+        <span class="fandom">${FN(p.fandom)}</span>
         <div class="card__name">${L(p.name)}</div>
         <div class="card__meta"><span class="price">${hasRange(p)?`<small>${t('from')}</small>`:''}${VND(minPrice(p))}</span><span class="unit">${L(p.unit)}</span></div>
       </div>
@@ -1316,20 +1328,20 @@ function renderProduct(){
       ${p.imgs.length>1?`<div class="pd__thumbs">${p.imgs.map((m,v)=>`<button aria-current="${v===pd.view}" aria-label="${v+1}" data-view="${v}"><img src="${img(m)}" alt=""></button>`).join('')}</div>`:''}
     </div>
     <div class="pd__info">
-      <span class="fandom">${p.fandom}${p.tag?` · ${t('tag_'+p.tag)}`:''}</span>
+      <span class="fandom">${FN(p.fandom)}${p.tag?` · ${t('tag_'+p.tag)}`:''}</span>
       <h3 id="pdTitle">${L(p.name)}</h3>
       <div class="price">${VND(price)} <span class="unit">${L(p.unit)}</span></div>
       ${left!==Infinity?(()=>{const lim=Math.max(1,...stockRules(p.id,pd.opt).map(r=>r.limit)),pct=Math.max(0,Math.min(100,left/lim*100));return `<div class="stock-px ${left<=0?'out':''}" role="status">
         <div class="stock-px__lbl">${left<=0?t('px_out'):t('px_left').replace('{n}',left)}${incart?` <small>${t('stock_incart').replace('{n}',incart)}</small>`:''}</div>
         <div class="stock-px__bar" aria-hidden="true"><i style="width:${pct}%"></i></div></div>`})():''}
       <p class="pd__desc">${L(p.desc)}</p>
-      ${p.specs?`<div class="specs" aria-label="${t('size')}">${p.specs.map(s=>`<span>${lang==='vi'?(SPEC_VI[s]||s):s}</span>`).join('')}</div>`:''}
+      ${p.specs?`<div class="specs" aria-label="${t('size')}">${p.specs.map(s=>`<span>${lang==='vi'?(SPEC_VI[s]||s):lang==='zh'?(SPEC_ZH[s]||s):s}</span>`).join('')}</div>`:''}
       ${p.opts?`<div><div class="opt-label">${L(p.optLabel)}:</div><div class="opts ${hasRange(p)&&p.opts.length<=4?'two':''}" role="radiogroup" aria-label="${L(p.optLabel)}">${p.opts.map((o,i)=>{const so=leftOf(p.id,i)<=0;return `<button class="opt ${so?'so':''}" role="radio" aria-checked="${i===pd.opt}" ${so?'aria-disabled="true"':''} data-opt="${i}">${L(o)}${hasRange(p)?`<small>${VND(o.price??p.price)}</small>`:''}${so?`<small class="so-tag">${t('so_opt')}</small>`:''}</button>`}).join('')}</div></div>`:''}
       ${p.contents?`<div><div class="opt-label">${t('inside')}</div><ul class="contents">${p.contents.map(c=>`<li>${L(c)}</li>`).join('')}</ul></div>`:''}
       ${p.ask?`<div><label class="lbl" for="pdNote">${t('ask')}</label><input type="text" id="pdNote" value="${pd.note.replace(/"/g,'&quot;')}" placeholder="${t('ask_ph')}"></div>`:''}
       ${pickUI}
       <div class="buy">
-        ${`<div class="stepper"><button data-q="-1" aria-label="−" ${ps?.mode==='single'?'disabled':''}>−</button><input type="number" inputmode="numeric" min="1" max="${qtyMax(p)}" value="${ps?.mode==='single'?ps.total:pd.qty}" ${ps?.mode==='single'?'disabled':''} data-qty aria-label="${lang==='vi'?'Số lượng':'Quantity'}"><button data-q="1" aria-label="+" ${ps?.mode==='single'?'disabled':''}>+</button></div>`}
+        ${`<div class="stepper"><button data-q="-1" aria-label="−" ${ps?.mode==='single'?'disabled':''}>−</button><input type="number" inputmode="numeric" min="1" max="${qtyMax(p)}" value="${ps?.mode==='single'?ps.total:pd.qty}" ${ps?.mode==='single'?'disabled':''} data-qty aria-label="${lang==='vi'?'Số lượng':lang==='zh'?'数量':'Quantity'}"><button data-q="1" aria-label="+" ${ps?.mode==='single'?'disabled':''}>+</button></div>`}
         <button class="btn btn--primary" style="flex:1" id="addBtn" aria-disabled="${!!need}"><span>${need||`${t('add')} · ${VND(price*units)}`}</span><span class="spark"><i style="left:12%;top:20%">✦</i><i style="right:10%;bottom:18%;animation-delay:.4s">✦</i></span></button>
       ${(()=>{const n=cart.filter(l=>l.id===p.id).reduce((a,l)=>a+l.qty,0);return n?`<div class="incart">🛒 ${t('in_cart').replace('{n}',n)} <button class="link-btn" data-gocart>${t('view_cart')} →</button></div>`:''})()}
       </div>
@@ -1550,7 +1562,7 @@ function openCheckout(){
     const em=$('#f-email').value.trim();$('#f-email').style.borderColor='';
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){$('#f-email').style.borderColor='var(--accent)';$('#coErr').textContent=t('email_bad');$('#f-email').focus();return}
     const btn=form.querySelector('button[type=submit]');if(btn.disabled)return;btn.disabled=true;btn.innerHTML=`<span class="spinner"></span> ${t('sending')}`;$('#coErr').textContent='';
-    const payload={action:'order',lang,name:$('#f-name').value.trim(),social:$('#f-social').value.trim(),phone:$('#f-phone').value.trim(),email:em,
+    const payload={action:'order',lang:lang==='zh'?'en':lang,name:$('#f-name').value.trim(),social:$('#f-social').value.trim(),phone:$('#f-phone').value.trim(),email:em,
       delivery:form.ship.value,address:form.ship.value==='ship'?$('#f-addr').value.trim():'',payment:'bank',
       items:cart.map(orderLine),lines:cart.map(orderData),catalog:catalogSnapshot(),total:st,subtotal:st0,promo:promo?.code||'',gifts:unlocked(st),note:store.get('ac_note','')};
     try{
@@ -1744,7 +1756,7 @@ function renderOrder(o){
   $('#trResult').innerHTML=`<div class="order-card">
     ${ticketHTML(o,false)}
     <div class="kv">
-      <div class="row"><span>${t('created_l')}</span><b>${isNaN(d)?esc(o.created):d.toLocaleString(lang==='vi'?'vi-VN':'en-GB',{dateStyle:'medium',timeStyle:'short'})}</b></div>
+      <div class="row"><span>${t('created_l')}</span><b>${isNaN(d)?esc(o.created):d.toLocaleString(lang==='vi'?'vi-VN':lang==='zh'?'zh-CN':'en-GB',{dateStyle:'medium',timeStyle:'short'})}</b></div>
       <div class="row"><span>${t('name')}</span><b>${esc(o.name)}</b></div>
       <div class="row"><span>${t('delivery_l')}</span><b>${t(o.delivery==='pickup'?'pickup':'ship')}</b></div>
       <div class="row"><span>${t('pay')}</span><b>${t(o.payment==='bank'?'bank':'paylater')}</b></div>
