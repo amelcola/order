@@ -487,6 +487,20 @@ footer .muted{opacity:.85;font-size:14px}
 textarea,input[type=text],input[type=tel],input[type=email],select.field{width:100%;border:2px solid var(--line);border-radius:12px;padding:9px 12px;background:var(--surface);font-weight:700}
 textarea:focus,input:focus,select.field:focus{outline:none;box-shadow:0 0 0 3px var(--focus-ring)}
 ::placeholder{color:var(--muted);opacity:.9}
+.mascot-empty{display:block;width:150px;height:auto;margin:0 auto 10px;animation:floaty 5s ease-in-out infinite}
+.mascot-done{display:block;width:130px;height:auto;margin:0 auto 4px;animation:mascotHop 2.4s ease-in-out infinite}
+@keyframes mascotHop{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+.co aside{display:flex;flex-direction:column}
+#checkoutWin{overflow:visible}
+#checkoutWin>.win__bar{border-radius:calc(var(--radius-m) - 2px) calc(var(--radius-m) - 2px) 0 0}
+#checkoutWin>.popup__body{border-radius:0 0 calc(var(--radius-m) - 2px) calc(var(--radius-m) - 2px)}
+.mascot-co{position:absolute;right:-58px;bottom:-34px;z-index:2;width:210px;height:auto;pointer-events:none;transform-origin:bottom right;filter:drop-shadow(3px 4px 0 rgba(27,42,107,.18));animation:mascotTilt 3.2s ease-in-out infinite}
+#checkoutWin.done .mascot-co:not(.mascot-pay),#checkoutWin:not(.done) .mascot-pay,#checkoutWin.paid .mascot-pay{display:none}
+.mascot-pay{width:190px;right:-84px;bottom:-40px;animation:mascotTilt 3.6s ease-in-out infinite}
+#checkoutWin .co aside{padding-bottom:120px}
+#checkoutWin.done:not(.paid) #coBody .ticket2{padding-bottom:90px}
+@keyframes mascotTilt{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+@media(max-width:700px){.mascot-co{width:110px;right:54px;bottom:auto;top:-62px}#checkoutWin .co aside{padding-bottom:20px}#checkoutWin.done:not(.paid) #coBody .ticket2{padding-bottom:20px}.mascot-empty{width:120px}}
 .cart-empty{text-align:center;padding:40px 10px;color:var(--muted)}
 .cart-empty .big{font-size:30px;color:var(--text);margin-bottom:6px}
 
@@ -724,8 +738,8 @@ fieldset{border:none}
         <div class="nc__body" data-viewer>
           <div class="nc__track" id="ncTrack">
             <figure class="nc__slide"><img class="nc__art" src="img/banner.jpg" alt="" data-i18n-alt="nc_alt"></figure>
-            <figure class="nc__slide" data-fill data-focus="50% 0%"><img class="nc__art" src="img/banner-2.jpg" alt="" data-i18n-alt="nc_alt"></figure>
-            <figure class="nc__slide" data-fill data-focus="50% 25%"><img class="nc__art" src="img/banner-3.jpg" alt="" data-i18n-alt="nc_alt"></figure>
+            <figure class="nc__slide"><img class="nc__art" src="img/banner-2.jpg" alt="" data-i18n-alt="nc_alt"></figure>
+            <figure class="nc__slide"><img class="nc__art" src="img/banner-3.jpg" alt="" data-i18n-alt="nc_alt"></figure>
           </div>
           <div class="nc__shade"></div>
           <button class="nc__nav prev" type="button" data-nc="-1" data-i18n-aria="nc_prev"><svg viewBox="0 0 7 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M5 0h1v9H5zM4 1h1v7H4zM3 2h1v5H3zM2 3h1v3H2zM1 4h1v1H1z"/></svg></button>
@@ -857,6 +871,8 @@ fieldset{border:none}
   <div class="win__bar lime" data-drag><span id="coTitle">checkout.exe</span>
     <span class="win__ctrls"><button class="win__ctrl" data-close aria-label="Close">×</button></span></div>
   <div class="popup__body" id="coBody"></div>
+  <img class="mascot-co" src="img/mascot/abacus.png" alt="" aria-hidden="true">
+  <img class="mascot-co mascot-pay" src="img/mascot/scroll.png" alt="" aria-hidden="true">
 </div>
 <div class="popup win" id="trackWin" role="dialog" aria-modal="true" aria-labelledby="trTitle">
   <div class="win__bar sky" data-drag><span id="trTitle">track_order.exe</span>
@@ -1339,7 +1355,7 @@ function renderCart(){
         ${l.picks?`<div class="note" style="margin-top:6px;font-weight:900">× ${l.qty}</div>`:`<div class="stepper sm" style="display:inline-flex;margin-top:8px"><button data-i="${i}" data-d="-1" aria-label="−">−</button><span>${l.qty}</span><button data-i="${i}" data-d="1" aria-label="+">+</button></div>`}</div>
       <div class="line__right"><span class="price" style="font-size:16px">${VND(lineTotal(l))}</span><button class="link-btn" data-rm="${i}">${t('remove')}</button></div></div>`}).join('')}
     <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:800">${t('note')}</summary><textarea id="orderNote" rows="2" style="margin-top:8px" placeholder="${t('note_ph')}">${store.get('ac_note','')}</textarea></details>`
-  :`<div class="cart-empty"><div class="big">(´• ω •\`)</div><p>${t('cart_empty')}</p><button class="btn btn--primary" data-close style="margin-top:16px">${t('keep')}</button></div>`;
+  :`<div class="cart-empty"><img class="mascot-empty" src="img/mascot/sleepy.png" alt="" width="150"><p>${t('cart_empty')}</p><button class="btn btn--primary" data-close style="margin-top:16px">${t('keep')}</button></div>`;
   const on=$('#orderNote');if(on)on.oninput=e=>store.set('ac_note',e.target.value);
   $('#cartFoot').hidden=!cart.length;
   $('#cartFoot').innerHTML=cart.length?`<div class="total"><span>${t('subtotal')}</span><span class="price">${VND(st)}</span></div>
@@ -1357,6 +1373,7 @@ $('#cartFoot').addEventListener('click',e=>{if(e.target.closest('#toCheckout'))o
 function openCheckout(){
   if(!shopOpen){toast(t('closed_cart'));return}
   const st0=subtotal(),disc=discountTotal(),st=st0-disc,got=unlocked(st);
+  $('#checkoutWin').classList.remove('done','paid');
   $('#coBody').innerHTML=`<div class="co"><form id="coForm" novalidate>
     <div class="field-row"><div><label class="lbl" for="f-name">${t('name')} <em>*</em></label><input type="text" id="f-name" autocomplete="name"></div>
       <div><label class="lbl" for="f-social">${t('social')} <em>*</em></label><input type="text" id="f-social" placeholder="${t('social_ph')}"></div></div>
@@ -1410,7 +1427,7 @@ function openCheckout(){
       if(!res.ok)throw new Error(res.error||'fail');
       rememberOrder({code:res.code,total:res.total,note:res.transferNote,payment:payload.payment,at:Date.now()});
       cart=[];promo=null;store.set('ac_note','');save();
-      $('#coBody').innerHTML=ticketHTML({code:res.code,total:res.total,transferNote:res.transferNote,payment:payload.payment,status:0},true);
+      $('#checkoutWin').classList.add('done');$('#coBody').innerHTML=ticketHTML({code:res.code,total:res.total,transferNote:res.transferNote,payment:payload.payment,status:0},true);
       if(em&&LIVE){const h=$('#coBody .head');if(h)h.insertAdjacentHTML('beforeend',`<p class="note" style="margin-top:4px">${t('email_sent')}</p>`)}
       wireTicket($('#coBody'),{code:res.code,total:res.total,transferNote:res.transferNote,payment:payload.payment,status:0});
     }catch(err){btn.disabled=false;btn.textContent=t('confirm');$('#coErr').textContent=t('net_err')}
@@ -1522,7 +1539,7 @@ function timeline(st){if(st===5)return '';const at=st===0?0:st===1?1:st;
 function ticketHTML(o,fresh){
   return `<div class="ticket2">
     ${LIVE?'':`<div class="demo-banner">⚠ ${t('demo')}</div>`}
-    ${fresh?`<div class="head"><div style="font-size:34px">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</div><h3>${t('received')}</h3><p class="note">${t('keep_code')}</p></div>`:''}
+    ${fresh?`<div class="head"><img class="mascot-done" src="img/mascot/wink.png" alt="" width="130"><h3>${t('received')}</h3><p class="note">${t('keep_code')}</p></div>`:''}
     <div class="code-row"><span class="code">${esc(o.code)}</span><button class="mini-copy" data-copy="${esc(o.code)}">${t('copy')}</button></div>
     <div style="text-align:center"><span class="status-pill s${o.status}">${t('st'+o.status)}</span></div>
     ${timeline(o.status)}
@@ -1551,7 +1568,7 @@ function wireTicket(root,order){
     const pb=e.target.closest('[data-paid]');if(pb){const code=pb.dataset.paid,ps=payState[code]||{};
       if(ps.state!=='done'||pb.hasAttribute('aria-disabled')){pb.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});toast(t('proof_need'));return}
       if(pb.dataset.busy)return;pb.dataset.busy=1;pb.disabled=true;pb.innerHTML=`<span class="spinner"></span> ${t('sending_paid')}`;
-      try{const r=await Orders.paid(code,ps.method);if(!r.ok)throw 0;toast(t('paid_ok'));const o=r.order;delete payState[code];
+      try{const r=await Orders.paid(code,ps.method);if(!r.ok)throw 0;toast(t('paid_ok'));const o=r.order;delete payState[code];if(root.closest&&root.closest('#checkoutWin'))$('#checkoutWin').classList.add('paid');
         if(o){if(root.closest('#trBody')||root.id==='trResult')renderOrder(o);else{const pill=root.querySelector('.status-pill');pill.className='status-pill s'+o.status;pill.textContent=t('st'+o.status);root.querySelector('.timeline').outerHTML=timeline(o.status);
           const w=root.querySelector(`[data-pay="${code}"] .proof`);if(w)w.innerHTML=`<div class="paid-done"><div style="font-size:26px">٩(ˊᗜˋ*)و ♡</div><b>${t('proof_sent')}</b><small>${t('proof_sent2')}</small></div>`}}}
       catch{delete pb.dataset.busy;pb.disabled=false;pb.innerHTML=`<span>${t('ipaid')}</span>`;toast(t('net_err'))}return}
