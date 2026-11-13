@@ -194,7 +194,8 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .term strong{color:var(--text);font-weight:900}
 .term .status::before{display:none}
 .loadbar{height:12px;border:2px solid var(--line);border-radius:4px;background:var(--surface-2);overflow:hidden;margin-top:4px;padding:1px}
-.loadbar i{display:block;height:100%;width:100%;background:repeating-linear-gradient(90deg,var(--primary) 0 8px,transparent 8px 10px);animation:load 2.4s steps(14) infinite}
+.loadbar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#A9A2F2,#86E0E4 22%,#DCEBFF 40%,#F2B3E3 58%,#8FE3E6 78%,#B1A8F5);background-size:200% 100%;-webkit-mask:repeating-linear-gradient(90deg,#000 0 8px,transparent 8px 10px);mask:repeating-linear-gradient(90deg,#000 0 8px,transparent 8px 10px);animation:load 2.4s steps(14) infinite,holo 4s linear infinite}
+@keyframes holo{from{background-position:0 0}to{background-position:-200% 0}}
 @keyframes load{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .icons{display:flex;justify-content:space-between;gap:6px;padding:0 4px}
 .dicon{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--text);width:62px;border-radius:10px;padding:4px 2px;transition:transform .25s var(--ease),background .2s}
@@ -228,8 +229,7 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .closed .status::before{background:#E5484D!important;box-shadow:0 0 0 3px rgba(229,72,77,.25)!important;animation:none!important}
 .closed .term .status{color:#E5484D}
 .closed .sys__online{background:#E5484D}
-.closed .loadbar i{animation:none;clip-path:none;background:repeating-linear-gradient(90deg,#E5484D 0 8px,transparent 8px 10px)}
-.closed .loadbar{border-color:#E5484D}
+.closed .loadbar i{animation:none;clip-path:none;background:linear-gradient(90deg,#D98EC4,#A67BD0 35%,#7468C6 65%,#4E5BB2);background-size:100% 100%}
 .closed-note{margin:0 0 8px}
 .closed-note .mini__bar{font-size:12px}
 .closed-note__body{display:flex;align-items:center;gap:10px;padding:9px 11px;font-size:13px;font-weight:700;line-height:1.45;color:var(--text)}
