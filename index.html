@@ -206,8 +206,8 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .dicon:hover .dicon__img{background:var(--bar-pink)}
 .dicon:hover .dicon__lbl{background:var(--chip-on);color:var(--on-chip);border-radius:4px;padding:0 4px}
 .desk__row{display:grid;grid-template-columns:.9fr 1.1fr;gap:12px;align-items:start}
-.note{position:relative;transform:rotate(-1.5deg)}
-.note p{padding:8px 26px 16px 11px;font-size:13px;line-height:1.45;font-weight:700;background:repeating-linear-gradient(transparent 0 18px,color-mix(in srgb,var(--soft) 60%,transparent) 18px 19px) 0 7px}
+.mininote{position:relative;transform:rotate(-1.5deg)}
+.mininote p{padding:8px 26px 16px 11px;font-size:13px;line-height:1.45;font-weight:700;background:repeating-linear-gradient(transparent 0 18px,color-mix(in srgb,var(--soft) 60%,transparent) 18px 19px) 0 7px}
 .note__heart{position:absolute;right:9px;bottom:4px;color:var(--accent);font-size:16px}
 .dlg__body{display:flex;gap:9px;padding:8px 11px 4px;align-items:flex-start}
 .dlg__ico{font-size:22px;line-height:1}
@@ -223,8 +223,18 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .taskbar .start{padding:2px 10px;border:2px solid var(--line);border-radius:5px;background:var(--surface);box-shadow:1px 1px 0 var(--shadow-c)}
 .taskbar .tb-mid{flex:1;font-family:var(--font-pixel);font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .taskbar .clock{padding:2px 10px;border:2px solid var(--line);border-radius:5px;background:var(--surface-2);font-family:var(--font-pixel);font-size:13px}
-@media (max-width:640px){.desk__row{grid-template-columns:1fr}.note{transform:none}.icons{justify-content:space-around}.dicon{width:56px}}
+@media (max-width:640px){.desk__row{grid-template-columns:1fr}.mininote{transform:none}.icons{justify-content:space-around}.dicon{width:56px}}
 .status{display:inline-flex;align-items:center;gap:6px}
+.closed .status::before{background:#E5484D!important;box-shadow:0 0 0 3px rgba(229,72,77,.25)!important;animation:none!important}
+.closed .term .status{color:#E5484D}
+.closed .sys__online{background:#E5484D}
+.closed .loadbar i{animation:none;clip-path:none;background:repeating-linear-gradient(90deg,#E5484D 0 8px,transparent 8px 10px)}
+.closed .loadbar{border-color:#E5484D}
+.closed-note{margin:0 0 8px}
+.closed-note .mini__bar{font-size:12px}
+.closed-note__body{display:flex;align-items:center;gap:10px;padding:9px 11px;font-size:13px;font-weight:700;line-height:1.45;color:var(--text)}
+.closed-note__face{flex-shrink:0;font-size:15px;font-weight:800;color:var(--accent);white-space:nowrap}
+#toCheckout:disabled{background:var(--surface-2);color:var(--muted);border-style:dashed;box-shadow:none;cursor:not-allowed;transform:none}
 .status::before{content:"";width:9px;height:9px;border-radius:50%;background:#3BC46B;box-shadow:0 0 0 3px rgba(59,196,107,.25);animation:twinkle 1.6s infinite}
 .socials{display:flex;flex-wrap:wrap;gap:10px}
 .soc{position:relative;text-decoration:none;width:46px;height:46px;border-radius:14px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--text);
@@ -695,7 +705,7 @@ fieldset{border:none}
           <nav class="icons" aria-label="Social media"><a class="dicon" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Facebook"><span class="dicon__img"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.3 0-1.4-.2-2.6-.2-2.6 0-4.3 1.6-4.3 4.4v2H7.3V12h2.8v9.9H14V12h2.8l.4-3.5H14z"/></svg></span><span class="dicon__lbl">Facebook</span></a><a class="dicon" href="https://x.com/AmelCola_" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on X (Twitter)"><span class="dicon__img"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 2.5h3.1l-6.8 7.8 8 10.6h-6.3l-4.9-6.4-5.6 6.4H2.2l7.3-8.3L1.8 2.5h6.4l4.4 5.9 5.2-5.9zm-1.1 16.5h1.7L7.4 4.3H5.5L16.7 19z"/></svg></span><span class="dicon__lbl">X</span></a><a class="dicon" href="https://www.tiktok.com/@amelcola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on TikTok"><span class="dicon__img"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/></svg></span><span class="dicon__lbl">TikTok</span></a><a class="dicon" href="https://xhslink.cn/m/4K2iqwxzkMq" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Xiaohongshu (RED)"><span class="dicon__img"><span class="xhs" aria-hidden="true">小红书</span></span><span class="dicon__lbl">Xiaohongshu</span></a><a class="dicon" href="mailto:amelcola.circle@gmail.com"  aria-label="Email AmelCola: amelcola.circle@gmail.com"><span class="dicon__img"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.3V17h16V7.3l-8 5.6zm1.4-.3L12 11.6 18.6 7z"/></svg></span><span class="dicon__lbl">Email</span></a></nav>
 
           <div class="desk__row">
-            <section class="mini note">
+            <section class="mini mininote">
               <div class="mini__bar yellow"><span>note.txt</span><i>×</i></div>
               <p data-i18n="ev_rules"></p>
               <span class="note__heart" aria-hidden="true">♡</span>
@@ -809,7 +819,7 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
    UI TEXT — English / Tiếng Việt
    ============================================================ */
 const T={
-en:{promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
+en:{ev_closed:'Orders closed',hero_closed:'We’re not accepting <span class="hl">orders</span> right now ♡',lead_closed:'Thank you for visiting! Stay tuned on our social media for updates.',ann_closed:'✦ Orders are currently closed · Thank you for visiting!',closed_cart:'We’re not accepting orders right now. Stay tuned on our social media ♡',closed_btn:'Orders are closed',promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Promo code applied ✦',promo_bad:'That code isn’t valid.',promo_used:'This code has been fully used.',promo_noitems:'This code doesn’t apply to anything in your cart.',promo_disc:'Discount',added_btn:'✓ Added to cart!',in_cart:'{n} in your cart',view_cart:'View cart',mb_file:'File',mb_view:'View',mb_help:'Help',dlg_title:'Message',msg_btn:'Message us ✦',bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
  proof_l:'Upload your payment screenshot',proof_pick:'Choose a screenshot of your transfer',proof_hint:'It uploads as soon as you pick it',proof_change:'Change photo',proof_retry:'Try again',proof_ok:'Screenshot uploaded',proof_ok2:'Now confirm below ✦',proof_fail:'Upload failed. Please try again',proof_need:'Upload your screenshot to continue',wait_upload:'Uploading your screenshot…',step_pay:'Transfer the money',confirm_h:'Confirm your payment',ipaid_note:'Your receipt will be emailed to you right away.',sending_paid:'Confirming…',proof_sent2:'Your receipt is on its way to your inbox.',proof_type:'Please choose an image file',
  uploading:'Uploading…',proof_sent:'We’ve got your payment details, thank you!',tab_track:'Track order',email_l:'Email',email_ph:'for your receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
  not_found:'We couldn’t find that code. Check the letters and try again ✦',net_err:'Couldn’t connect. Check your internet and try again.',sending:'Sending your order…',
@@ -845,7 +855,7 @@ en:{promo_l:'Promo code',promo_ph:'Enter code',promo_apply:'Apply',promo_ok:'Pro
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+vi:{ev_closed:'Tạm ngừng nhận đơn',hero_closed:'Hiện bọn mình đang <span class="hl">tạm ngừng</span> nhận đơn ♡',lead_closed:'Cảm ơn bạn đã ghé xem! Theo dõi mạng xã hội của bọn mình để cập nhật thông tin mới nhất nha.',ann_closed:'✦ Hiện đang tạm ngừng nhận đơn · Cảm ơn bạn đã ghé xem!',closed_cart:'Hiện bọn mình đang tạm ngừng nhận đơn. Theo dõi mạng xã hội để cập nhật nha ♡',closed_btn:'Đang ngừng nhận đơn',promo_l:'Mã giảm giá',promo_ph:'Nhập mã',promo_apply:'Áp dụng',promo_ok:'Đã áp dụng mã giảm giá ✦',promo_bad:'Mã này không hợp lệ.',promo_used:'Mã này đã hết lượt dùng.',promo_noitems:'Mã này không áp dụng cho sản phẩm trong giỏ.',promo_disc:'Giảm giá',added_btn:'✓ Đã thêm vào giỏ!',in_cart:'Đã có {n} trong giỏ',view_cart:'Xem giỏ hàng',mb_file:'Tệp',mb_view:'Xem',mb_help:'Trợ giúp',dlg_title:'Lời nhắn',msg_btn:'Nhắn tin ✦',bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Bọn mình không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
  proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp bọn mình nhé',
  uploading:'Đang tải ảnh lên…',proof_sent:'Bọn mình đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp bọn mình nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, bọn mình sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
  not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp bọn mình nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
@@ -969,13 +979,16 @@ const moon='<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linej
 function applyTheme(){document.documentElement.dataset.theme=theme;const b=$('#themeBtn');b.innerHTML=theme==='dark'?sun:moon;b.setAttribute('aria-label',t(theme==='dark'?'light':'dark'));store.set('ac_theme',theme)}
 $('#themeBtn').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme()};
 function applyLang(){
+  applyOpen();
   document.documentElement.lang=lang;store.set('ac_lang',lang);
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=t(e.dataset.i18nHtml));
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=t(e.dataset.i18nPh));
   $('#wishBtn').setAttribute('aria-label',t('wishlist'));$('#trackBtn').setAttribute('aria-label',t('tab_track'));$('#cartBtn').setAttribute('aria-label',t('cart'));
-  $('#marquee').innerHTML=[...t('ann'),...t('ann')].map(s=>`<span>${s}</span>`).join('');
+  applyOpen();
+  const ann=shopOpen?t('ann'):[t('ann_closed'),...t('ann').slice(1).filter(x=>!/Bill|bill/.test(x))];
+  $('#marquee').innerHTML=[...ann,...ann].map(s=>`<span>${s}</span>`).join('');
   $('#type').innerHTML=`<option value="all">${t('type_all')}</option>`+TYPES.map(k=>`<option value="${k}" ${k===type?'selected':''}>${t('t_'+k)}</option>`).join('');
   $('#sort').innerHTML=['feat','low','high','new'].map(k=>`<option value="${k}" ${k===sort?'selected':''}>${t('sort_'+k)}</option>`).join('');
   setCalm(document.body.classList.contains('calm'),false);applyTheme();renderChips();renderGrid();renderCart();
@@ -1169,7 +1182,11 @@ function flyToCart(from){
 }
 function save(){store.set('ac_cart',cart);updateBadges();renderCart()}
 const lineTotal=l=>optPrice(byId(l.id),l.opt)*l.qty;
-let promo=null;   // {code, rules:[{id,opt,price,pct}]}
+let promo=null;
+let shopOpen=store.get('ac_open',true);   // last known; refreshed from the Google Sheet on load
+function applyOpen(){document.body.classList.toggle('closed',!shopOpen);
+  const h=document.querySelector('.hero h1'),l=document.querySelector('.hero p.lead'),st=document.querySelector('.term .status');
+  if(h)h.dataset.i18nHtml=shopOpen?'hero_h1':'hero_closed';if(l)l.dataset.i18n=shopOpen?'hero_lead':'lead_closed';if(st)st.dataset.i18n=shopOpen?'ev_open':'ev_closed'}   // {code, rules:[{id,opt,price,pct}]}
 function lineDiscount(l){if(!promo)return 0;const p=byId(l.id),o=p.opts?.[l.opt],on=o?(o.vi||o.en):'',unit=optPrice(p,l.opt);
   let best=0;promo.rules.forEach(r=>{if(r.id!==l.id||(r.opt&&r.opt!==on))return;const d=r.price!=null&&r.price!==''?Math.max(0,unit-Number(r.price)):Math.round(unit*(Number(r.pct)||0)/100);best=Math.max(best,d)});
   return Math.min(unit,best)*l.qty}
@@ -1217,7 +1234,8 @@ function renderCart(){
   const on=$('#orderNote');if(on)on.oninput=e=>store.set('ac_note',e.target.value);
   $('#cartFoot').hidden=!cart.length;
   $('#cartFoot').innerHTML=cart.length?`<div class="total"><span>${t('subtotal')}</span><span class="price">${VND(st)}</span></div>
-    <button class="btn btn--primary btn--block" id="toCheckout">${t('checkout')} · ${VND(st)}<span class="spark"><i style="left:10%;top:22%">✦</i><i style="right:12%;bottom:20%;animation-delay:.5s">✦</i></span></button>
+    ${shopOpen?'':`<section class="mini closed-note" role="status"><div class="mini__bar pinkbar"><span>closed.txt</span><i>_ □ ×</i></div><div class="closed-note__body"><span class="closed-note__face" aria-hidden="true">(｡•́︿•̀｡)</span><span>${t('closed_cart')}</span></div></section>`}
+    <button class="btn btn--primary btn--block" id="toCheckout" ${shopOpen?'':'disabled aria-disabled="true"'}>${shopOpen?`${t('checkout')} · ${VND(st)}`:t('closed_btn')}<span class="spark"><i style="left:10%;top:22%">✦</i><i style="right:12%;bottom:20%;animation-delay:.5s">✦</i></span></button>
     <button class="link-btn" data-close style="justify-self:center">${t('cont')}</button>`:'';
 }
 $('#cartBtn').onclick=()=>{renderCart();showWin($('#cart'))};
@@ -1228,6 +1246,7 @@ $('#cartFoot').addEventListener('click',e=>{if(e.target.closest('#toCheckout'))o
 
 /* ---------- checkout ---------- */
 function openCheckout(){
+  if(!shopOpen){toast(t('closed_cart'));return}
   const st0=subtotal(),disc=discountTotal(),st=st0-disc,got=unlocked(st);
   $('#coBody').innerHTML=`<div class="co"><form id="coForm" novalidate>
     <div class="field-row"><div><label class="lbl" for="f-name">${t('name')} <em>*</em></label><input type="text" id="f-name" autocomplete="name"></div>
@@ -1276,6 +1295,7 @@ function openCheckout(){
       items:cart.map(orderLine),lines:cart.map(orderData),catalog:catalogSnapshot(),total:st,subtotal:st0,promo:promo?.code||'',gifts:unlocked(st),note:store.get('ac_note','')};
     try{
       const res=await Orders.create(payload);
+      if(!res.ok&&res.error==='closed'){shopOpen=false;store.set('ac_open',false);applyLang();closeAll();toast(t('closed_cart'));return}
       if(!res.ok&&/^promo_/.test(res.error||'')){const v={};['f-name','f-social','f-phone','f-email','f-addr'].forEach(id=>v[id]=$('#'+id).value);const sv=form.ship.value;promo=null;openCheckout();
         Object.keys(v).forEach(id=>$('#'+id).value=v[id]);$('#coForm').ship.value=sv;$('#shipBox').hidden=sv!=='ship';$('#promoMsg').textContent=t(res.error==='promo_used_up'?'promo_used':'promo_bad');return}
       if(!res.ok)throw new Error(res.error||'fail');
@@ -1300,6 +1320,10 @@ function transferNote(name,code){let n=name.normalize('NFD').replace(/[\u0300-\u
 const Demo={all(){return store.get('ac_demo_orders',{})},put(o){const a=this.all();a[o.code]=o;store.set('ac_demo_orders',a)}};
 const DEMO_PROMOS={DEMO45:[{id:'voc-pc',opt:'',price:45000}]};  // preview only
 const Orders={
+  async status(){
+    if(LIVE)return (await fetch(ORDER_API_URL+'?action=status')).json();
+    return {ok:true,open:new URLSearchParams(location.search).get('closed')===null};   // preview: add ?closed to the link to see the closed look
+  },
   async promo(code){
     if(LIVE)return (await fetch(ORDER_API_URL+'?'+new URLSearchParams({action:'promo',code}))).json();
     await new Promise(r=>setTimeout(r,300));return DEMO_PROMOS[code]?{ok:true,rules:DEMO_PROMOS[code]}:{ok:false,error:'not_found'};
@@ -1466,6 +1490,7 @@ let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('sh
 document.querySelectorAll('.tab').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
 
 applyLang();updateBadges();
+(async()=>{try{const r=await Orders.status();if(r&&r.ok&&typeof r.open==='boolean'&&r.open!==shopOpen){shopOpen=r.open;store.set('ac_open',shopOpen);applyLang()}}catch{}})();
 try{const q=new URLSearchParams(location.search).get('track');if(q)openTrack(q);else if(location.hash==='#track')openTrack()}catch{}
 </script>
 </body>
