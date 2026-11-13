@@ -1098,7 +1098,8 @@ document.addEventListener('click',e=>{const box=e.target.closest('[data-viewer]'
 (function(){
   const track=$('#ncTrack');if(!track)return;const box=track.parentElement,slides=[...track.children],n=slides.length,dots=$('#ncDots'),file=$('#ncFile');
   slides.forEach(sl=>{const im=sl.querySelector('img');sl.style.setProperty('--bg',`url("${im.getAttribute('src')}")`);
-    const chk=()=>{if(im.naturalWidth)sl.classList.toggle('is-tall',im.naturalWidth/im.naturalHeight<1.5)};
+    if(sl.dataset.focus)im.style.objectPosition=sl.dataset.focus;
+    const chk=()=>{if(im.naturalWidth)sl.classList.toggle('is-tall',!('fill' in sl.dataset)&&im.naturalWidth/im.naturalHeight<1.5)};
     im.complete?chk():im.addEventListener('load',chk);
   });
   let i=0,timer=null;const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
