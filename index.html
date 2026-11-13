@@ -448,7 +448,9 @@ fieldset{border:none}
 
 /* ---------- toast + fly ---------- */
 .toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,160%);transition:transform .4s var(--ease);background:var(--surface);border:2px solid var(--line);border-radius:18px;box-shadow:4px 4px 0 var(--shadow-c);padding:10px 18px;font-weight:900}
-.toast.show{transform:translate(-50%,0)}
+.toast{width:max-content;max-width:calc(100vw - 24px);text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+.toast:not(.show){opacity:0;visibility:hidden;transition:transform .4s var(--ease),opacity .2s,visibility 0s .4s}
 .fly{position:fixed;z-index:90;width:46px;height:46px;border-radius:10px;border:2px solid var(--line);overflow:hidden;pointer-events:none;transition:transform .75s cubic-bezier(.5,-.4,.6,1),opacity .75s}
 .fly img{width:100%;height:100%;object-fit:cover}
 
@@ -460,7 +462,32 @@ fieldset{border:none}
   .pd__gallery{border-right:none;border-bottom:2px solid var(--line)}
   .co aside{border-left:none;border-top:2px solid var(--line)}
 }
+/* ---------- phone: slim header that hides on scroll + bottom nav ---------- */
+.m-only{display:none}
+.botnav{position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:40;justify-content:space-around;align-items:stretch;
+  background:var(--surface);border:2px solid var(--line);border-radius:18px;box-shadow:3px 3px 0 var(--shadow-c);padding:4px}
+.botnav a,.botnav button{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px 4px;border-radius:12px;color:var(--text);text-decoration:none;font-size:11px;font-weight:800;transition:background .2s,transform .2s var(--ease)}
+.botnav svg{width:22px;height:22px;stroke:var(--text)}
+.botnav .on{background:var(--bar-sky)}
+.botnav a:active,.botnav button:active{transform:scale(.92)}
+.botnav .bn-cart{background:var(--primary);color:var(--on-primary)}
+.botnav .bn-cart svg{stroke:var(--on-primary)}
+.botnav .badge{top:0;right:calc(50% - 22px)}
 @media (max-width:640px){
+  .m-only{display:flex}
+  header.site{top:6px;margin-top:8px;transition:transform .3s ease}
+  header.site.hide{transform:translateY(calc(-100% - 12px))}
+  header.site>.win__bar,header.site .tabs,#trackBtn,#wishBtn,#cartBtn{display:none!important}
+  .nav{flex-wrap:nowrap;gap:8px;padding:8px 10px}
+  .logo{flex:1;font-size:21px}.logo svg{width:28px;height:28px}
+  .nav .icon-btn{width:36px;height:36px}.nav .icon-btn svg{width:20px;height:20px}
+  .seg button{height:32px;padding:0 8px}
+  .urlbar{display:none}
+  header.site.searching .urlbar{display:flex;position:absolute;left:8px;right:8px;top:calc(100% + 6px);background:var(--surface);box-shadow:3px 3px 0 var(--shadow-c)}
+  #searchToggle[aria-expanded="true"]{background:var(--bar-sky)}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
+  footer{padding-bottom:76px}
   .nav{flex-wrap:wrap}.logo{flex:1}.urlbar{order:3;flex-basis:100%}
   .tabs{overflow-x:auto}
   .hero__main .win__body{grid-template-columns:1fr;padding:22px 20px 26px}
@@ -493,6 +520,9 @@ fieldset{border:none}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
         <input id="search" type="search" data-i18n-ph="search_ph" autocomplete="off">
       </label>
+      <button class="icon-btn m-only" id="searchToggle" aria-label="Search" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
+      </button>
       <div class="seg" role="group" aria-label="Language">
         <button data-lang="en" aria-pressed="true">EN</button><button data-lang="vi" aria-pressed="false">VI</button>
       </div>
@@ -516,6 +546,13 @@ fieldset{border:none}
       <a class="tab" href="#track" id="trackTab" data-i18n="tab_track"></a>
     </nav>
   </header>
+  <nav class="botnav m-only" aria-label="Menu">
+    <a href="#shop" data-bn="shop" class="on"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9h16v11H4z"/><path d="M9 20v-6h6v6"/></svg><span data-i18n="bn_shop"></span></a>
+    <a href="#gifts" data-bn="gifts"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8C10 4 6 4 7 7s5 1 5 1 4 2 5-1-3-3-5 1z"/></svg><span data-i18n="bn_gifts"></span></a>
+    <button data-bn="wish"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span data-i18n="bn_wish"></span><i class="badge" id="bnWish" hidden>0</i></button>
+    <button data-bn="track"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span data-i18n="bn_track"></span></button>
+    <button data-bn="cart" class="bn-cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h10.6L20.5 7H6.6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span data-i18n="bn_cart"></span><i class="badge" id="bnCart" hidden>0</i></button>
+  </nav>
 
   <main id="top">
     <section class="hero">
@@ -644,7 +681,7 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
    UI TEXT — English / Tiếng Việt
    ============================================================ */
 const T={
-en:{pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
+en:{bn_shop:'Shop',bn_gifts:'Gifts',bn_wish:'Saved',bn_track:'Orders',bn_cart:'Cart',pay_first:'Pay by transfer after ordering: scan the QR, then upload your screenshot. We don’t offer cash on delivery.',save_qr:'Save QR',qr_saved:'QR saved. Open your banking / MoMo app and scan it from your photos ✦',scan_momo:'Open MoMo → Quét mã (Scan) and scan this QR. The amount and note are filled in for you.',wallet_l:'Wallet',phone_l:'MoMo number',
  proof_l:'Upload your payment screenshot',proof_pick:'Choose a screenshot of your transfer',proof_hint:'It uploads as soon as you pick it',proof_change:'Change photo',proof_retry:'Try again',proof_ok:'Screenshot uploaded',proof_ok2:'Now confirm below ✦',proof_fail:'Upload failed. Please try again',proof_need:'Upload your screenshot to continue',wait_upload:'Uploading your screenshot…',step_pay:'Transfer the money',confirm_h:'Confirm your payment',ipaid_note:'Your receipt will be emailed to you right away.',sending_paid:'Confirming…',proof_sent2:'Your receipt is on its way to your inbox.',proof_type:'Please choose an image file',
  uploading:'Uploading…',proof_sent:'We’ve got your payment details, thank you!',tab_track:'Track order',email_l:'Email',email_ph:'for your receipt',email_bad:'That email doesn’t look right. Please check it ✦',email_sent:'Upload your transfer screenshot below and we’ll email your receipt ✉',copy_s:'Copy',track_title:'Track your order',track_lead:'Enter the order code you got at checkout.',track_ph:'AC••••••',track_go:'Check',recent:'Your recent orders on this device:',
  not_found:'We couldn’t find that code. Check the letters and try again ✦',net_err:'Couldn’t connect. Check your internet and try again.',sending:'Sending your order…',
@@ -680,7 +717,7 @@ en:{pay_first:'Pay by transfer after ordering: scan the QR, then upload your scr
  summary:'Order summary',shipping:'Shipping',ship_tbc:'confirmed by message',total:'Total',gifts:'Gifts',
  received:'Order received!',qr:'Our bank QR goes here',tnote:'Transfer note:',pnote:'Show this code when you pick up your order.',copy:'Copy code',done:'Done ✦',copied:'code copied ✦',copyfail:'Copy failed, please note it down: ',
  ann:['✦ Online orders open now','♡ Bill ≥ 250k: free AmelCola card','✦ Bill ≥ 300k: random Viet Phuc stickers','(๑˃ᴗ˂)ﻭ Limited gifts while stock lasts','✦ Last seen at Color Fiesta 17 · Booth G7']},
-vi:{pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Shop không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
+vi:{bn_shop:'Cửa hàng',bn_gifts:'Quà tặng',bn_wish:'Yêu thích',bn_track:'Tra cứu',bn_cart:'Giỏ hàng',pay_first:'Thanh toán bằng chuyển khoản ngay sau khi đặt: quét QR rồi tải ảnh chuyển khoản lên. Shop không nhận thanh toán khi nhận hàng.',save_qr:'Lưu mã QR',qr_saved:'Đã lưu QR. Mở app ngân hàng / MoMo và quét mã từ ảnh nhé ✦',scan_momo:'Mở MoMo → Quét mã và quét QR này. Số tiền và nội dung đã được điền sẵn.',wallet_l:'Ví',phone_l:'Số MoMo',
  proof_l:'Tải ảnh chụp giao dịch',proof_pick:'Chọn ảnh chụp màn hình chuyển khoản',proof_hint:'Ảnh sẽ được tải lên ngay khi bạn chọn',proof_change:'Đổi ảnh',proof_retry:'Thử lại',proof_ok:'Đã tải ảnh lên',proof_ok2:'Bạn bấm xác nhận bên dưới nhé ✦',proof_fail:'Tải ảnh không thành công, bạn thử lại nhé',proof_need:'Tải ảnh giao dịch để tiếp tục',wait_upload:'Đang tải ảnh lên…',step_pay:'Chuyển khoản',confirm_h:'Xác nhận thanh toán',ipaid_note:'Biên nhận sẽ được gửi vào email của bạn ngay sau đó.',sending_paid:'Đang xác nhận…',proof_sent2:'Biên nhận đang được gửi vào email của bạn.',proof_type:'Bạn chọn file ảnh giúp shop nhé',
  uploading:'Đang tải ảnh lên…',proof_sent:'Shop đã nhận thông tin thanh toán, cảm ơn bạn!',tab_track:'Tra cứu đơn',email_l:'Email',email_ph:'để nhận biên nhận',email_bad:'Email chưa đúng định dạng. Bạn kiểm tra lại giúp shop nhé ✦',email_sent:'Tải ảnh chuyển khoản bên dưới, shop sẽ gửi biên nhận qua email ✉',copy_s:'Sao chép',track_title:'Tra cứu đơn hàng',track_lead:'Nhập mã đơn bạn nhận được khi đặt hàng.',track_ph:'AC••••••',track_go:'Tra cứu',recent:'Đơn gần đây trên thiết bị này:',
  not_found:'Không tìm thấy mã đơn này. Bạn kiểm tra lại giúp shop nhé ✦',net_err:'Không kết nối được. Bạn kiểm tra mạng rồi thử lại nhé.',sending:'Đang gửi đơn…',
@@ -972,7 +1009,7 @@ function addToCart(from){
   flyToCart(from);toast(t('added')+' '+['٩(ˊᗜˋ*)و','(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧','(≧◡≦) ♡'][Math.floor(Math.random()*3)]);setTimeout(()=>closeAll(),350);
 }
 function flyToCart(from){
-  const p=byId(pd.id),a=from.getBoundingClientRect(),b=$('#cartBtn').getBoundingClientRect(),f=document.createElement('div');f.className='fly';
+  const p=byId(pd.id),a=from.getBoundingClientRect(),b=($('#cartBtn').offsetParent?$('#cartBtn'):$('.botnav .bn-cart')).getBoundingClientRect(),f=document.createElement('div');f.className='fly';
   f.innerHTML=`<img src="${img(p.imgs[pd.view]||p.imgs[0])}" alt="">`;f.style.left=a.left+a.width/2-23+'px';f.style.top=a.top-23+'px';document.body.appendChild(f);
   requestAnimationFrame(()=>{f.style.transform=`translate(${b.left-a.left-a.width/2+20}px,${b.top-a.top+20}px) scale(.4) rotate(360deg)`;f.style.opacity='.5'});setTimeout(()=>f.remove(),800);
 }
@@ -981,9 +1018,24 @@ const lineTotal=l=>optPrice(byId(l.id),l.opt)*l.qty;
 const subtotal=()=>cart.reduce((s,l)=>s+lineTotal(l),0);
 const aotTotal=()=>cart.filter(l=>byId(l.id).fandom==='Attack on Titan').reduce((s,l)=>s+lineTotal(l),0);
 const unlocked=st=>GIFTS.filter(g=>st>=g.at).map(L).concat(aotTotal()>=50000?[t('stamp')]:[]);
+/* phone: hide header on scroll down, show on scroll up; search toggle; bottom nav */
+(function(){
+  const hdr=$('header.site');let lastY=scrollY,ticking=false;
+  addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=scrollY;
+    if(!hdr.classList.contains('searching')){if(y>lastY+6&&y>120)hdr.classList.add('hide');else if(y<lastY-6||y<80)hdr.classList.remove('hide')}
+    lastY=y;ticking=false;
+    const g=$('#gifts').getBoundingClientRect().top<innerHeight*.5;document.querySelectorAll('.botnav [data-bn]').forEach(b=>{if(b.dataset.bn==='shop')b.classList.toggle('on',!g&&!wishOnly);if(b.dataset.bn==='gifts')b.classList.toggle('on',g)})})},{passive:true});
+  $('#searchToggle').onclick=()=>{const on=!hdr.classList.contains('searching');hdr.classList.toggle('searching',on);$('#searchToggle').setAttribute('aria-expanded',on);if(on){hdr.classList.remove('hide');setTimeout(()=>$('#search').focus(),30)}else if($('#search').value){$('#search').value='';$('#search').dispatchEvent(new Event('input'))}};
+  $('#search').addEventListener('keydown',e=>{if(e.key==='Enter'){e.target.blur();$('#shop').scrollIntoView({behavior:'smooth'})}});
+  document.querySelector('.botnav').addEventListener('click',e=>{const b=e.target.closest('[data-bn]');if(!b)return;const k=b.dataset.bn;
+    if(k==='wish'){e.preventDefault();$('#wishBtn').click();b.classList.toggle('on',wishOnly);$('#shop').scrollIntoView({behavior:'smooth'})}
+    if(k==='track'){openTrack()}
+    if(k==='cart'){$('#cartBtn').click()}});
+})();
 function updateBadges(){
   const n=cart.reduce((s,l)=>s+l.qty,0),cb=$('#cartCount');cb.hidden=!n;if(cb.textContent!=String(n)){cb.textContent=n;cb.classList.remove('pop');void cb.offsetWidth;cb.classList.add('pop')}
   $('#wishCount').hidden=!wish.size;$('#wishCount').textContent=wish.size;
+  $('#bnWish').hidden=!wish.size;$('#bnWish').textContent=wish.size;$('#bnCart').hidden=!n;$('#bnCart').textContent=n;
 }
 function renderCart(){
   const st=subtotal(),next=GIFTS.find(g=>st<g.at),top=GIFTS.at(-1).at,got=unlocked(st);
