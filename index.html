@@ -882,7 +882,7 @@ const P=[
   pickR:['Cerydra','Hysilens','Evernight','Castorice','Dan Heng','Aglaea','Anaxa','Phainon','Mydei','Hyacine'],pickSP:['Flame Reaver','Cyrene'],
   name:{en:'HSR Glitter Card Gacha',vi:'Gacha card nhũ HSR'},
   desc:{en:'Glitter photocards with a royal chess theme. Gacha is random. Picks are R cards only, except the 8 + 2 combo, which can pick SP.',vi:'Photocard nhũ chủ đề cờ vua hoàng gia. Gacha sẽ ra thẻ ngẫu nhiên. Pick chỉ áp dụng cho thẻ R, riêng combo 8 + 2 được pick thẻ SP.'},
-  optLabel:{en:'Buy as',vi:'Hình thức'},opts:[{en:'1 gacha (random)',vi:'1 gacha (ngẫu nhiên)',price:35000},{en:'Pick (R only)',vi:'Pick (chỉ R)',price:50000,pick:'single'},{en:'4 gacha + 1 pick (R)',vi:'4 gacha + 1 pick (R)',price:170000,pick:1},{en:'8 gacha + 2 pick (SP ok)',vi:'8 gacha + 2 pick (được pick SP)',price:300000,pick:2,sp:true}]},
+  optLabel:{en:'Buy as',vi:'Hình thức'},opts:[{en:'1 gacha (random)',vi:'1 gacha (ngẫu nhiên)',price:35000,gacha:1},{en:'Pick (R only)',vi:'Pick (chỉ R)',price:50000,pick:'single'},{en:'4 gacha + 1 pick (R)',vi:'4 gacha + 1 pick (R)',price:170000,pick:1,gacha:4},{en:'8 gacha + 2 pick (SP ok)',vi:'8 gacha + 2 pick (được pick SP)',price:300000,pick:2,sp:true,gacha:8}]},
  {id:'aventurine-set',fandom:'Honkai: Star Rail',type:'set',tag:'vp',price:320000,imgs:['aventurine'],unit:{en:'/ set',vi:'/ set'},
   name:{en:'Aventurine Set',vi:'Set Aventurine'},desc:{en:'From our Viet Phuc series: an A6 print plus a two-piece double-board standee.',vi:'Thuộc series Việt Phục, gồm 1 tranh in A6 và 1 standee 2 mảnh ghép đôi.'},
   contents:[{en:'A6 print',vi:'Tranh in A6'},{en:'15 cm 2-piece double-board standee',vi:'Standee 2 mảnh 15 cm'}]},
@@ -1256,7 +1256,7 @@ function openCheckout(){
 const LIVE=!!ORDER_API_URL;
 function orderData(l){const p=byId(l.id),o=p.opts?.[l.opt];return {id:l.id,opt:o?(o.vi||o.en):'',qty:l.qty,picks:l.picks||null,total:lineTotal(l)}}
 function catalogSnapshot(){return P.map(p=>({id:p.id,name:p.name.vi||p.name.en,fandom:p.fandom,price:p.price,
-  opts:(p.opts||[]).map(o=>({name:o.vi||o.en,price:o.price??p.price,pick:o.pick||null,sp:!!o.sp})),pickR:p.pickR||null,pickSP:p.pickSP||null}))}
+  opts:(p.opts||[]).map(o=>({name:o.vi||o.en,price:o.price??p.price,pick:o.pick||null,sp:!!o.sp,gacha:o.gacha||0})),pickR:p.pickR||null,pickSP:p.pickSP||null}))}
 function orderLine(l){const p=byId(l.id),o=p.opts?.[l.opt];return `${l.qty}× ${p.name.vi||p.name.en}${o?` (${o.vi||o.en}${l.picks?': '+pickText(l.picks):''})`:''}${l.note?` [${l.note}]`:''} = ${VND(lineTotal(l))}`}
 function transferNote(name,code){let n=name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').replace(/[^A-Za-z0-9 ]/g,'').replace(/\s+/g,' ').trim().toUpperCase();
   n=n.slice(0,50-('Preorder--'+code).length).trim();return `Preorder-${n}-${code}`}
