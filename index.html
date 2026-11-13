@@ -109,7 +109,8 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .nav{display:flex;align-items:center;gap:12px;padding:10px 14px}
 .logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:800;font-size:24px;color:var(--text);text-decoration:none;white-space:nowrap;line-height:1}
 .logo svg{width:34px;height:34px;transition:transform .5s var(--ease)}
-.logo-star{width:38px;height:38px;display:block;transition:transform .5s var(--ease)}.logo-star svg{width:100%;height:100%;display:block}
+.avatar{object-fit:cover;border:2.5px solid var(--line);border-radius:28%;box-shadow:2px 2px 0 var(--shadow-c);background:#fff}
+.logo-star{width:40px;height:40px;display:block;transition:transform .5s var(--ease)}.logo-star svg{width:100%;height:100%;display:block}
 .logo:hover .logo-star{transform:rotate(-15deg) scale(1.1)}
 .logo:hover svg{transform:rotate(72deg) scale(1.1)}
 .urlbar{flex:1;display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:6px 8px 6px 14px;background:var(--surface-2);min-width:0}
@@ -162,15 +163,15 @@ header.site{position:sticky;top:10px;z-index:30;margin-top:14px}
 .about .win__body{padding:18px 20px 64px;display:flex;flex-direction:column;gap:12px;height:calc(100% - 42px)}
 .win.about{overflow:visible;position:relative}
 .win.about>.win__bar{border-radius:14px 14px 0 0}
-.ask{position:absolute;right:-26px;bottom:-34px;display:flex;align-items:flex-end;gap:2px;color:inherit;text-decoration:none;z-index:3}
-.ask-face{width:104px;height:104px;flex:none;display:block;animation:floaty 4s ease-in-out infinite;transition:transform .4s var(--ease);filter:drop-shadow(3px 4px 0 rgba(27,42,107,.18))}
+.ask{position:absolute;right:-22px;bottom:-30px;display:flex;align-items:flex-end;gap:2px;color:inherit;text-decoration:none;z-index:3}
+.ask-face{width:92px;height:92px;flex:none;display:block;animation:floaty 4s ease-in-out infinite;transition:transform .4s var(--ease);border-radius:26%!important;border-width:3px!important;box-shadow:4px 4px 0 var(--shadow-c)!important}
 .ask-face svg{width:100%;height:100%;display:block}
 .ask:hover .ask-face{transform:rotate(-12deg) scale(1.08)}
-.ask-bubble{position:relative;display:grid;gap:1px;max-width:250px;margin-bottom:58px;background:var(--bar-pink);border:2px solid var(--line);border-radius:16px 16px 4px 16px;padding:8px 12px;box-shadow:3px 3px 0 var(--shadow-c);transform:rotate(-3deg);transition:transform .25s var(--ease)}
+.ask-bubble{position:relative;display:grid;gap:1px;max-width:250px;margin-bottom:52px;margin-right:8px;background:var(--bar-pink);border:2px solid var(--line);border-radius:16px 16px 4px 16px;padding:8px 12px;box-shadow:3px 3px 0 var(--shadow-c);transform:rotate(-3deg);transition:transform .25s var(--ease)}
 .ask-bubble::after{content:"";position:absolute;right:-8px;bottom:8px;width:12px;height:12px;background:var(--bar-pink);border-right:2px solid var(--line);border-top:2px solid var(--line);transform:rotate(45deg)}
 .ask-bubble b{font-size:14px;line-height:1.25}.ask-bubble small{font-size:12px;color:var(--muted);font-weight:800;line-height:1.3}
 .ask:hover .ask-bubble{transform:rotate(0) translateY(-3px)}
-@media (max-width:640px){.about .win__body{padding-bottom:128px}.ask{right:-8px;bottom:-30px}.ask-face{width:88px;height:88px}.ask-bubble{max-width:190px;margin-bottom:48px}}
+@media (max-width:640px){.about .win__body{padding-bottom:128px}.ask{right:-8px;bottom:-30px}.ask-face{width:78px;height:78px}.ask-bubble{max-width:190px;margin-bottom:48px}}
 .about dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}
 .about dt{color:var(--muted);font-weight:700}
 .about dd{font-weight:900}
@@ -424,8 +425,13 @@ fieldset{border:none}
 .change-btn{cursor:pointer;white-space:nowrap;flex:none}
 .paid-done{text-align:center;display:grid;gap:4px;padding:14px;border:2px solid #2E9E5B;border-radius:14px;background:color-mix(in srgb,#C9F2D6 45%,var(--surface))}
 .paid-done small{color:var(--muted);font-weight:700}
-.pay-info{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;border:2px dashed var(--soft);border-radius:12px;padding:10px 12px;font-weight:800;font-size:14px}
-.pay-info small{flex-basis:100%;font-weight:700}
+.pay-info{display:grid;gap:8px;border:2px dashed var(--soft);border-radius:12px;padding:12px 14px;font-weight:800;font-size:14px}
+.pay-info__top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pay-info .lbl{margin:0 4px 0 0}
+@media (max-width:640px){.pay-info .lbl{flex-basis:100%}}
+.pm{display:inline-flex;align-items:center;gap:7px;padding:4px 12px 4px 4px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font-weight:900;line-height:1}
+.pm img,.pm-ico{width:24px;height:24px;border-radius:7px;display:block;flex:none}
+.pay-info small{font-weight:700;line-height:1.45}
 .momo-dot.sm{width:20px;height:20px;font-size:7px;border-radius:5px;vertical-align:-5px}
 .proof .btn:disabled{background:var(--surface-2);color:var(--muted);border-style:dashed;box-shadow:none;transform:none;cursor:not-allowed;opacity:1}
 .pay-tabs{display:flex;gap:8px}
@@ -534,7 +540,7 @@ fieldset{border:none}
     <div class="win__bar sky"><span>amelcola ✦ shop.exe</span><span class="win__hearts" aria-hidden="true">♥ ♥ ♥</span></div>
     <div class="nav">
       <a class="logo" href="#top" aria-label="AmelCola">
-        <span class="logo-star" id="logoStar" aria-hidden="true"></span>
+        <img class="logo-star avatar" src="img/avatar.jpg" alt="">
         AmelCola
       </a>
       <label class="urlbar">
@@ -611,7 +617,7 @@ fieldset{border:none}
           <div><div class="opt-label" data-i18n="follow"></div><nav class="socials" aria-label="Social media"><a class="soc" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.3 0-1.4-.2-2.6-.2-2.6 0-4.3 1.6-4.3 4.4v2H7.3V12h2.8v9.9H14V12h2.8l.4-3.5H14z"/></svg><span class="tip">Facebook</span></a><a class="soc" href="https://x.com/AmelCola_" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 2.5h3.1l-6.8 7.8 8 10.6h-6.3l-4.9-6.4-5.6 6.4H2.2l7.3-8.3L1.8 2.5h6.4l4.4 5.9 5.2-5.9zm-1.1 16.5h1.7L7.4 4.3H5.5L16.7 19z"/></svg><span class="tip">X</span></a><a class="soc" href="https://www.tiktok.com/@amelcola.circle" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/></svg><span class="tip">TikTok</span></a><a class="soc" href="https://xhslink.cn/m/4K2iqwxzkMq" target="_blank" rel="noopener noreferrer" aria-label="AmelCola on Xiaohongshu (RED)"><span class="xhs" aria-hidden="true">小红书</span><span class="tip">Xiaohongshu</span></a><a class="soc" href="mailto:amelcola.circle@gmail.com" aria-label="Email AmelCola: amelcola.circle@gmail.com" data-email="amelcola.circle@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.3V17h16V7.3l-8 5.6zm1.4-.3L12 11.6 18.6 7z"/></svg><span class="tip">Email</span></a></nav></div>
           <a class="ask" href="https://www.facebook.com/AmelCola.circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook AmelCola">
             <span class="ask-bubble"><b data-i18n="ask_t"></b><small data-i18n="ask_s"></small></span>
-            <span class="ask-face" id="askFace" aria-hidden="true"></span>
+            <img class="ask-face avatar" src="img/avatar.jpg" alt="">
           </a>
         </div>
       </div>
@@ -701,35 +707,6 @@ const MOMO = {                   // MoMo wallet, read from your MoMo VietQR (lea
   accountName: 'DO NHU HUONG',
   shown: '*******051'            // what customers see instead of the full number
 };
-</script>
-<script>
-/* Cute sticker set (original drawings). Soft pastel fills + rounded outline. */
-const CUTE=(()=>{
-  const L='#1B2A6B',W=2.6;                      // outline colour / width (in a 48x48 box)
-  const C={yellow:'#FFF1A8',pink:'#FFC9DE',mint:'#BFEBDD',lilac:'#D9D2F7',sky:'#BFE6FF',red:'#FF9BB0',white:'#FFFFFF',blush:'#FF9EC2'};
-  const o=(fill)=>`fill="${fill}" stroke="${L}" stroke-width="${W}" stroke-linejoin="round" stroke-linecap="round"`;
-  // chubby star: polygon drawn with a fat round stroke so the points become soft
-  const starPts=(cx,cy,R,r,n=5,rot=-90)=>Array.from({length:n*2},(_,i)=>{const a=(rot+i*180/n)*Math.PI/180,rad=i%2?r:R;return `${(cx+rad*Math.cos(a)).toFixed(2)},${(cy+rad*Math.sin(a)).toFixed(2)}`}).join(' ');
-  const chubbyStar=(cx,cy,R,fill,soft=7)=>{const p=starPts(cx,cy,R,R*.56);return `<polygon points="${p}" fill="${L}" stroke="${L}" stroke-width="${soft+W*2}" stroke-linejoin="round"/><polygon points="${p}" fill="${fill}" stroke="${fill}" stroke-width="${soft}" stroke-linejoin="round"/>`};
-  const face=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cx="-7" cy="0" rx="1.9" ry="2.3" fill="${L}"/><ellipse cx="7" cy="0" rx="1.9" ry="2.3" fill="${L}"/><path d="M-3 3.2q1.5 2.2 3 0q1.5 2.2 3 0" fill="none" stroke="${L}" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="-11.5" cy="3.6" rx="3" ry="1.8" fill="${C.blush}" opacity=".85"/><ellipse cx="11.5" cy="3.6" rx="3" ry="1.8" fill="${C.blush}" opacity=".85"/></g>`;
-  const bow=(x,y,s=1,fill=C.pink)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0C-4-6-12-7-12-1S-4 5 0 0z" ${o(fill)}/><path d="M0 0C4-6 12-7 12-1S4 5 0 0z" ${o(fill)}/><path d="M-1.5 1l-3 7M1.5 1l3 7" ${o('none')}/><circle r="2.6" ${o(fill)}/></g>`;
-  const S={
-    // the mascot: chubby star with face, shine and a bow
-    mascot:()=>`<svg viewBox="0 0 100 100">${chubbyStar(50,54,40,C.yellow,12)}<path d="M33 37q4-7 11-8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" opacity=".9"/>${face(50,58,1.55)}${bow(74,22,.95)}</svg>`,
-    star:(f=C.yellow)=>`<svg viewBox="0 0 48 48">${chubbyStar(24,26,18,f,6)}<ellipse cx="17" cy="21" rx="2" ry="1.2" fill="#fff" opacity=".9"/></svg>`,
-    heart:(f=C.pink)=>`<svg viewBox="0 0 48 48"><path d="M24 39C10 30 6 22 8 15.5 10.5 8 19 7.5 24 14c5-6.5 13.5-6 16 1.5 2 6.5-2 14.5-16 23.5z" ${o(f)}/><path d="M24 31C17 26 15.5 22 16.5 19.5 17.6 16.6 21 16.6 24 20c3-3.4 6.4-3.4 7.5-.5 1 2.5-.5 6.5-7.5 11.5z" fill="#fff" opacity=".55"/></svg>`,
-    bow:()=>`<svg viewBox="0 0 48 48">${bow(24,20,1.6)}</svg>`,
-    dango:()=>`<svg viewBox="0 0 48 48"><path d="M24 4v42" ${o('none')}/><circle cx="24" cy="11" r="7" ${o(C.pink)}/><circle cx="24" cy="23.5" r="7" ${o(C.white)}/><circle cx="24" cy="36" r="7" ${o(C.mint)}/><circle cx="21.5" cy="9" r="1.5" fill="#fff"/></svg>`,
-    bunny:()=>`<svg viewBox="0 0 48 48"><path d="M17 20C13 9 14 3 18 3s5 7 4 16M31 20c4-11 3-17-1-17s-5 7-4 16" ${o(C.white)}/><path d="M18 8c1 4 1 7 1 10M30 8c-1 4-1 7-1 10" stroke="${C.pink}" stroke-width="2.4" stroke-linecap="round" fill="none"/><ellipse cx="24" cy="31" rx="15" ry="12.5" ${o(C.white)}/>${face(24,32,.95)}</svg>`,
-    flower:(f=C.pink)=>`<svg viewBox="0 0 48 48"><g ${o(f)}>${[0,72,144,216,288].map(a=>`<circle cx="${24+9*Math.cos((a-90)*Math.PI/180)}" cy="${24+9*Math.sin((a-90)*Math.PI/180)}" r="8"/>`).join('')}</g><circle cx="24" cy="24" r="8.2" fill="${f}"/><ellipse cx="21" cy="24" rx="1.4" ry="1.8" fill="${L}"/><ellipse cx="27" cy="24" rx="1.4" ry="1.8" fill="${L}"/></svg>`,
-    cherry:()=>`<svg viewBox="0 0 48 48"><path d="M17 30C19 18 24 10 32 6M33 29C31 18 31 11 32 6" ${o('none')}/><path d="M32 6c4-2 9-1 10 3-4 2-8 1-10-3z" ${o(C.mint)}/><circle cx="15" cy="34" r="9" ${o(C.red)}/><circle cx="33" cy="33" r="9" ${o(C.red)}/><ellipse cx="12" cy="31" rx="2" ry="2.8" fill="#fff" opacity=".8"/><ellipse cx="30" cy="30" rx="2" ry="2.8" fill="#fff" opacity=".8"/></svg>`,
-    sparkle:(f=C.yellow)=>`<svg viewBox="0 0 48 48"><path d="M24 4c2 11 6 16 18 20-12 4-16 9-18 20-2-11-6-16-18-20 12-4 16-9 18-20z" ${o(f)}/></svg>`,
-    shooting:()=>`<svg viewBox="0 0 48 48"><path d="M20 30C26 36 34 42 46 44" fill="none" stroke="${C.pink}" stroke-width="6" stroke-linecap="round"/><path d="M24 26C30 31 37 36 46 37" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linecap="round"/>${chubbyStar(17,20,12,C.yellow,4)}</svg>`,
-    cloud:()=>`<svg viewBox="0 0 48 48"><path d="M12 36a8 8 0 0 1-1-16 11 11 0 0 1 20-5 9 9 0 0 1 9 13 6 6 0 0 1-2 8z" ${o(C.sky)}/>${face(24,27,.8)}</svg>`,
-    hearts3:()=>`<svg viewBox="0 0 64 30">${[[C.lilac,12],[C.pink,32],[C.sky,52]].map(([f,x])=>`<path d="M${x} 26C${x-10} 20 ${x-12} 14 ${x-10} 9 ${x-8} 4 ${x-2} 4 ${x} 9c2-5 8-5 10 0 2 5 0 11-10 17z" ${o(f)}/>`).join('')}</svg>`
-  };
-  return S;
-})();
 </script>
 <script>
 /* ============================================================
@@ -912,14 +889,11 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.datase
 
 /* ---------- decorations ---------- */
 (function(){
-  $('#askFace').innerHTML=CUTE.mascot();$('#logoStar').innerHTML=CUTE.mascot();
-  const d=$('#deco');const kaos=['(◕ᴗ◕✿)','(=^･ω･^=)','(っ◔◡◔)っ ♥'];
-  const stickers=[()=>CUTE.star(),()=>CUTE.heart(),()=>CUTE.bow(),()=>CUTE.dango(),()=>CUTE.bunny(),()=>CUTE.flower(),()=>CUTE.cherry(),()=>CUTE.sparkle(),()=>CUTE.shooting(),()=>CUTE.cloud(),()=>CUTE.star('#FFC9DE'),()=>CUTE.flower('#D9D2F7'),()=>CUTE.sparkle('#BFEBDD'),()=>CUTE.hearts3()];
-  const spots=[[3,20],[94,15],[6,46],[92,40],[2,72],[95,66],[48,4],[72,30],[4,94],[90,92],[30,58],[62,80]];
-  spots.forEach(([x,y],i)=>{
-    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.1)+'s';s.style.animationDuration=(7+i%4*1.5)+'s';
-    if(i===6||i===10){s.className='bubble'+(i%2?' pink':'');s.textContent=kaos[i%kaos.length]}
-    else{const z=i===11?64:30+(i*7)%22;s.className='sticker';s.style.width=z+'px';s.style.setProperty('--r',((i*37)%30-15)+'deg');s.innerHTML=stickers[i%stickers.length]()}
+  const d=$('#deco');const kaos=['(◕ᴗ◕✿)','♡','(=^･ω･^=)','ദ്ദി ˉ͈̀꒳ˉ͈́ )✧','(っ◔◡◔)っ ♥','☆'];
+  [[4,22],[93,18],[8,64],[94,58],[3,88],[90,90],[50,6],[70,42]].forEach(([x,y],i)=>{
+    const s=document.createElement('span');s.style.left=x+'%';s.style.top=y+'%';s.style.animationDelay=(-i*1.3)+'s';s.style.animationDuration=(7+i%4*1.5)+'s';
+    if(i%3===0){s.className='bubble'+(i%2?' pink':'');s.textContent=kaos[i%kaos.length]}
+    else{const z=18+i*3;s.innerHTML=`<svg width="${z}" height="${z}" viewBox="-12 -12 24 24">${i%2?'<path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z" fill="#fff" stroke="#6F8BE8" stroke-width="1.5"/>':`<path d="M0-11l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="${['#fff','#ECF89A','#FFD3E4'][i%3]}" stroke="#6F8BE8" stroke-width="1.5" stroke-linejoin="round"/>`}</svg>`}
     d.appendChild(s)});
 })();
 function setCalm(on,save=true){document.body.classList.toggle('calm',on);$('#calmToggle').setAttribute('aria-pressed',!on);$('#calmToggle').textContent=t(on?'deco_off':'deco_on');if(save)store.set('ac_calm',on)}
@@ -1142,7 +1116,7 @@ function openCheckout(){
     <fieldset><legend class="lbl">${t('how')}</legend><div class="radio-cards">
       <label><input type="radio" name="ship" value="ship" checked>${t('ship')}</label><label><input type="radio" name="ship" value="pickup">${t('pickup')}</label></div></fieldset>
     <div id="shipBox"><label class="lbl" for="f-addr">${t('addr')} <em>*</em></label><textarea id="f-addr" rows="2" autocomplete="street-address"></textarea></div>
-    <div class="pay-info"><span class="lbl" style="margin:0">${t('pay')}</span><span>🏦 ${esc(BANK.bankName)}${accReady(MOMO)?' · <b class="momo-dot sm">mo<br>mo</b> MoMo':''}</span><small class="note">${t('pay_first')}</small></div>
+    <div class="pay-info"><div class="pay-info__top"><span class="lbl">${t('pay')}</span><span class="pm"><img src="img/tcb.png" alt="">${esc(BANK.bankName)}</span>${accReady(MOMO)?'<span class="pm"><img src="img/momo.png" alt="">MoMo</span>':''}</div><small class="note">${t('pay_first')}</small></div>
     <p class="note" id="coErr" role="alert" style="color:var(--accent);font-weight:800"></p>
     <button class="btn btn--primary btn--block" type="submit">${t('confirm')}</button>
   </form>
@@ -1234,7 +1208,7 @@ function payBlock(o){
   const qr=vietQRPayload(o.total,o.transferNote,acc);
   return `<div class="pay-wrap" data-pay="${esc(o.code)}">
     ${o.status===0?`<div class="step-h"><b>1</b>${t('step_pay')}</div>`:''}
-    ${PAY_METHODS.length>1?`<div class="pay-tabs" role="tablist">${PAY_METHODS.map(([k])=>`<button role="tab" class="pay-tab ${k}" aria-selected="${k===ps.method}" data-method="${k}">${k==='momo'?'<b class="momo-dot">mo<br>mo</b> MoMo':'🏦 '+esc(BANK.bankName)}</button>`).join('')}</div>`:''}
+    ${PAY_METHODS.length>1?`<div class="pay-tabs" role="tablist">${PAY_METHODS.map(([k])=>`<button role="tab" class="pay-tab ${k}" aria-selected="${k===ps.method}" data-method="${k}">${k==='momo'?'<img class="pm-ico" src="img/momo.png" alt=""> MoMo':'<img class="pm-ico" src="img/tcb.png" alt=""> '+esc(BANK.bankName)}</button>`).join('')}</div>`:''}
     <div class="pay ${isMomo?'is-momo':''}">
       <div class="qrcol"><div class="qrbox" aria-label="VietQR">${qrSVG(qr)}<small>${isMomo?'MOMO · ':''}VIETQR · NAPAS 247</small></div>
         <button class="mini-copy save-qr" data-saveqr="${esc(o.code)}">⤓ ${t('save_qr')}</button></div>
